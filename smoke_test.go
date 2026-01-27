@@ -7,6 +7,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/jonwraymond/metatools-mcp/pkg/metatools"
 	"github.com/jonwraymond/toolcode"
 	"github.com/jonwraymond/tooldocs"
 	"github.com/jonwraymond/toolindex"
@@ -158,6 +159,11 @@ func TestReleaseTrainSmoke(t *testing.T) {
 	}
 	if len(results) == 0 || results[0].ID != addTool.ToolID() {
 		t.Fatalf("unexpected search results: %+v", results)
+	}
+	// The metatools MCP package should stay compatible with index summaries.
+	limit := (&metatools.SearchToolsInput{Query: "add"}).GetLimit()
+	if limit <= 0 {
+		t.Fatalf("metatools limit = %d, want > 0", limit)
 	}
 
 	doc, err := docs.DescribeTool(addTool.ToolID(), tooldocs.DetailFull)

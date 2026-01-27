@@ -3,6 +3,7 @@ module github.com/jonwraymond/ai-tools-stack
 go 1.24.4
 
 require (
+	github.com/jonwraymond/metatools-mcp v0.1.3
 	github.com/jonwraymond/toolcode v0.1.1
 	github.com/jonwraymond/tooldocs v0.1.2
 	github.com/jonwraymond/toolindex v0.1.2
@@ -10,6 +11,7 @@ require (
 	github.com/jonwraymond/toolrun v0.1.1
 	github.com/jonwraymond/toolruntime v0.1.1
 	github.com/jonwraymond/toolsearch v0.1.1
+	github.com/modelcontextprotocol/go-sdk v1.2.0
 )
 
 require (
@@ -36,7 +38,6 @@ require (
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/jsonschema-go v0.3.0 // indirect
 	github.com/json-iterator/go v0.0.0-20171115153421-f7279a603ede // indirect
-	github.com/modelcontextprotocol/go-sdk v1.2.0 // indirect
 	github.com/mschoch/smat v0.2.0 // indirect
 	github.com/yosida95/uritemplate/v3 v3.0.2 // indirect
 	go.etcd.io/bbolt v1.4.0 // indirect
