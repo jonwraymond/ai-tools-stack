@@ -4,12 +4,12 @@ go 1.24.4
 
 require (
 	github.com/jonwraymond/metatools-mcp v0.1.4
-	github.com/jonwraymond/toolcode v0.1.8
-	github.com/jonwraymond/tooldocs v0.1.9
+	github.com/jonwraymond/toolcode v0.1.9
+	github.com/jonwraymond/tooldocs v0.1.10
 	github.com/jonwraymond/toolindex v0.1.8
 	github.com/jonwraymond/toolmodel v0.1.2
 	github.com/jonwraymond/toolrun v0.1.8
-	github.com/jonwraymond/toolruntime v0.1.8
+	github.com/jonwraymond/toolruntime v0.1.9
 	github.com/jonwraymond/toolsearch v0.1.8
 	github.com/modelcontextprotocol/go-sdk v1.2.0
 )
