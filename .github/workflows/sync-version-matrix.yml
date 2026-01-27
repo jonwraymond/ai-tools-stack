@@ -33,6 +33,14 @@ jobs:
           private-key: ${{ secrets.AI_TOOLS_GH_APP_PRIVATE_KEY }}
           owner: jonwraymond
 
+      - name: Mask secrets
+        run: |
+          echo "::add-mask::${{ secrets.AI_TOOLS_GH_APP_PRIVATE_KEY }}"
+          echo "::add-mask::${{ secrets.AI_TOOLS_GH_APP_CLIENT_SECRET }}"
+          echo "::add-mask::${{ secrets.AI_TOOLS_GH_APP_CLIENT_ID }}"
+          echo "::add-mask::${{ secrets.AI_TOOLS_GH_APP_ID }}"
+          echo "::add-mask::${{ steps.app-token.outputs.token }}"
+
       - name: Configure git
         run: |
           git config --global user.name "ai-tools-stack-bot"
