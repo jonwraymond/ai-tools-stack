@@ -1,0 +1,22 @@
+# Binaries and build outputs
+bin/
+build/
+dist/
+*.exe
+*.out
+*.test
+
+# Go workspace / vendoring
+vendor/
+
+# Secrets / env files
+.env
+.env.*
+*.env
+*.secret
+secrets.*
+
+# OS / editor noise
+.DS_Store
+.idea/
+.vscode/
