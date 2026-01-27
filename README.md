@@ -33,7 +33,7 @@ Treat this list as the source of truth for known-good combinations:
 - `github.com/jonwraymond/toolcode` `v0.1.1`
 - `github.com/jonwraymond/toolruntime` `v0.1.1`
 - `github.com/jonwraymond/toolsearch` `v0.1.1`
-- `github.com/jonwraymond/metatools-mcp` `v0.1.3`
+- `github.com/jonwraymond/metatools-mcp` `v0.1.4`
 
 ## DAG-aware bump order (do not freestyle)
 
