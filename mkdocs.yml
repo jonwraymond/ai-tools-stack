@@ -40,6 +40,7 @@ theme:
   features:
     - navigation.instant
     - navigation.tracking
+    - navigation.tabs
     - navigation.sections
     - navigation.expand
     - navigation.top
@@ -47,16 +48,23 @@ theme:
     - search.highlight
     - content.code.copy
     - content.tabs.link
+    - toc.follow
   palette:
     - scheme: default
-      primary: blue
-      accent: teal
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
     - scheme: slate
-      primary: blue
-      accent: teal
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/white-balance-sunny
+        name: Switch to light mode
   font:
-    text: Roboto
-    code: Roboto Mono
+    text: Space Grotesk
+    code: JetBrains Mono
 
 extra:
   version:
@@ -86,3 +94,5 @@ markdown_extensions:
 extra_javascript:
   - https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js
   - js/mermaid-init.js
+extra_css:
+  - stylesheets/extra.css
