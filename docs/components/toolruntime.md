@@ -3,6 +3,12 @@
 Sandbox/runtime abstraction for executing code securely. Provides multiple
 backends with a single interface.
 
+## Motivation
+
+- Create an explicit trust boundary for code execution
+- Swap isolation backends without changing APIs
+- Apply security profiles consistently
+
 ## Core responsibilities
 
 - Runtime interface + default implementation
@@ -31,3 +37,8 @@ flowchart LR
   A --> F[gvisor]
   A --> G[wasm]
 ```
+
+## Usability notes
+
+- Profiles separate policy from implementation
+- Backends are swappable per environment

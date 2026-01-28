@@ -9,6 +9,9 @@ nav:
   - Home: index.md
   - Architecture:
       - Stack Overview: architecture/overview.md
+      - Progressive Disclosure: architecture/progressive-disclosure.md
+      - Pluggable Architecture: architecture/pluggable-architecture.md
+      - Why Go: architecture/why-go.md
   - Components:
       - toolmodel: components/toolmodel.md
       - toolindex: components/toolindex.md

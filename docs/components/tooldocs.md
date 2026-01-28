@@ -3,6 +3,12 @@
 Progressive, structured documentation and examples for tools. Designed for
 schema-first usage and token-efficient guidance.
 
+## Motivation
+
+- Pull full schemas only when needed
+- Reduce tool call errors with examples
+- Keep long docs out of the critical path
+
 ## Core responsibilities
 
 - Detail tiers: summary → schema → full
@@ -33,8 +39,8 @@ flowchart LR
   A --> E[metatools-mcp]
 ```
 
-## Notes
+## Usability notes
 
-Examples are bounded to protect token budgets:
-- `MaxArgsDepth` and `MaxArgsKeys`
-- `MaxSummaryLen`, `MaxNotesLen`, etc.
+- Example caps protect token budgets
+- Summary tier is safe for discovery
+- Schema tier is designed for tool invocation

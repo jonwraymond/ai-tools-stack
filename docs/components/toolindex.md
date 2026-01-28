@@ -3,6 +3,12 @@
 Global registry and search layer for tools. Provides progressive discovery and
 canonical lookup by tool ID.
 
+## Motivation
+
+- Keep discovery fast and cheap
+- Decouple search quality from core registry
+- Provide a single source of truth for tool IDs and backends
+
 ## Core responsibilities
 
 - Register tools + backends
@@ -34,6 +40,8 @@ flowchart LR
   A --> F[toolrun]
 ```
 
-## Integration note
+## Usability notes
 
-`toolindex` is the discovery backbone for `metatools-mcp`.
+- Summaries are token-cheap
+- Namespace listing enables simple filtering
+- Backends are swappable without changing IDs

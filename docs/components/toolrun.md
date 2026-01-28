@@ -3,6 +3,12 @@
 Execution layer for tools and chains. Backend-agnostic and aligned to MCP
 `run_tool` and `run_chain` semantics.
 
+## Motivation
+
+- Provide consistent execution semantics across backends
+- Validate inputs/outputs for safety
+- Offer deterministic chain behavior
+
 ## Core responsibilities
 
 - Resolve tools and backends
@@ -34,3 +40,8 @@ flowchart LR
   C --> E[Provider]
   C --> F[Local]
 ```
+
+## Usability notes
+
+- Streaming is optional; non-streaming backends return `ErrStreamNotSupported`
+- Backend selection is deterministic by default

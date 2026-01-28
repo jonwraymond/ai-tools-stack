@@ -3,6 +3,12 @@
 Code-mode orchestration layer that wraps search, docs, and execution into a
 single programmable surface.
 
+## Motivation
+
+- Enable conditional logic and multi-step orchestration
+- Keep tool orchestration explicit and testable
+- Provide call traces for debugging
+
 ## Core responsibilities
 
 - Execute short orchestration snippets
@@ -34,3 +40,8 @@ flowchart LR
   A --> D[toolrun]
   A --> E[toolruntime]
 ```
+
+## Usability notes
+
+- `ExecuteResult` includes tool call traces
+- Limits are enforced consistently across engines

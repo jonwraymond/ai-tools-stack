@@ -3,6 +3,12 @@
 MCP server that exposes the tool stack via standardized MCP tools with a
 progressive-disclosure flow.
 
+## Motivation
+
+- Provide a minimal, consistent MCP surface
+- Keep discovery cheap and execution safe
+- Enable pluggable search and optional code execution
+
 ## Core responsibilities
 
 - Expose `search_tools`, `list_namespaces`
@@ -28,3 +34,8 @@ flowchart LR
   A --> E[toolcode]
   E --> F[toolruntime]
 ```
+
+## Usability notes
+
+- Small tool surface reduces prompt complexity
+- Schemas and examples are fetched on demand

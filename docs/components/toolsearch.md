@@ -3,6 +3,12 @@
 Search strategy library that plugs into toolindex. Currently provides BM25 with
 room for semantic/hybrid search.
 
+## Motivation
+
+- Keep `toolindex` minimal
+- Allow search experimentation without destabilizing the core
+- Improve relevance without changing IDs or schemas
+
 ## Core responsibilities
 
 - Provide BM25 ranking
@@ -24,3 +30,8 @@ flowchart LR
   B --> C[BM25]
   B --> D[semantic]
 ```
+
+## Usability notes
+
+- Deterministic ranking avoids jitter
+- BM25 is opt-in and isolated by design

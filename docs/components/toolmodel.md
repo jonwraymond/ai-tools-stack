@@ -3,6 +3,12 @@
 Canonical schema definitions for all tools. This is the source of truth for
 IDs, schemas, tags, and backend bindings.
 
+## Motivation
+
+- Standardize tool definitions across the stack
+- Align directly with MCP via the official Go SDK
+- Keep schemas portable and validation deterministic
+
 ## Core types
 
 - `Tool` (embeds MCP `mcp.Tool`, adds `Namespace`, `Version`, `Tags`)
@@ -46,7 +52,8 @@ flowchart LR
   A --> D[toolrun]
 ```
 
-## Notes
+## Usability notes
 
-- JSON Schema 2020-12 is assumed when `$schema` is missing.
-- External `$ref` resolution is blocked for safety.
+- Schemas accept maps or JSON bytes
+- Tags are normalized for fast search
+- IDs are stable and human‑readable
