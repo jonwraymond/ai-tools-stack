@@ -30,19 +30,9 @@ For deeper context, see the aggregated indexes:
 
 ## High-level flow
 
-```mermaid
-flowchart LR
-  A[toolmodel] --> B[toolindex]
-  B --> C[tooldocs]
-  B --> D[toolrun]
-  D --> E[toolcode]
-  D --> F[toolruntime]
-  B --> G[toolsearch]
-  B --> H[metatools-mcp]
-  C --> H
-  D --> H
-  E --> H
-```
+
+![AI Tools Stack Flow](assets/diagrams/stack-high-level-flow.svg)
+
 
 ## Quickstart
 

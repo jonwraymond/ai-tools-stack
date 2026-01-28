@@ -1,0 +1,19 @@
+direction: right
+
+toolmodel -> toolindex
+ toolindex -> tooldocs
+ toolindex -> toolrun
+ toolrun -> toolcode
+ toolcode -> toolruntime
+ toolindex -> toolsearch
+
+Pluggable: {
+  label: "Pluggable"
+  Searcher
+  Backend
+  Engine
+}
+
+toolsearch -> Pluggable.Searcher
+ toolrun -> Pluggable.Backend
+ toolcode -> Pluggable.Engine

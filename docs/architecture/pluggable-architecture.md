@@ -5,26 +5,9 @@ This keeps the core stable while allowing experimentation and integration.
 
 ## Extension points
 
-```mermaid
-flowchart LR
-  A[toolmodel] --> B[toolindex]
-  B --> C[tooldocs]
-  B --> D[toolrun]
-  D --> E[toolcode]
-  E --> F[toolruntime]
 
-  B --> G[toolsearch]
+![Pluggable Architecture Extension Points](../assets/diagrams/pluggable-architecture.svg)
 
-  subgraph Pluggable
-    S[Searcher]
-    R[Backend]
-    E1[Engine]
-  end
-
-  G --> S
-  D --> R
-  E --> E1
-```
 
 ## What you can plug in
 

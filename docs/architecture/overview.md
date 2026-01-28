@@ -5,19 +5,9 @@ schema, discovery, docs, execution, and transport.
 
 ## Layering model
 
-```mermaid
-flowchart TB
-  A[toolmodel] --> B[toolindex]
-  B --> C[tooldocs]
-  B --> D[toolrun]
-  D --> E[toolcode]
-  E --> F[toolruntime]
-  B --> G[toolsearch]
-  B --> H[metatools-mcp]
-  C --> H
-  D --> H
-  E --> H
-```
+
+![Stack Layering Model](../assets/diagrams/stack-layering-model.svg)
+
 
 ## Progressive disclosure pipeline
 
@@ -47,23 +37,12 @@ sequenceDiagram
 
 ## Tool execution and runtime isolation
 
-```mermaid
-flowchart LR
-  A[toolrun] --> B[toolruntime]
-  B --> C[unsafe host]
-  B --> D[docker]
-  B --> E[kubernetes]
-  B --> F[firecracker]
-  B --> G[gvisor]
-  B --> H[wasm]
-```
+
+![Tool Execution and Runtime Isolation](../assets/diagrams/tool-exec-runtime-isolation.svg)
+
 
 ## Search strategy layering
 
-```mermaid
-flowchart LR
-  A[toolindex] --> B[toolsearch]
-  B --> C[BM25]
-  B --> D[future: semantic]
-  B --> E[future: hybrid]
-```
+
+![Search Strategy Layering](../assets/diagrams/search-strategy-layering.svg)
+
