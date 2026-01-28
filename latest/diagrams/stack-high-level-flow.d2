@@ -1,0 +1,23 @@
+direction: right
+
+stack: "AI Tools Stack" {
+  toolmodel
+  toolindex
+  tooldocs
+  toolrun
+  toolcode
+  toolruntime
+  toolsearch
+  metatools-mcp
+}
+
+toolmodel -> toolindex
+ toolindex -> tooldocs
+ toolindex -> toolrun
+ toolrun -> toolcode
+ toolcode -> toolruntime
+ toolindex -> toolsearch
+ toolindex -> metatools-mcp
+ tooldocs -> metatools-mcp
+ toolrun -> metatools-mcp
+ toolcode -> metatools-mcp
