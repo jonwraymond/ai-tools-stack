@@ -3,6 +3,22 @@
 This stack is built around progressive disclosure and a clean separation of
 schema, discovery, docs, execution, and transport.
 
+## Layering model
+
+```mermaid
+flowchart TB
+  A[toolmodel] --> B[toolindex]
+  B --> C[tooldocs]
+  B --> D[toolrun]
+  D --> E[toolcode]
+  E --> F[toolruntime]
+  B --> G[toolsearch]
+  B --> H[metatools-mcp]
+  C --> H
+  D --> H
+  E --> H
+```
+
 ## Progressive disclosure pipeline
 
 ```mermaid
