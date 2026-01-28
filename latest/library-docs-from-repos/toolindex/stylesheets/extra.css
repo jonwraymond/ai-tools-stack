@@ -1,9 +1,9 @@
-/* AI Tools Stack Docs - modern theme overrides */
+/* Tool docs - modern theme overrides */
 :root {
-  --brand-primary: #0f766e; /* teal-700 */
-  --brand-accent: #f59e0b;  /* amber-500 */
-  --brand-ink: #0f172a;     /* slate-900 */
-  --brand-muted: #475569;   /* slate-600 */
+  --brand-primary: #0f766e;
+  --brand-accent: #f59e0b;
+  --brand-ink: #0f172a;
+  --brand-muted: #475569;
   --page-bg: linear-gradient(180deg, #f6f7fb 0%, #eef2f6 100%);
 }
 
@@ -21,7 +21,6 @@ body {
   background: var(--page-bg);
 }
 
-/* Header polish */
 .md-header {
   backdrop-filter: blur(10px);
   background: color-mix(in srgb, var(--brand-ink) 2%, transparent);
@@ -31,7 +30,6 @@ body {
   backdrop-filter: blur(8px);
 }
 
-/* Typography tuning */
 .md-content h1 {
   letter-spacing: -0.02em;
 }
@@ -45,7 +43,6 @@ body {
   color: var(--brand-muted);
 }
 
-/* Page-load motion */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
@@ -64,18 +61,15 @@ body {
 .md-content__inner > *:nth-child(7) { animation-delay: 0.14s; }
 .md-content__inner > *:nth-child(8) { animation-delay: 0.16s; }
 
-/* Cards for key callouts */
 .md-content .admonition {
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(2, 6, 23, 0.06);
 }
 
-/* Code blocks */
 .md-content pre code {
   border-radius: 10px;
 }
 
-/* Table polish */
 .md-content table {
   border-radius: 10px;
   overflow: hidden;
