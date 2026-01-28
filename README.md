@@ -1,5 +1,7 @@
 # ai-tools-stack
 
+[![Docs](https://img.shields.io/badge/docs-ai--tools--stack-blue)](https://jonwraymond.github.io/ai-tools-stack/)
+
 This repo is the release-train control point for the `jonwraymond` tool stack.
 It exists to contain version sprawl and chain effects.
 

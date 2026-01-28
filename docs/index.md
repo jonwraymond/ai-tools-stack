@@ -52,3 +52,7 @@ See the **Components** section for per-library examples and diagrams.
 
 Under **Library Docs (from repos)** you will find the docs imported directly
 from each repository at build time.
+
+!!! note "Deep dives"
+    - Design Notes: `design-notes.md`
+    - User Journey: `user-journey.md`
