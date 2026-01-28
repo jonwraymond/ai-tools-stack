@@ -1,15 +1,54 @@
 direction: down
 
+style: { font-size: 14 }
+
+layer_core: {
+  label: "Core Layer"
+  style: {
+  border-radius: 8
+  shadow: true
+}
+  toolmodel: { shape: package }
+  toolindex: { shape: cylinder }
+  tooldocs: { shape: document }
+  toolrun: { shape: step }
+}
+
+layer_exec: {
+  label: "Orchestration Layer"
+  style: {
+  border-radius: 8
+  shadow: true
+}
+  toolcode: { shape: page }
+  toolruntime: { shape: cloud }
+}
+
+layer_discovery: {
+  label: "Discovery Layer"
+  style: {
+  border-radius: 8
+  shadow: true
+}
+  toolsearch: { shape: diamond }
+}
+
+layer_surface: {
+  label: "MCP Surface"
+  style: {
+  border-radius: 8
+  shadow: true
+}
+  metatools: "metatools-mcp" { shape: hexagon }
+}
+
 toolmodel -> toolindex
-
-toolindex -> tooldocs
+ toolindex -> tooldocs
  toolindex -> toolrun
-
  toolrun -> toolcode
  toolcode -> toolruntime
-
  toolindex -> toolsearch
- toolindex -> metatools-mcp
- tooldocs -> metatools-mcp
- toolrun -> metatools-mcp
- toolcode -> metatools-mcp
+ toolindex -> metatools
+ tooldocs -> metatools
+ toolrun -> metatools
+ toolcode -> metatools

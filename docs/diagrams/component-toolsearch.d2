@@ -1,0 +1,26 @@
+direction: right
+
+style: { font-size: 14 }
+
+toolsearch: "toolsearch" {
+  shape: diamond
+  style: { shadow: true }
+}
+
+inputs: {
+  label: "Inputs"
+  style: { border-radius: 8 }
+  summaries: "Tool Summaries" { shape: document }
+  signals: "Query Signals" { shape: document }
+}
+
+consumers: {
+  label: "Consumers"
+  style: { border-radius: 8 }
+  toolindex: { shape: cylinder }
+}
+
+inputs.summaries -> toolsearch
+inputs.signals -> toolsearch
+
+toolsearch -> consumers.toolindex

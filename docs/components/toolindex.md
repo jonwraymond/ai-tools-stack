@@ -31,14 +31,9 @@ for _, s := range summaries {
 
 ## Diagram
 
-```mermaid
-flowchart LR
-  A[toolindex] --> B[Searcher]
-  B --> C[lexical]
-  B --> D[toolsearch BM25]
-  A --> E[tooldocs]
-  A --> F[toolrun]
-```
+
+![Diagram](../assets/diagrams/component-toolindex.svg)
+
 
 ## Usability notes
 

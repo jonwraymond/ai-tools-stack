@@ -26,14 +26,9 @@ _ = srv.Run(context.Background(), &mcp.StdioTransport{})
 
 ## Diagram
 
-```mermaid
-flowchart LR
-  A[metatools-mcp] --> B[toolindex]
-  A --> C[tooldocs]
-  A --> D[toolrun]
-  A --> E[toolcode]
-  E --> F[toolruntime]
-```
+
+![Diagram](../assets/diagrams/component-metatools-mcp.svg)
+
 
 ## Usability notes
 

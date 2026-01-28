@@ -45,12 +45,9 @@ _ = tool.Validate()
 
 ## Diagram
 
-```mermaid
-flowchart LR
-  A[toolmodel.Tool] --> B[toolindex]
-  A --> C[tooldocs]
-  A --> D[toolrun]
-```
+
+![Diagram](../assets/diagrams/component-toolmodel.svg)
+
 
 ## Usability notes
 

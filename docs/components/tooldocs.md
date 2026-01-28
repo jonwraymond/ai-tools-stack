@@ -31,13 +31,9 @@ examples, _ := store.ListExamples("github:get_repo", 2)
 
 ## Diagram
 
-```mermaid
-flowchart LR
-  A[tooldocs] --> B[summary]
-  A --> C[schema]
-  A --> D[full]
-  A --> E[metatools-mcp]
-```
+
+![Diagram](../assets/diagrams/component-tooldocs.svg)
+
 
 ## Usability notes
 

@@ -32,14 +32,9 @@ result, _ := runner.Run(ctx, "github:get_repo", map[string]any{
 
 ## Diagram
 
-```mermaid
-flowchart LR
-  A[toolrun] --> B[Resolve + Validate]
-  B --> C[Dispatch]
-  C --> D[MCP]
-  C --> E[Provider]
-  C --> F[Local]
-```
+
+![Diagram](../assets/diagrams/component-toolrun.svg)
+
 
 ## Usability notes
 

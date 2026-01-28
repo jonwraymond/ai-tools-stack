@@ -28,15 +28,9 @@ rt := toolruntime.NewDefaultRuntime(toolruntime.RuntimeConfig{
 
 ## Diagram
 
-```mermaid
-flowchart LR
-  A[toolruntime] --> B[unsafe]
-  A --> C[docker]
-  A --> D[kubernetes]
-  A --> E[firecracker]
-  A --> F[gvisor]
-  A --> G[wasm]
-```
+
+![Diagram](../assets/diagrams/component-toolruntime.svg)
+
 
 ## Usability notes
 

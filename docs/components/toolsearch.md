@@ -24,12 +24,9 @@ idx := toolindex.NewInMemoryIndex(toolindex.IndexOptions{Searcher: searcher})
 
 ## Diagram
 
-```mermaid
-flowchart LR
-  A[toolindex] --> B[toolsearch]
-  B --> C[BM25]
-  B --> D[semantic]
-```
+
+![Diagram](../assets/diagrams/component-toolsearch.svg)
+
 
 ## Usability notes
 

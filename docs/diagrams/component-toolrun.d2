@@ -1,0 +1,30 @@
+direction: right
+
+style: { font-size: 14 }
+
+toolrun: "toolrun" {
+  shape: step
+  style: { shadow: true }
+}
+
+inputs: {
+  label: "Inputs"
+  style: { border-radius: 8 }
+  toolmodel: { shape: package }
+  toolindex: { shape: cylinder }
+  runtimes: "Runtime/Backends" { shape: cloud }
+}
+
+consumers: {
+  label: "Consumers"
+  style: { border-radius: 8 }
+  toolcode: { shape: page }
+  metatools: "metatools-mcp" { shape: hexagon }
+}
+
+inputs.toolmodel -> toolrun
+inputs.toolindex -> toolrun
+inputs.runtimes -> toolrun
+
+toolrun -> consumers.toolcode
+ toolrun -> consumers.metatools

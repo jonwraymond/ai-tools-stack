@@ -12,29 +12,7 @@ retrieve deeper details only when needed.
 
 ## Flow
 
-```mermaid
-sequenceDiagram
-  participant Agent
-  participant MCP as metatools-mcp
-  participant Index as toolindex
-  participant Docs as tooldocs
-  participant Run as toolrun
-
-  Agent->>MCP: search_tools("repo metadata")
-  MCP->>Index: Search
-  Index-->>MCP: summaries
-  MCP-->>Agent: summaries
-
-  Agent->>MCP: describe_tool(id, schema)
-  MCP->>Docs: DescribeTool
-  Docs-->>MCP: tool schema
-  MCP-->>Agent: schema
-
-  Agent->>MCP: run_tool(id, args)
-  MCP->>Run: Run
-  Run-->>MCP: result
-  MCP-->>Agent: result
-```
+![Progressive Disclosure Pipeline](../assets/diagrams/progressive-disclosure.svg)
 
 ## Component roles
 

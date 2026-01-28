@@ -33,13 +33,9 @@ res, _ := executor.ExecuteCode(ctx, toolcode.ExecuteParams{
 
 ## Diagram
 
-```mermaid
-flowchart LR
-  A[toolcode] --> B[toolindex]
-  A --> C[tooldocs]
-  A --> D[toolrun]
-  A --> E[toolruntime]
-```
+
+![Diagram](../assets/diagrams/component-toolcode.svg)
+
 
 ## Usability notes
 

@@ -11,29 +11,7 @@ schema, discovery, docs, execution, and transport.
 
 ## Progressive disclosure pipeline
 
-```mermaid
-sequenceDiagram
-  participant Agent
-  participant MCP as metatools-mcp
-  participant Index as toolindex
-  participant Docs as tooldocs
-  participant Run as toolrun
-
-  Agent->>MCP: search_tools(query)
-  MCP->>Index: Search(query)
-  Index-->>MCP: summaries
-  MCP-->>Agent: summaries
-
-  Agent->>MCP: describe_tool(id, schema)
-  MCP->>Docs: DescribeTool(id, schema)
-  Docs-->>MCP: tool schema
-  MCP-->>Agent: schema
-
-  Agent->>MCP: run_tool(id, args)
-  MCP->>Run: Run(id, args)
-  Run-->>MCP: result
-  MCP-->>Agent: result
-```
+![Progressive Disclosure Pipeline](../assets/diagrams/progressive-disclosure.svg)
 
 ## Tool execution and runtime isolation
 
@@ -45,4 +23,3 @@ sequenceDiagram
 
 
 ![Search Strategy Layering](../assets/diagrams/search-strategy-layering.svg)
-

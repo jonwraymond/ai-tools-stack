@@ -1,0 +1,25 @@
+direction: right
+
+style: { font-size: 14 }
+
+toolmodel: "toolmodel" {
+  shape: package
+  style: { shadow: true }
+}
+
+consumers: {
+  label: "Consumers"
+  style: { border-radius: 8 }
+
+  toolindex: { shape: cylinder }
+  tooldocs: { shape: document }
+  toolrun: { shape: step }
+  toolcode: { shape: page }
+  metatools: "metatools-mcp" { shape: hexagon }
+}
+
+toolmodel -> toolindex
+ toolmodel -> tooldocs
+ toolmodel -> toolrun
+ toolmodel -> toolcode
+ toolmodel -> metatools

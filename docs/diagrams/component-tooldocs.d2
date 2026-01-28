@@ -1,0 +1,30 @@
+direction: right
+
+style: { font-size: 14 }
+
+tooldocs: "tooldocs" {
+  shape: document
+  style: { shadow: true }
+}
+
+inputs: {
+  label: "Inputs"
+  style: { border-radius: 8 }
+  toolmodel: { shape: package }
+  toolindex: { shape: cylinder }
+  stores: "Doc Stores" { shape: document }
+}
+
+consumers: {
+  label: "Consumers"
+  style: { border-radius: 8 }
+  toolcode: { shape: page }
+  metatools: "metatools-mcp" { shape: hexagon }
+}
+
+inputs.toolmodel -> tooldocs
+inputs.toolindex -> tooldocs
+inputs.stores -> tooldocs
+
+tooldocs -> consumers.toolcode
+ tooldocs -> consumers.metatools
