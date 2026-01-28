@@ -53,6 +53,10 @@ theme:
     text: Roboto
     code: Roboto Mono
 
+extra:
+  version:
+    provider: mike
+
 plugins:
   - search
   - multirepo

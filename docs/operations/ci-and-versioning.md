@@ -33,10 +33,23 @@ The unified docs site is built from this repo using MkDocs + the multirepo plugi
 GitHub Actions runs on push to main and nightly (scheduled) to pull fresh docs
 from the tool repos.
 
+Versioned docs are published with `mike`:
+
+- `latest` alias is deployed from `main`
+- tag builds deploy versioned docs (for example, `v0.1.8`) and set `stable`
+
 Local preview:
 
 ```bash
 pip install -r requirements.txt
 ./scripts/prepare-mkdocs-multirepo.sh
 mkdocs serve
+```
+
+Versioned preview:
+
+```bash
+pip install -r requirements.txt
+./scripts/prepare-mkdocs-multirepo.sh
+mike serve
 ```

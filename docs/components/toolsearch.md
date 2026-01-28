@@ -3,17 +3,17 @@
 Search strategy library that plugs into toolindex. Currently provides BM25 with
 room for semantic/hybrid search.
 
-## Responsibilities
+## Core responsibilities
 
-- Provide BM25 and future ranking strategies
+- Provide BM25 ranking
 - Keep search logic decoupled from the index
-- Support pluggable scoring for experiments
+- Support pluggable scoring
 
 ## Example
 
 ```go
-engine := toolsearch.NewBM25Engine(toolsearch.BM25Config{K1: 1.5, B: 0.75})
-idx := toolindex.NewInMemoryIndex(toolindex.WithSearchEngine(engine))
+searcher := toolsearch.NewBM25Searcher(toolsearch.BM25Config{K1: 1.5, B: 0.75})
+idx := toolindex.NewInMemoryIndex(toolindex.IndexOptions{Searcher: searcher})
 ```
 
 ## Diagram

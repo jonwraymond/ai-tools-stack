@@ -3,6 +3,7 @@ name: Docs
 on:
   push:
     branches: ["main"]
+    tags: ["v*"]
   workflow_dispatch: {}
   schedule:
     - cron: "0 6 * * *"
@@ -30,8 +31,13 @@ jobs:
       - name: Prepare multirepo scripts
         run: ./scripts/prepare-mkdocs-multirepo.sh
 
-      - name: Build docs
-        run: mkdocs build --strict
-
-      - name: Deploy to GitHub Pages
-        run: mkdocs gh-deploy --force
+      - name: Deploy versioned docs (mike)
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            VERSION="${GITHUB_REF#refs/tags/}"
+            mike deploy --push --update-aliases "${VERSION}" stable
+            mike set-default --push stable
+          else
+            mike deploy --push --update-aliases latest
+            mike set-default --push latest
+          fi

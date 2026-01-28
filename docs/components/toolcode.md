@@ -3,7 +3,7 @@
 Code-mode orchestration layer that wraps search, docs, and execution into a
 single programmable surface.
 
-## Responsibilities
+## Core responsibilities
 
 - Execute short orchestration snippets
 - Provide a minimal in-sandbox API (SearchTools, DescribeTool, RunTool)
@@ -12,8 +12,17 @@ single programmable surface.
 ## Example
 
 ```go
-executor := toolcode.NewDefaultExecutor(cfg)
-res, _ := executor.ExecuteCode(ctx, "go", "__out = 2 + 2", 3*time.Second)
+executor := toolcode.NewDefaultExecutor(toolcode.Config{
+  Index:  idx,
+  Docs:   docs,
+  Run:    runner,
+  Engine: engine,
+})
+
+res, _ := executor.ExecuteCode(ctx, toolcode.ExecuteParams{
+  Language: "go",
+  Code:     "__out = 2 + 2",
+})
 ```
 
 ## Diagram
@@ -23,4 +32,5 @@ flowchart LR
   A[toolcode] --> B[toolindex]
   A --> C[tooldocs]
   A --> D[toolrun]
+  A --> E[toolruntime]
 ```

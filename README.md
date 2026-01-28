@@ -39,6 +39,14 @@ pip install -r requirements.txt
 mkdocs serve
 ```
 
+Versioned preview (mike):
+
+```bash
+pip install -r requirements.txt
+./scripts/prepare-mkdocs-multirepo.sh
+mike serve
+```
+
 ## DAG-aware bump order (do not freestyle)
 
 Always bump in this order unless you deliberately want to pay the blast radius:

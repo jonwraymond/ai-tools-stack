@@ -3,11 +3,11 @@
 Sandbox/runtime abstraction for executing code securely. Provides multiple
 backends with a single interface.
 
-## Responsibilities
+## Core responsibilities
 
-- Provide runtime backends (unsafe, docker, kubernetes, gvisor, firecracker, wasm)
-- Enforce execution limits and profiles
-- Surface execution metadata
+- Runtime interface + default implementation
+- Backends (unsafe host, docker, kubernetes, gvisor, firecracker, wasm)
+- Security profiles and execution limits
 
 ## Example
 
