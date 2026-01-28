@@ -12,6 +12,8 @@ nav:
       - Progressive Disclosure: architecture/progressive-disclosure.md
       - Pluggable Architecture: architecture/pluggable-architecture.md
       - Why Go: architecture/why-go.md
+      - Design Notes Index: architecture/design-notes.md
+      - User Journeys Index: architecture/user-journeys.md
   - Components:
       - toolmodel: components/toolmodel.md
       - toolindex: components/toolindex.md

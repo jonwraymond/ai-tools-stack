@@ -15,6 +15,13 @@ progressive-disclosure MCP surface.
 - **Search strategies** (toolsearch)
 - **MCP server wiring** (metatools-mcp)
 
+## Design Notes and User Journeys
+
+For deeper context, see the aggregated indexes:
+
+- [Design Notes Index](architecture/design-notes.md) — per‑repo tradeoffs and error semantics
+- [User Journeys Index](architecture/user-journeys.md) — end‑to‑end agent workflows
+
 ## High-level flow
 
 ```mermaid
