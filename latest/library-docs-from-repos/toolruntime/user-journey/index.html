@@ -5,10 +5,13 @@
 <span class=w>  </span><span class=nx>DefaultProfile</span><span class=p>:</span><span class=w> </span><span class=nx>toolruntime</span><span class=p>.</span><span class=nx>ProfileStandard</span><span class=p>,</span>
 <span class=p>})</span>
 
-<span class=nx>engine</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>toolcodeengine</span><span class=p>.</span><span class=nx>New</span><span class=p>(</span><span class=nx>toolcodeengine</span><span class=p>.</span><span class=nx>Config</span><span class=p>{</span>
+<span class=nx>engine</span><span class=p>,</span><span class=w> </span><span class=nx>err</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>toolcodeengine</span><span class=p>.</span><span class=nx>New</span><span class=p>(</span><span class=nx>toolcodeengine</span><span class=p>.</span><span class=nx>Config</span><span class=p>{</span>
 <span class=w>  </span><span class=nx>Runtime</span><span class=p>:</span><span class=w> </span><span class=nx>rt</span><span class=p>,</span>
 <span class=w>  </span><span class=nx>Profile</span><span class=p>:</span><span class=w> </span><span class=nx>toolruntime</span><span class=p>.</span><span class=nx>ProfileStandard</span><span class=p>,</span>
 <span class=p>})</span>
+<span class=k>if</span><span class=w> </span><span class=nx>err</span><span class=w> </span><span class=o>!=</span><span class=w> </span><span class=kc>nil</span><span class=w> </span><span class=p>{</span>
+<span class=w>  </span><span class=k>return</span><span class=w> </span><span class=nx>err</span>
+<span class=p>}</span>
 
 <span class=nx>exec</span><span class=p>,</span><span class=w> </span><span class=nx>_</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>toolcode</span><span class=p>.</span><span class=nx>NewDefaultExecutor</span><span class=p>(</span><span class=nx>toolcode</span><span class=p>.</span><span class=nx>Config</span><span class=p>{</span>
 <span class=w>  </span><span class=nx>Index</span><span class=p>:</span><span class=w> </span><span class=nx>idx</span><span class=p>,</span>
