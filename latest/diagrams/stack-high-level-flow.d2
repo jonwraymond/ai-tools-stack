@@ -1,14 +1,45 @@
 direction: right
 
-stack: "AI Tools Stack" {
-  toolmodel
-  toolindex
-  tooldocs
-  toolrun
-  toolcode
-  toolruntime
-  toolsearch
-  metatools-mcp
+style: { font-size: 14 }
+
+core: {
+  label: "Core"
+  style: {
+  border-radius: 8
+  shadow: true
+}
+  toolmodel: { shape: package }
+  toolindex: { shape: cylinder }
+  tooldocs: { shape: document }
+  toolrun: { shape: step }
+}
+
+orchestration: {
+  label: "Orchestration"
+  style: {
+  border-radius: 8
+  shadow: true
+}
+  toolcode: { shape: page }
+  toolruntime: { shape: cloud }
+}
+
+discovery: {
+  label: "Discovery"
+  style: {
+  border-radius: 8
+  shadow: true
+}
+  toolsearch: { shape: diamond }
+}
+
+surface: {
+  label: "Surface"
+  style: {
+  border-radius: 8
+  shadow: true
+}
+  metatools: "metatools-mcp" { shape: hexagon }
 }
 
 toolmodel -> toolindex
@@ -17,7 +48,7 @@ toolmodel -> toolindex
  toolrun -> toolcode
  toolcode -> toolruntime
  toolindex -> toolsearch
- toolindex -> metatools-mcp
- tooldocs -> metatools-mcp
- toolrun -> metatools-mcp
- toolcode -> metatools-mcp
+ toolindex -> metatools
+ tooldocs -> metatools
+ toolrun -> metatools
+ toolcode -> metatools

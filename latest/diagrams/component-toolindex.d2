@@ -1,0 +1,43 @@
+direction: right
+
+style: { font-size: 14 }
+
+toolindex: "toolindex" {
+  shape: cylinder
+  style: { shadow: true }
+}
+
+inputs: {
+  label: "Inputs"
+  style: { border-radius: 8 }
+  toolmodel: { shape: package }
+  registrars: "Tool Registrars" { shape: document }
+}
+
+extensions: {
+  label: "Pluggable Search"
+  style: {
+    border-radius: 8
+    stroke-dash: 4
+  }
+  toolsearch: { shape: diamond }
+}
+
+consumers: {
+  label: "Consumers"
+  style: { border-radius: 8 }
+  tooldocs: { shape: document }
+  toolrun: { shape: step }
+  toolcode: { shape: page }
+  metatools: "metatools-mcp" { shape: hexagon }
+}
+
+inputs.toolmodel -> toolindex
+inputs.registrars -> toolindex
+
+toolindex -> extensions.toolsearch
+
+toolindex -> consumers.tooldocs
+ toolindex -> consumers.toolrun
+ toolindex -> consumers.toolcode
+ toolindex -> consumers.metatools

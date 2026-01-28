@@ -361,6 +361,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/proposals/ROADMAP/</loc>
+         <lastmod>2026-01-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/proposals/architecture-evaluation/</loc>
          <lastmod>2026-01-28</lastmod>
          <changefreq>daily</changefreq>

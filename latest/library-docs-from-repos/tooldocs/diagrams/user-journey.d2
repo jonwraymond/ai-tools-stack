@@ -1,0 +1,36 @@
+direction: down
+
+style: { font-size: 14 }
+
+agent: "Agent" {
+  shape: oval
+}
+
+metatools: "metatools-mcp" {
+  shape: hexagon
+}
+
+index: "toolindex" {
+  shape: cylinder
+}
+
+docs: "tooldocs" {
+  shape: document
+  style: { shadow: true }
+}
+
+runner: "toolrun" {
+  shape: step
+}
+
+agent -> metatools: "search_tools('create issue')"
+metatools -> index: "Search"
+
+agent -> metatools: "describe_tool(tool_id, schema)"
+metatools -> docs: "DescribeTool(schema)"
+
+agent -> metatools: "describe_tool(tool_id, full)"
+metatools -> docs: "DescribeTool(full)"
+
+agent -> metatools: "run_tool(tool_id, args)"
+metatools -> runner: "Run"
