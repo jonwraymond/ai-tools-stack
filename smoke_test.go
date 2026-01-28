@@ -196,10 +196,13 @@ func TestReleaseTrainSmoke(t *testing.T) {
 		DefaultProfile: toolruntime.ProfileStandard,
 	})
 
-	engine := toolcodeengine.New(toolcodeengine.Config{
+	engine, err := toolcodeengine.New(toolcodeengine.Config{
 		Runtime: rt,
 		Profile: toolruntime.ProfileStandard,
 	})
+	if err != nil {
+		t.Fatalf("toolcodeengine.New() error = %v", err)
+	}
 
 	exec, err := toolcode.NewDefaultExecutor(toolcode.Config{
 		Index:          idx,
