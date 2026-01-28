@@ -4,6 +4,12 @@ Welcome to the unified documentation for the AI Tools Stack. This site brings
 all tool libraries together in one place and shows how they compose into a
 progressive-disclosure MCP surface.
 
+[![Docs](https://img.shields.io/badge/docs-ai--tools--stack-blue)](https://jonwraymond.github.io/ai-tools-stack/)
+
+## Deep dives
+- Design Notes: `design-notes.md`
+- User Journey: `user-journey.md`
+
 ## What this stack provides
 
 - **Canonical tool schemas** (toolmodel)
@@ -53,6 +59,3 @@ See the **Components** section for per-library examples and diagrams.
 Under **Library Docs (from repos)** you will find the docs imported directly
 from each repository at build time.
 
-!!! note "Deep dives"
-    - Design Notes: `design-notes.md`
-    - User Journey: `user-journey.md`
