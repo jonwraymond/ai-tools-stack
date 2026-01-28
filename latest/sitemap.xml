@@ -351,12 +351,102 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plan-of-record/</loc>
+         <lastmod>2026-01-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/usage/</loc>
          <lastmod>2026-01-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/user-journey/</loc>
+         <lastmod>2026-01-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/</loc>
+         <lastmod>2026-01-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-001-toolruntime-docker-backend/</loc>
+         <lastmod>2026-01-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-002-cli-cobra-foundation/</loc>
+         <lastmod>2026-01-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-003-koanf-config/</loc>
+         <lastmod>2026-01-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-004-transport-sse/</loc>
+         <lastmod>2026-01-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-005-tool-provider-registry/</loc>
+         <lastmod>2026-01-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-006-backend-registry/</loc>
+         <lastmod>2026-01-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-007-middleware-chain/</loc>
+         <lastmod>2026-01-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-008-tooladapter-library/</loc>
+         <lastmod>2026-01-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-009-toolset-composition/</loc>
+         <lastmod>2026-01-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-010-toolobserve-library/</loc>
+         <lastmod>2026-01-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-011-toolcache-library/</loc>
+         <lastmod>2026-01-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-012-multi-tenancy-core/</loc>
+         <lastmod>2026-01-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-013-toolsemantic-library/</loc>
+         <lastmod>2026-01-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-014-toolskill-library/</loc>
+         <lastmod>2026-01-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-015-mcp-spec-alignment/</loc>
+         <lastmod>2026-01-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/proposals/ARCHITECTURE-REVIEW/</loc>
          <lastmod>2026-01-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -377,6 +467,11 @@
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/proposals/implementation-phases/</loc>
+         <lastmod>2026-01-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/proposals/mcp-spec-alignment/</loc>
          <lastmod>2026-01-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
