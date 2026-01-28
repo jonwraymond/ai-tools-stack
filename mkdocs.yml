@@ -1,0 +1,79 @@
+site_name: AI Tools Stack
+site_description: Unified documentation for toolmodel, toolindex, tooldocs, toolrun, toolcode, toolruntime, toolsearch, and metatools-mcp.
+site_url: https://jonwraymond.github.io/ai-tools-stack/
+repo_name: jonwraymond/ai-tools-stack
+repo_url: https://github.com/jonwraymond/ai-tools-stack
+edit_uri: edit/main/docs/
+
+nav:
+  - Home: index.md
+  - Architecture:
+      - Stack Overview: architecture/overview.md
+  - Components:
+      - toolmodel: components/toolmodel.md
+      - toolindex: components/toolindex.md
+      - tooldocs: components/tooldocs.md
+      - toolrun: components/toolrun.md
+      - toolcode: components/toolcode.md
+      - toolruntime: components/toolruntime.md
+      - toolsearch: components/toolsearch.md
+      - metatools-mcp: components/metatools-mcp.md
+  - Operations:
+      - CI and Versioning: operations/ci-and-versioning.md
+  - Library Docs (from repos):
+      - toolmodel: '!import https://github.com/jonwraymond/toolmodel?branch=main&docs_dir=docs/*'
+      - toolindex: '!import https://github.com/jonwraymond/toolindex?branch=main&docs_dir=docs/*'
+      - tooldocs: '!import https://github.com/jonwraymond/tooldocs?branch=main&docs_dir=docs/*'
+      - toolrun: '!import https://github.com/jonwraymond/toolrun?branch=main&docs_dir=docs/*'
+      - toolcode: '!import https://github.com/jonwraymond/toolcode?branch=main&docs_dir=docs/*'
+      - toolruntime: '!import https://github.com/jonwraymond/toolruntime?branch=main&docs_dir=docs/*'
+      - toolsearch: '!import https://github.com/jonwraymond/toolsearch?branch=main&docs_dir=docs/*'
+      - metatools-mcp: '!import https://github.com/jonwraymond/metatools-mcp?branch=main&docs_dir=docs/*'
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+  palette:
+    - scheme: default
+      primary: blue
+      accent: teal
+    - scheme: slate
+      primary: blue
+      accent: teal
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+plugins:
+  - search
+  - multirepo
+  - minify:
+      minify_html: true
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra_javascript:
+  - https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js
+  - js/mermaid-init.js

@@ -20,6 +20,7 @@ REPOS=(
   toolruntime
   toolsearch
   metatools-mcp
+  ai-tools-stack
 )
 
 ORDERED_LABELS=(

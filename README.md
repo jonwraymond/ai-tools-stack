@@ -22,18 +22,22 @@ It does three things:
 
 This is intentionally integration-heavy and implementation-light.
 
-## Pinned release train (current)
+## Version compatibility
 
-Treat this list as the source of truth for known-good combinations:
+See `VERSIONS.md` for the authoritative, auto-generated compatibility matrix.
 
-- `github.com/jonwraymond/toolmodel` `v0.1.0`
-- `github.com/jonwraymond/toolindex` `v0.1.2`
-- `github.com/jonwraymond/tooldocs` `v0.1.2`
-- `github.com/jonwraymond/toolrun` `v0.1.1`
-- `github.com/jonwraymond/toolcode` `v0.1.1`
-- `github.com/jonwraymond/toolruntime` `v0.1.1`
-- `github.com/jonwraymond/toolsearch` `v0.1.1`
-- `github.com/jonwraymond/metatools-mcp` `v0.1.4`
+## Documentation site
+
+This repo also hosts the unified documentation site (MkDocs + multirepo) that
+aggregates docs from all tool libraries and the MCP server.
+
+Local build:
+
+```bash
+pip install -r requirements.txt
+./scripts/prepare-mkdocs-multirepo.sh
+mkdocs serve
+```
 
 ## DAG-aware bump order (do not freestyle)
 

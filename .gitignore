@@ -20,3 +20,8 @@ secrets.*
 .DS_Store
 .idea/
 .vscode/
+
+# MkDocs / Python
+.venv/
+site/
+temp_dir/
