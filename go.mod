@@ -3,7 +3,7 @@ module github.com/jonwraymond/ai-tools-stack
 go 1.24.4
 
 require (
-	github.com/jonwraymond/metatools-mcp v0.1.4
+	github.com/jonwraymond/metatools-mcp v0.1.11
 	github.com/jonwraymond/toolcode v0.1.10
 	github.com/jonwraymond/tooldocs v0.1.10
 	github.com/jonwraymond/toolindex v0.1.8

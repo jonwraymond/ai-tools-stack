@@ -19,6 +19,7 @@ REPOS=(
   toolcode
   toolruntime
   toolsearch
+  metatools-mcp
 )
 
 ORDERED_LABELS=(
@@ -105,7 +106,7 @@ versions_md() {
 
 update_readme() {
   local file="$1"
-  perl -0777 -pi -e 's/## Version compatibility \\(current tags\\)\\n\\n(?:- .*\\n)+/## Version compatibility\\n\\nSee `VERSIONS.md` for the authoritative, auto-generated compatibility matrix.\\n\\n/g' "$file"
+  perl -0777 -pi -e 's/## Version compatibility(?: \\(current tags\\))?\\n\\n(?:- .*\\n)+/## Version compatibility\\n\\nSee `VERSIONS.md` for the authoritative, auto-generated compatibility matrix.\\n\\n/g' "$file"
 }
 
 echo "Projects dir: $PROJECTS_DIR"
@@ -156,4 +157,3 @@ done
 
 echo
 echo "Done."
-
