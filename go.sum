@@ -58,12 +58,12 @@ github.com/jonwraymond/metatools-mcp v0.4.0 h1:/lK2MKU/SZPXYCRNDL5EccvpZEoAP2FRv
 github.com/jonwraymond/metatools-mcp v0.4.0/go.mod h1:4if0JRqgkOO2T4AUwd6RoDLvGrEHwKFe0rGKWT8tDGY=
 github.com/jonwraymond/toolcode v0.3.0 h1:8Xn62NRH6WfQGinNbq28zZFrCJkayyje2tKJefTmvyI=
 github.com/jonwraymond/toolcode v0.3.0/go.mod h1:UTXveBORgBARjjW0Ay6epDjYlWOJ+HykbvoOOucgbhw=
-github.com/jonwraymond/tooldocs v0.1.11 h1:GU9m269/UWs9kTVMRS5Q3swEnehfsC51LORJn6WWGt0=
-github.com/jonwraymond/tooldocs v0.1.11/go.mod h1:7L9Ur1bN6UlChbdGvQBtuEJ5VnihOwAIhZM01I0bflo=
+github.com/jonwraymond/tooldocs v0.2.0 h1:kiLFp3WaJLxqIGVJwQLHTnbM+1+1JsrE8Si9208QX3Y=
+github.com/jonwraymond/tooldocs v0.2.0/go.mod h1:7L9Ur1bN6UlChbdGvQBtuEJ5VnihOwAIhZM01I0bflo=
 github.com/jonwraymond/toolindex v0.3.0 h1:N5CpXmVqh3bMwnUI2h2eleKS/rOyugOGyGx20Yn2vkI=
 github.com/jonwraymond/toolindex v0.3.0/go.mod h1:IVmqAsu1Dm6HAXOtnnNy+IQIU+zRYHN2lwOFFgeIdSM=
-github.com/jonwraymond/toolmodel v0.1.3 h1:gkgBfOaLlz9WWwrJE5eqeLL/Z6NWbF1nSM+nq3vf0cs=
-github.com/jonwraymond/toolmodel v0.1.3/go.mod h1:2S1YAIv2IGcwxqEaB0V4egvnY7opCdoTNknKJMg2pkE=
+github.com/jonwraymond/toolmodel v0.2.0 h1:1Jne9cyTGeb3VTFxzVx+Rp8x5l3WkZT98a8lQnCML7g=
+github.com/jonwraymond/toolmodel v0.2.0/go.mod h1:2S1YAIv2IGcwxqEaB0V4egvnY7opCdoTNknKJMg2pkE=
 github.com/jonwraymond/toolrun v0.3.0 h1:BNpkfHBjM12opv77iGyxtg6ENEI44stzTBr5dDm5xAc=
 github.com/jonwraymond/toolrun v0.3.0/go.mod h1:osEaTNLfjbCC9rupyzlOwz3nZONL1Nk+YL1fiE3y+ks=
 github.com/jonwraymond/toolruntime v0.2.1 h1:cIGyjRIsD72tX68/bFMCA/tvOBQbXS/JfzTJM+2ba0c=

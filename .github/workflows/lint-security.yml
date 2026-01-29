@@ -12,6 +12,9 @@ permissions:
 jobs:
   lint-security:
     runs-on: ubuntu-latest
+    env:
+      GOPRIVATE: github.com/jonwraymond/*
+      GONOSUMDB: github.com/jonwraymond/*
     steps:
       - name: Checkout
         uses: actions/checkout@v4

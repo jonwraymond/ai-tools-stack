@@ -8,6 +8,16 @@ Each repo runs CI for:
 - go test
 - lint + security (golangci-lint + gosec)
 
+## Go module privacy (fast tag uptake)
+
+CI sets:
+
+- `GOPRIVATE=github.com/jonwraymond/*`
+- `GONOSUMDB=github.com/jonwraymond/*`
+
+This bypasses the public proxy/sumdb for the org’s modules so newly‑pushed tags
+are immediately usable in CI and local workflows.
+
 ## Version alignment
 
 - `ai-tools-stack/go.mod` is the source of truth.
