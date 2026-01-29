@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   sync:
@@ -58,4 +59,14 @@ jobs:
           done
 
       - name: Sync version matrices
-        run: ./scripts/update-version-matrix.sh --apply --commit --push --projects "$PWD/repos"
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          ./scripts/update-version-matrix.sh \
+            --apply \
+            --commit \
+            --push \
+            --pr \
+            --branch "chore/version-matrix" \
+            --base "main" \
+            --projects "$PWD/repos"
