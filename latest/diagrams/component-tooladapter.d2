@@ -1,0 +1,37 @@
+direction: right
+
+style: { font-size: 14 }
+
+tooladapter: "tooladapter" {
+  shape: package
+  style: { shadow: true }
+}
+
+formats: {
+  label: "Formats"
+  style: { border-radius: 8 }
+
+  mcp: "MCP" { shape: hexagon }
+  openai: "OpenAI" { shape: hexagon }
+  anthropic: "Anthropic" { shape: hexagon }
+}
+
+canonical: "CanonicalTool" {
+  shape: cylinder
+  style: {
+    fill: "#e8f5e9"
+    shadow: true
+  }
+}
+
+mcp -> tooladapter: ToCanonical
+openai -> tooladapter: ToCanonical
+anthropic -> tooladapter: ToCanonical
+
+tooladapter -> canonical: Convert
+
+canonical -> tooladapter: FromCanonical
+
+tooladapter -> mcp: FromCanonical
+tooladapter -> openai: FromCanonical
+tooladapter -> anthropic: FromCanonical
