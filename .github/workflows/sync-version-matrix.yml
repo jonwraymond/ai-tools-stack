@@ -67,6 +67,7 @@ jobs:
             --commit \
             --push \
             --pr \
+            --auto-merge \
             --branch "chore/version-matrix" \
             --base "main" \
             --projects "$PWD/repos"
