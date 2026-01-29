@@ -1,0 +1,28 @@
+direction: right
+
+style: { font-size: 14 }
+
+toolindex: "toolindex" {
+  shape: cylinder
+  style: { shadow: true }
+}
+
+toolsearch: "toolsearch" {
+  shape: diamond
+}
+
+engines: {
+  label: "Search Engines"
+  style: {
+  border-radius: 8
+  shadow: true
+}
+  bm25: "BM25" { shape: step }
+  semantic: "Semantic (future)" { shape: step }
+  hybrid: "Hybrid (future)" { shape: step }
+}
+
+toolindex -> toolsearch
+ toolsearch -> engines.bm25
+ toolsearch -> engines.semantic
+ toolsearch -> engines.hybrid

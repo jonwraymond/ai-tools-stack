@@ -1,0 +1,33 @@
+direction: right
+
+style: { font-size: 14 }
+
+toolruntime: "toolruntime" {
+  shape: cloud
+  style: { shadow: true }
+}
+
+engines: {
+  label: "Execution Engines"
+  style: {
+    border-radius: 8
+    stroke-dash: 4
+  }
+  host: "Host" { shape: step }
+  container: "Container" { shape: step }
+  vm: "VM" { shape: step }
+}
+
+consumers: {
+  label: "Consumers"
+  style: { border-radius: 8 }
+  toolcode: { shape: page }
+  toolrun: { shape: step }
+}
+
+toolruntime -> engines.host
+ toolruntime -> engines.container
+ toolruntime -> engines.vm
+
+consumers.toolcode -> toolruntime
+ consumers.toolrun -> toolruntime

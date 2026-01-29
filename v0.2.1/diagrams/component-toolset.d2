@@ -1,0 +1,49 @@
+direction: right
+
+style: { font-size: 14 }
+
+toolset: "toolset" {
+  shape: package
+  style: { shadow: true }
+}
+
+sources: {
+  label: "Sources"
+  style: { border-radius: 8 }
+
+  registry: "Registry" { shape: rectangle }
+  slice: "Tool Slice" { shape: rectangle }
+}
+
+filters: "Filters" { shape: diamond }
+policy: "Policy" { shape: diamond }
+
+set: "Toolset" {
+  shape: cylinder
+  style: {
+    fill: "#e3f2fd"
+    shadow: true
+  }
+}
+
+exposure: "Exposure" { shape: rectangle }
+formats: {
+  label: "Formats"
+  style: { border-radius: 8 }
+
+  mcp: "MCP" { shape: hexagon }
+  openai: "OpenAI" { shape: hexagon }
+  anthropic: "Anthropic" { shape: hexagon }
+}
+
+registry -> toolset: Build
+slice -> toolset: Build
+
+toolset -> filters: Apply
+filters -> policy: Evaluate
+policy -> set: Build
+set -> exposure: Export
+
+exposure -> mcp
+exposure -> openai
+exposure -> anthropic
