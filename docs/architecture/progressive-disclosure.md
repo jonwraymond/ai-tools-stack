@@ -17,6 +17,7 @@ retrieve deeper details only when needed.
 ## Component roles
 
 - `toolindex`: fast, summary-only discovery
+- `toolsearch`: pluggable ranking strategy for higher‑quality discovery
 - `tooldocs`: structured detail (schema/full/examples)
 - `toolrun`: execution with validation + consistent errors
 - `toolcode`: optional code-mode orchestration

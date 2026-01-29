@@ -37,6 +37,7 @@ Versioned docs are published with `mike`:
 
 - `latest` alias is deployed from `main`
 - tag builds deploy versioned docs (for example, `v0.1.8`) and set `stable`
+- the version selector appears in the site header once at least one tag build exists
 
 Local preview:
 

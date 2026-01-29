@@ -6,14 +6,14 @@ why a design decision was made or how to handle specific failure modes.
 
 ## Per‑repo Design Notes
 
-- toolmodel — `library-docs-from-repos/toolmodel/design-notes.md`
-- toolindex — `library-docs-from-repos/toolindex/design-notes.md`
-- tooldocs — `library-docs-from-repos/tooldocs/design-notes.md`
-- toolrun — `library-docs-from-repos/toolrun/design-notes.md`
-- toolcode — `library-docs-from-repos/toolcode/design-notes.md`
-- toolruntime — `library-docs-from-repos/toolruntime/design-notes.md`
-- toolsearch — `library-docs-from-repos/toolsearch/design-notes.md`
-- metatools‑mcp — `library-docs-from-repos/metatools-mcp/design-notes.md`
+- toolmodel — [design-notes](../library-docs-from-repos/toolmodel/design-notes.md)
+- toolindex — [design-notes](../library-docs-from-repos/toolindex/design-notes.md)
+- tooldocs — [design-notes](../library-docs-from-repos/tooldocs/design-notes.md)
+- toolrun — [design-notes](../library-docs-from-repos/toolrun/design-notes.md)
+- toolcode — [design-notes](../library-docs-from-repos/toolcode/design-notes.md)
+- toolruntime — [design-notes](../library-docs-from-repos/toolruntime/design-notes.md)
+- toolsearch — [design-notes](../library-docs-from-repos/toolsearch/design-notes.md)
+- metatools‑mcp — [design-notes](../library-docs-from-repos/metatools-mcp/design-notes.md)
 
 ## When to read these
 
