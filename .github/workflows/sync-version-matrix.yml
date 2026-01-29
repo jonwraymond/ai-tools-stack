@@ -12,6 +12,9 @@ permissions:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    env:
+      GOPRIVATE: github.com/jonwraymond/*
+      GONOSUMDB: github.com/jonwraymond/*
     steps:
       - name: Checkout ai-tools-stack
         uses: actions/checkout@v4
