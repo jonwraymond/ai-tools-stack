@@ -9,8 +9,9 @@ progressive-disclosure MCP surface.
 [![Docs](https://img.shields.io/badge/docs-ai--tools--stack-blue)](https://jonwraymond.github.io/ai-tools-stack/)
 
 ## Deep dives
-- Design Notes: `design-notes.md`
-- User Journey: `user-journey.md`
+- [Design Notes Index](architecture/design-notes.md)
+- [User Journeys Index](architecture/user-journeys.md)
+- [Stack Changelog](operations/stack-changelog.md)
 
 ## What this stack provides
 

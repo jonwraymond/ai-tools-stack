@@ -25,6 +25,7 @@ nav:
       - metatools-mcp: components/metatools-mcp.md
   - Operations:
       - CI and Versioning: operations/ci-and-versioning.md
+      - Stack Changelog: operations/stack-changelog.md
   - Library Docs (from repos):
       - toolmodel: '!import https://github.com/jonwraymond/toolmodel?branch=main&docs_dir=docs/*'
       - toolindex: '!import https://github.com/jonwraymond/toolindex?branch=main&docs_dir=docs/*'

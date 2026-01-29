@@ -6,14 +6,14 @@ the progressive‑disclosure flow is coherent across layers.
 
 ## Per‑repo User Journeys
 
-- toolmodel — `library-docs-from-repos/toolmodel/user-journey.md`
-- toolindex — `library-docs-from-repos/toolindex/user-journey.md`
-- tooldocs — `library-docs-from-repos/tooldocs/user-journey.md`
-- toolrun — `library-docs-from-repos/toolrun/user-journey.md`
-- toolcode — `library-docs-from-repos/toolcode/user-journey.md`
-- toolruntime — `library-docs-from-repos/toolruntime/user-journey.md`
-- toolsearch — `library-docs-from-repos/toolsearch/user-journey.md`
-- metatools‑mcp — `library-docs-from-repos/metatools-mcp/user-journey.md`
+- toolmodel — [user-journey](../library-docs-from-repos/toolmodel/user-journey.md)
+- toolindex — [user-journey](../library-docs-from-repos/toolindex/user-journey.md)
+- tooldocs — [user-journey](../library-docs-from-repos/tooldocs/user-journey.md)
+- toolrun — [user-journey](../library-docs-from-repos/toolrun/user-journey.md)
+- toolcode — [user-journey](../library-docs-from-repos/toolcode/user-journey.md)
+- toolruntime — [user-journey](../library-docs-from-repos/toolruntime/user-journey.md)
+- toolsearch — [user-journey](../library-docs-from-repos/toolsearch/user-journey.md)
+- metatools‑mcp — [user-journey](../library-docs-from-repos/metatools-mcp/user-journey.md)
 
 ## When to read these
 
