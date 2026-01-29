@@ -27,8 +27,11 @@
 </code></pre></div> <p>At this point, <code>safe</code> contains only the <code>mcp:search</code> tool.</p> <h2 id=step-3-export-for-mcp-usage>Step 3: Export for MCP usage<a class=headerlink href=#step-3-export-for-mcp-usage title="Permanent link">&para;</a></h2> <div class=highlight><pre><span></span><code><span class=kn>import</span><span class=w> </span><span class=s>&quot;github.com/jonwraymond/tooladapter/adapters&quot;</span>
 
 <span class=nx>exposure</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>toolset</span><span class=p>.</span><span class=nx>NewExposure</span><span class=p>(</span><span class=nx>safe</span><span class=p>,</span><span class=w> </span><span class=nx>adapters</span><span class=p>.</span><span class=nx>NewMCPAdapter</span><span class=p>())</span>
-<span class=nx>exports</span><span class=p>,</span><span class=w> </span><span class=nx>warnings</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>exposure</span><span class=p>.</span><span class=nx>ExportWithWarnings</span><span class=p>()</span>
-</code></pre></div> <p>If the tools used unsupported schema features, you would see warnings here.</p> <h2 id=flow-diagram>Flow Diagram<a class=headerlink href=#flow-diagram title="Permanent link">&para;</a></h2> <pre class=mermaid><code>flowchart LR
+<span class=nx>exports</span><span class=p>,</span><span class=w> </span><span class=nx>warnings</span><span class=p>,</span><span class=w> </span><span class=nx>errs</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>exposure</span><span class=p>.</span><span class=nx>ExportWithWarnings</span><span class=p>()</span>
+<span class=k>if</span><span class=w> </span><span class=nb>len</span><span class=p>(</span><span class=nx>errs</span><span class=p>)</span><span class=w> </span><span class=p>&gt;</span><span class=w> </span><span class=mi>0</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=c1>// handle conversion errors (tool IDs included)</span>
+<span class=p>}</span>
+</code></pre></div> <p>If the tools used unsupported schema features, you would see warnings here. If a tool fails conversion, it will be omitted from <code>exports</code> and reported in <code>errs</code>.</p> <h2 id=flow-diagram>Flow Diagram<a class=headerlink href=#flow-diagram title="Permanent link">&para;</a></h2> <pre class=mermaid><code>flowchart LR
   A[Canonical Tools] --&gt; B[Builder]
   B --&gt; C{Filters}
   C --&gt; D[Policy]
