@@ -11,9 +11,11 @@ APPLY=false
 COMMIT=false
 PUSH=false
 OPEN_PR=false
+AUTO_MERGE=false
 BRANCH="main"
 BASE_BRANCH="main"
 COMMIT_MESSAGE="docs: update version matrix"
+AUTO_MERGE_LABEL="auto-merge/version-matrix"
 
 REPOS=(
   toolmodel
@@ -41,13 +43,14 @@ ORDERED_LABELS=(
 usage() {
   cat <<EOF
 Usage:
-  scripts/update-version-matrix.sh [--apply] [--commit] [--push] [--pr] [--branch NAME] [--base NAME] [--projects DIR]
+  scripts/update-version-matrix.sh [--apply] [--commit] [--push] [--pr] [--auto-merge] [--branch NAME] [--base NAME] [--projects DIR]
 
 Options:
   --apply       Apply changes (default: dry-run)
   --commit      Commit changes in each repo
   --push        Push commits to origin/<branch> (implies --commit)
   --pr          Open/refresh PRs for pushed branches (implies --push)
+  --auto-merge  Label + enable auto-merge for PRs (implies --pr)
   --branch      Branch to push (default: main)
   --base        Base branch for PRs (default: main)
   --projects    Override projects dir (default: $PROJECTS_DIR_DEFAULT)
@@ -74,6 +77,13 @@ while [[ $# -gt 0 ]]; do
       COMMIT=true
       PUSH=true
       OPEN_PR=true
+      shift
+      ;;
+    --auto-merge)
+      COMMIT=true
+      PUSH=true
+      OPEN_PR=true
+      AUTO_MERGE=true
       shift
       ;;
     --branch)
@@ -131,6 +141,15 @@ update_readme() {
   perl -0777 -pi -e 's/## Version compatibility(?: \\(current tags\\))?\\n\\n(?:- .*\\n)+/## Version compatibility\\n\\nSee `VERSIONS.md` for the authoritative, auto-generated compatibility matrix.\\n\\n/g' "$file"
 }
 
+ensure_label() {
+  local repo="$1"
+  if ! gh -R "jonwraymond/$repo" label list --json name --jq '.[].name' | rg -q "^${AUTO_MERGE_LABEL}$"; then
+    gh -R "jonwraymond/$repo" label create "$AUTO_MERGE_LABEL" \
+      --color "0E8A16" \
+      --description "Auto-merge version-matrix PRs"
+  fi
+}
+
 echo "Projects dir: $PROJECTS_DIR"
 echo "Mode: $([[ "$APPLY" == true ]] && echo APPLY || echo DRY-RUN)"
 echo "Version source: $ROOT_DIR/go.mod"
@@ -184,6 +203,14 @@ for repo in "${REPOS[@]}"; do
               --body "Sync VERSIONS.md to latest ai-tools-stack versions."
           else
             echo "PR already open for $repo:$BRANCH -> $BASE_BRANCH"
+          fi
+          if [[ "$AUTO_MERGE" == true ]]; then
+            pr_number="$(gh -R "jonwraymond/$repo" pr list --state open --head "$BRANCH" --base "$BASE_BRANCH" --json number --jq '.[0].number')"
+            if [[ -n "$pr_number" ]]; then
+              ensure_label "$repo"
+              gh -R "jonwraymond/$repo" pr edit "$pr_number" --add-label "$AUTO_MERGE_LABEL" || true
+              gh -R "jonwraymond/$repo" pr merge "$pr_number" --auto --merge || true
+            fi
           fi
         else
           echo "gh CLI not available; skipping PR creation for $repo"
