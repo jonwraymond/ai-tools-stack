@@ -17,6 +17,7 @@ nav:
   - Components:
       - toolmodel: components/toolmodel.md
       - tooladapter: components/tooladapter.md
+      - toolset: components/toolset.md
       - toolindex: components/toolindex.md
       - tooldocs: components/tooldocs.md
       - toolrun: components/toolrun.md
@@ -30,6 +31,7 @@ nav:
   - Library Docs (from repos):
       - toolmodel: '!import https://github.com/jonwraymond/toolmodel?branch=main&docs_dir=docs/*'
       - tooladapter: '!import https://github.com/jonwraymond/tooladapter?branch=main&docs_dir=docs/*'
+      - toolset: '!import https://github.com/jonwraymond/toolset?branch=main&docs_dir=docs/*'
       - toolindex: '!import https://github.com/jonwraymond/toolindex?branch=main&docs_dir=docs/*'
       - tooldocs: '!import https://github.com/jonwraymond/tooldocs?branch=main&docs_dir=docs/*'
       - toolrun: '!import https://github.com/jonwraymond/toolrun?branch=main&docs_dir=docs/*'
