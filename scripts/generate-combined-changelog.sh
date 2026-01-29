@@ -8,6 +8,8 @@ OUTPUT="$ROOT_DIR/docs/operations/stack-changelog.md"
 
 REPOS=(
   ai-tools-stack
+  tooladapter
+  toolset
   toolmodel
   toolindex
   tooldocs

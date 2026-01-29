@@ -27,6 +27,16 @@ are immediately usable in CI and local workflows.
 scripts/update-version-matrix.sh --apply
 ```
 
+### New modules (example: tooladapter)
+
+When a new module is added to the stack (for example `tooladapter`), the propagation
+steps are:
+
+1) Tag the new module (`vX.Y.Z`).
+2) Add it to `ai-tools-stack/go.mod` at the tagged version.
+3) Run `scripts/update-version-matrix.sh --apply` to sync `VERSIONS.md` across repos.
+4) Update `mkdocs.yml` to include the new module in **Components** and **Library Docs**.
+
 ## Dependency bumping
 
 Use the DAG-aware bump tool:

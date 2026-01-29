@@ -39,7 +39,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p repos
-          for repo in toolmodel toolindex tooldocs toolrun toolcode toolruntime toolsearch metatools-mcp; do
+          for repo in tooladapter toolset toolmodel toolindex tooldocs toolrun toolcode toolruntime toolsearch metatools-mcp; do
             if [ ! -d "repos/$repo/.git" ]; then
               git clone "https://github.com/jonwraymond/$repo.git" "repos/$repo"
             fi
