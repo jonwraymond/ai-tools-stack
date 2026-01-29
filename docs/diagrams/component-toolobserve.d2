@@ -1,0 +1,31 @@
+direction: right
+
+style: { font-size: 14 }
+
+toolrun: "toolrun" { shape: package }
+toolruntime: "toolruntime" { shape: package }
+metatools: "metatools-mcp" { shape: package }
+
+toolobserve: "toolobserve" {
+  shape: package
+  style: { shadow: true }
+}
+
+exporters: {
+  label: "Exporters"
+  style: { border-radius: 8 }
+
+  otlp: "OTLP" { shape: hexagon }
+  jaeger: "Jaeger" { shape: hexagon }
+  prom: "Prometheus" { shape: hexagon }
+  stdout: "Stdout" { shape: hexagon }
+}
+
+toolrun -> toolobserve: Instrument
+toolruntime -> toolobserve: Instrument
+metatools -> toolobserve: Middleware
+
+toolobserve -> otlp
+toolobserve -> jaeger
+toolobserve -> prom
+toolobserve -> stdout

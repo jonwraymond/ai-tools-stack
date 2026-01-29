@@ -1,0 +1,30 @@
+direction: right
+
+style: { font-size: 14 }
+
+toolindex: "toolindex" { shape: package }
+toolsearch: "toolsearch" { shape: package }
+
+toolsemantic: "toolsemantic" {
+  shape: package
+  style: { shadow: true }
+}
+
+strategies: {
+  label: "Strategies"
+  style: { border-radius: 8 }
+
+  bm25: "BM25" { shape: hexagon }
+  vector: "Embeddings" { shape: hexagon }
+  hybrid: "Hybrid" { shape: hexagon }
+}
+
+toolindex -> toolsemantic: Documents
+
+toolsearch -> toolsemantic: BM25 baseline
+
+toolsemantic -> bm25
+
+toolsemantic -> vector
+
+toolsemantic -> hybrid
