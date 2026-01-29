@@ -54,4 +54,4 @@ safeSet, err := toolset.NewBuilder("mcp-safe").
 ## Links
 
 - [Repository](https://github.com/jonwraymond/toolset)
-- [Library Docs](../toolset/index.md) (via multirepo import)
+- [Library Docs](../library-docs-from-repos/toolset/index.md) (via multirepo import)

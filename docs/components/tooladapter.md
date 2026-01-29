@@ -120,7 +120,8 @@ tooladapter follows semantic versioning aligned with the stack:
 - **Version matrix**: `VERSIONS.md` (auto-generated, synced to all repos)
 - **Propagation**: `scripts/update-version-matrix.sh --apply`
 
-Current version: See [VERSIONS.md](../../VERSIONS.md)
+Current version: See the stack version matrix in
+[operations/stack-changelog.md](../operations/stack-changelog.md).
 
 ## Usability Notes
 
@@ -133,4 +134,4 @@ Current version: See [VERSIONS.md](../../VERSIONS.md)
 ## Links
 
 - [Repository](https://github.com/jonwraymond/tooladapter)
-- [Library Docs](../tooladapter/index.md) (via multirepo import)
+- [Library Docs](../library-docs-from-repos/tooladapter/index.md) (via multirepo import)

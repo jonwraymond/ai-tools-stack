@@ -14,6 +14,16 @@ core: {
   toolrun: { shape: step }
 }
 
+protocol: {
+  label: "Protocol/Composition"
+  style: {
+  border-radius: 8
+  shadow: true
+}
+  tooladapter: { shape: package }
+  toolset: { shape: cylinder }
+}
+
 orchestration: {
   label: "Orchestration"
   style: {
@@ -43,8 +53,11 @@ surface: {
 }
 
 toolmodel -> toolindex
+toolmodel -> tooladapter
+tooladapter -> toolset
  toolindex -> tooldocs
  toolindex -> toolrun
+ toolindex -> toolset
  toolrun -> toolcode
  toolcode -> toolruntime
  toolindex -> toolsearch
@@ -52,3 +65,4 @@ toolmodel -> toolindex
  tooldocs -> metatools
  toolrun -> metatools
  toolcode -> metatools
+ toolset -> metatools
