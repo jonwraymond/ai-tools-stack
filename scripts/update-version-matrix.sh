@@ -10,6 +10,10 @@ PROJECTS_DIR="$PROJECTS_DIR_DEFAULT"
 APPLY=false
 COMMIT=false
 PUSH=false
+OPEN_PR=false
+BRANCH="main"
+BASE_BRANCH="main"
+COMMIT_MESSAGE="docs: update version matrix"
 
 REPOS=(
   toolmodel
@@ -37,12 +41,15 @@ ORDERED_LABELS=(
 usage() {
   cat <<EOF
 Usage:
-  scripts/update-version-matrix.sh [--apply] [--commit] [--push] [--projects DIR]
+  scripts/update-version-matrix.sh [--apply] [--commit] [--push] [--pr] [--branch NAME] [--base NAME] [--projects DIR]
 
 Options:
   --apply       Apply changes (default: dry-run)
   --commit      Commit changes in each repo
-  --push        Push commits to origin/main (implies --commit)
+  --push        Push commits to origin/<branch> (implies --commit)
+  --pr          Open/refresh PRs for pushed branches (implies --push)
+  --branch      Branch to push (default: main)
+  --base        Base branch for PRs (default: main)
   --projects    Override projects dir (default: $PROJECTS_DIR_DEFAULT)
   -h, --help    Show this help
 EOF
@@ -62,6 +69,20 @@ while [[ $# -gt 0 ]]; do
       COMMIT=true
       PUSH=true
       shift
+      ;;
+    --pr)
+      COMMIT=true
+      PUSH=true
+      OPEN_PR=true
+      shift
+      ;;
+    --branch)
+      BRANCH="${2:-}"
+      shift 2
+      ;;
+    --base)
+      BASE_BRANCH="${2:-}"
+      shift 2
       ;;
     --projects)
       PROJECTS_DIR="${2:-}"
@@ -141,14 +162,32 @@ for repo in "${REPOS[@]}"; do
   fi
 
   if [[ "$COMMIT" == true ]]; then
+    if [[ "$PUSH" == true || "$OPEN_PR" == true ]]; then
+      git -C "$repo_dir" fetch origin "$BASE_BRANCH" >/dev/null 2>&1 || true
+      git -C "$repo_dir" checkout -B "$BRANCH" "origin/$BASE_BRANCH" >/dev/null 2>&1 || true
+    fi
+
     git -C "$repo_dir" add "$versions"
     if [[ -f "$readme" ]]; then
       git -C "$repo_dir" add "$readme"
     fi
     if ! git -C "$repo_dir" diff --cached --quiet; then
-      git -C "$repo_dir" commit -m "docs: move version matrix to VERSIONS.md"
+      git -C "$repo_dir" commit -m "$COMMIT_MESSAGE"
       if [[ "$PUSH" == true ]]; then
-        git -C "$repo_dir" push origin main
+        git -C "$repo_dir" push origin "$BRANCH"
+      fi
+      if [[ "$OPEN_PR" == true ]]; then
+        if command -v gh >/dev/null 2>&1; then
+          if [[ -z "$(gh -R "jonwraymond/$repo" pr list --state open --head "$BRANCH" --base "$BASE_BRANCH" --json number --jq '.[].number')" ]]; then
+            gh -R "jonwraymond/$repo" pr create --base "$BASE_BRANCH" --head "$BRANCH" \
+              --title "$COMMIT_MESSAGE" \
+              --body "Sync VERSIONS.md to latest ai-tools-stack versions."
+          else
+            echo "PR already open for $repo:$BRANCH -> $BASE_BRANCH"
+          fi
+        else
+          echo "gh CLI not available; skipping PR creation for $repo"
+        fi
       fi
     else
       echo "no changes to commit"
