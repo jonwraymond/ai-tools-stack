@@ -1,0 +1,30 @@
+direction: right
+
+style: { font-size: 14 }
+
+toolcode: "toolcode" {
+  shape: page
+  style: { shadow: true }
+}
+
+inputs: {
+  label: "Dependencies"
+  style: { border-radius: 8 }
+  toolindex: { shape: cylinder }
+  tooldocs: { shape: document }
+  toolrun: { shape: step }
+  toolruntime: { shape: cloud }
+}
+
+consumers: {
+  label: "Consumers"
+  style: { border-radius: 8 }
+  metatools: "metatools-mcp" { shape: hexagon }
+}
+
+inputs.toolindex -> toolcode
+inputs.tooldocs -> toolcode
+inputs.toolrun -> toolcode
+inputs.toolruntime -> toolcode
+
+toolcode -> consumers.metatools

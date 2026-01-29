@@ -1,0 +1,28 @@
+direction: down
+
+style: { font-size: 14 }
+
+agent: "Agent" { shape: oval }
+
+metatools: "metatools-mcp" { shape: hexagon }
+
+index: "toolindex" { shape: cylinder }
+
+docs: "tooldocs" { shape: document }
+
+runner: "toolrun" { shape: step }
+
+agent -> metatools: "search_tools(query)"
+metatools -> index: "Search(query)"
+index -> metatools: "summaries"
+metatools -> agent: "summaries"
+
+agent -> metatools: "describe_tool(id, schema)"
+metatools -> docs: "DescribeTool(id, schema)"
+docs -> metatools: "tool schema"
+metatools -> agent: "schema"
+
+agent -> metatools: "run_tool(id, args)"
+metatools -> runner: "Run(id, args)"
+runner -> metatools: "result"
+metatools -> agent: "result"

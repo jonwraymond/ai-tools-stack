@@ -1,0 +1,38 @@
+direction: right
+
+style: { font-size: 14 }
+
+flow: {
+  label: "Core Flow"
+  style: {
+  border-radius: 8
+  shadow: true
+}
+
+  toolmodel: { shape: package }
+  toolindex: { shape: cylinder }
+  tooldocs: { shape: document }
+  toolrun: { shape: step }
+  toolcode: { shape: page }
+}
+
+extensions: {
+  label: "Extension Points"
+  style: {
+    border-radius: 8
+    stroke-dash: 4
+  }
+
+  searcher: "Search Strategy" { shape: diamond }
+  backend: "Backend Adapter" { shape: step }
+  engine: "Runtime Engine" { shape: cloud }
+}
+
+toolmodel -> toolindex
+ toolindex -> tooldocs
+ toolindex -> toolrun
+ toolrun -> toolcode
+
+ toolindex -> extensions.searcher
+ toolrun -> extensions.backend
+ toolcode -> extensions.engine

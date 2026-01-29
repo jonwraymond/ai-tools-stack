@@ -1,0 +1,34 @@
+direction: right
+
+style: { font-size: 14 }
+
+toolrun: "toolrun" {
+  shape: step
+  style: { shadow: true }
+}
+
+toolruntime: "toolruntime" {
+  shape: cloud
+}
+
+backends: {
+  label: "Runtime Backends"
+  style: {
+  border-radius: 8
+  shadow: true
+}
+  host: "Unsafe host" { shape: step }
+  docker: "Docker" { shape: step }
+  kube: "Kubernetes" { shape: step }
+  firecracker: "Firecracker" { shape: step }
+  gvisor: "gVisor" { shape: step }
+  wasm: "WASM" { shape: step }
+}
+
+toolrun -> toolruntime
+ toolruntime -> backends.host
+ toolruntime -> backends.docker
+ toolruntime -> backends.kube
+ toolruntime -> backends.firecracker
+ toolruntime -> backends.gvisor
+ toolruntime -> backends.wasm
