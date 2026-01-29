@@ -38,7 +38,7 @@ require (
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/jsonschema-go v0.3.0 // indirect
 	github.com/jonwraymond/tooladapter v0.1.0 // indirect
-	github.com/jonwraymond/toolset v0.2.0 // indirect
+	github.com/jonwraymond/toolset v0.2.1 // indirect
 	github.com/json-iterator/go v0.0.0-20171115153421-f7279a603ede // indirect
 	github.com/mschoch/smat v0.2.0 // indirect
 	github.com/yosida95/uritemplate/v3 v3.0.2 // indirect

@@ -74,6 +74,8 @@ github.com/jonwraymond/toolsearch v0.3.0 h1:zF3XrLn1pJvU4vV2ZIie59jNSgfTIu7nfPKE
 github.com/jonwraymond/toolsearch v0.3.0/go.mod h1:o8nOuJayCzByEjoeicplaLZVhCmExJDNqRvAeRQT9uk=
 github.com/jonwraymond/toolset v0.2.0 h1:0idmchOYktscVbESGHYqObF4ZrAMaMQ6xLrZX/PXHjA=
 github.com/jonwraymond/toolset v0.2.0/go.mod h1:p32uSqSFfQdq63GvHaysyc/GMelvYNIfbkCFoE3qtTw=
+github.com/jonwraymond/toolset v0.2.1 h1:md0fdyOrn7Np/txHBe6PmBH7qhlbrddOyAjf66Ycu0c=
+github.com/jonwraymond/toolset v0.2.1/go.mod h1:/qKmA7h4R+zNkVUPTKaQX4FheVw5hqfUEW5dkwZKseU=
 github.com/json-iterator/go v0.0.0-20171115153421-f7279a603ede h1:YrgBGwxMRK0Vq0WSCWFaZUnTsrA/PZE/xs1QZh+/edg=
 github.com/json-iterator/go v0.0.0-20171115153421-f7279a603ede/go.mod h1:+SdeFBvtyEkXs7REEP0seUULqWtbJapLOCVDaaPEHmU=
 github.com/modelcontextprotocol/go-sdk v1.2.0 h1:Y23co09300CEk8iZ/tMxIX1dVmKZkzoSBZOpJwUnc/s=
