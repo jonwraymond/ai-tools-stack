@@ -28,6 +28,10 @@ This is intentionally integration-heavy and implementation-light.
 
 See `VERSIONS.md` for the authoritative, auto-generated compatibility matrix.
 
+## Changelog
+
+See `CHANGELOG.md` for the centralized release log.
+
 ## Documentation site
 
 This repo also hosts the unified documentation site (MkDocs + multirepo) that
