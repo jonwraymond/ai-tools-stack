@@ -81,6 +81,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/operations/stack-changelog/</loc>
+         <lastmod>2026-01-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolmodel/</loc>
          <lastmod>2026-01-29</lastmod>
          <changefreq>daily</changefreq>

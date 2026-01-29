@@ -93,3 +93,8 @@ body {
   color: var(--brand-primary);
 }
 
+/* Improve light-mode header contrast */
+[data-md-color-scheme="default"] .md-header,
+[data-md-color-scheme="default"] .md-tabs {
+  background: rgba(255, 255, 255, 0.92);
+}
