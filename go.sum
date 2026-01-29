@@ -54,8 +54,8 @@ github.com/google/jsonschema-go v0.3.0 h1:6AH2TxVNtk3IlvkkhjrtbUc4S8AvO0Xii0DxIy
 github.com/google/jsonschema-go v0.3.0/go.mod h1:r5quNTdLOYEz95Ru18zA0ydNbBuYoo9tgaYcxEYhJVE=
 github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
-github.com/jonwraymond/metatools-mcp v0.3.0 h1:urbNOxin9A3vcStQIfk6N4breT6cRwSm5S6ImyJXikI=
-github.com/jonwraymond/metatools-mcp v0.3.0/go.mod h1:/kVhtaf7V7apDYjdfX1EwT/rSV3vDhpwiqoriGKjZvI=
+github.com/jonwraymond/metatools-mcp v0.4.0 h1:/lK2MKU/SZPXYCRNDL5EccvpZEoAP2FRvLdeB0aB6d4=
+github.com/jonwraymond/metatools-mcp v0.4.0/go.mod h1:4if0JRqgkOO2T4AUwd6RoDLvGrEHwKFe0rGKWT8tDGY=
 github.com/jonwraymond/toolcode v0.3.0 h1:8Xn62NRH6WfQGinNbq28zZFrCJkayyje2tKJefTmvyI=
 github.com/jonwraymond/toolcode v0.3.0/go.mod h1:UTXveBORgBARjjW0Ay6epDjYlWOJ+HykbvoOOucgbhw=
 github.com/jonwraymond/tooldocs v0.1.11 h1:GU9m269/UWs9kTVMRS5Q3swEnehfsC51LORJn6WWGt0=
