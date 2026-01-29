@@ -20,6 +20,7 @@ AUTO_MERGE_LABEL="auto-merge/version-matrix"
 REPOS=(
   toolmodel
   tooladapter
+  toolset
   toolindex
   tooldocs
   toolrun
@@ -33,6 +34,7 @@ REPOS=(
 ORDERED_LABELS=(
   toolmodel
   tooladapter
+  toolset
   toolindex
   tooldocs
   toolrun
