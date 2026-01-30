@@ -9,7 +9,7 @@ require (
 	github.com/jonwraymond/toolindex v0.3.0
 	github.com/jonwraymond/toolmodel v0.2.0
 	github.com/jonwraymond/toolrun v0.3.0
-	github.com/jonwraymond/toolruntime v0.2.1
+	github.com/jonwraymond/toolruntime v0.3.1
 	github.com/jonwraymond/toolsearch v0.3.0
 	github.com/modelcontextprotocol/go-sdk v1.2.0
 )

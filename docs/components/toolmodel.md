@@ -15,6 +15,16 @@ IDs, schemas, tags, and backend bindings.
 - `ToolBackend` (execution binding: mcp, provider, local)
 - `SchemaValidator` (input/output validation)
 
+## JSON Schema Validation
+
+toolmodel uses `github.com/google/jsonschema-go` (draft 2020-12) for schema
+validation. The default validator accepts MCP-style schema maps and enforces
+input/output validation for tool calls.
+
+- **InputSchema/OutputSchema**: validated via `SchemaValidator`.
+- **Dialects**: 2020-12 with draft-07 compatibility where possible.
+- **External refs**: blocked by default to avoid network lookups.
+
 ## Example
 
 ```go

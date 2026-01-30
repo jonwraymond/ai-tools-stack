@@ -90,6 +90,8 @@ github.com/jonwraymond/toolrun v0.3.0 h1:BNpkfHBjM12opv77iGyxtg6ENEI44stzTBr5dDm
 github.com/jonwraymond/toolrun v0.3.0/go.mod h1:osEaTNLfjbCC9rupyzlOwz3nZONL1Nk+YL1fiE3y+ks=
 github.com/jonwraymond/toolruntime v0.2.1 h1:cIGyjRIsD72tX68/bFMCA/tvOBQbXS/JfzTJM+2ba0c=
 github.com/jonwraymond/toolruntime v0.2.1/go.mod h1:z4XwbjR3GDj86xIGnhWSR2KkopHgfeN37ZQMIFG4CXI=
+github.com/jonwraymond/toolruntime v0.3.1 h1:GglcQjAFn6Z2WcMcdBrx835i/5ZM7YZ9OEbBcV53CdA=
+github.com/jonwraymond/toolruntime v0.3.1/go.mod h1:TEOW8dU9lH+4q+nFZiVr0JgWTQInwugBULnMaapriOA=
 github.com/jonwraymond/toolsearch v0.3.0 h1:zF3XrLn1pJvU4vV2ZIie59jNSgfTIu7nfPKEQOYxxn8=
 github.com/jonwraymond/toolsearch v0.3.0/go.mod h1:o8nOuJayCzByEjoeicplaLZVhCmExJDNqRvAeRQT9uk=
 github.com/jonwraymond/toolsemantic v0.2.0 h1:zPzmoPZrjhDEVVfUjnxlALhRLk0Htkk9Fr0lXMLHzOM=
@@ -170,6 +172,7 @@ golang.org/x/net v0.47.0 h1:Mx+4dIFzqraBXUugkia1OOvlD6LemFo1ALMHjrXDOhY=
 golang.org/x/net v0.47.0/go.mod h1:/jNxtkgq5yWUGYkaZGqo27cfGZ1c5Nen03aYrrKpVRU=
 golang.org/x/oauth2 v0.30.0 h1:dnDm7JmhM45NNpd8FDDeLhK6FwqbOf4MLCM9zb1BOHI=
 golang.org/x/oauth2 v0.30.0/go.mod h1:B++QgG3ZKulg6sRPGD/mqlHQs5rB3Ml9erfeDY7xKlU=
+golang.org/x/oauth2 v0.32.0 h1:jsCblLleRMDrxMN29H3z/k1KliIvpLgCkE6R8FXXNgY=
 golang.org/x/oauth2 v0.32.0/go.mod h1:lzm5WQJQwKZ3nwavOZ3IS5Aulzxi68dUSgRHujetwEA=
 golang.org/x/sync v0.10.0 h1:3NQrjDixjgGwUOCaF8w2+VYHv0Ve/vGYSbdkTa98gmQ=
 golang.org/x/sync v0.10.0/go.mod h1:Czt+wKu1gCyEFDUtn0jG5QVvpJ6rzVqr5aXyt9drQfk=

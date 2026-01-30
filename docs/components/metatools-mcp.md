@@ -17,6 +17,23 @@ progressive-disclosure flow.
 - Optionally expose `execute_code`
 - Use the official MCP Go SDK
 
+## Transport surface
+
+- `stdio` (default): local clients/Claude Desktop.
+- `streamable` (recommended HTTP): MCP spec 2025-03-26 with session management.
+- `sse` (deprecated): legacy web clients.
+
+See `metatools-mcp/docs/usage.md` for the full config/env matrix.
+
+## Optional runtime integration
+
+`execute_code` is enabled with the `toolruntime` build tag and selects a runtime
+profile at startup:
+
+- `dev` profile (default): unsafe subprocess backend.
+- `standard` profile: Docker sandbox (set `METATOOLS_RUNTIME_PROFILE=standard`).
+- `METATOOLS_DOCKER_IMAGE` overrides the sandbox image name.
+
 ## Example
 
 ```go
