@@ -1,29 +1,231 @@
+# Component: toolskill
+# Skill composition layer for reusable workflows
+
 direction: right
 
-style: { font-size: 14 }
-
-toolset: "toolset" { shape: package }
-toolrun: "toolrun" { shape: package }
-toolobserve: "toolobserve" { shape: package }
-metatools: "metatools-mcp" { shape: package }
-
-toolskill: "toolskill" {
-  shape: package
-  style: { shadow: true }
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+  skill-fill: "#805ad5"
+  source-fill: "#3182ce"
+  workflow-fill: "#38a169"
+  output-fill: "#d69e2e"
 }
 
-planner: "Planner" { shape: rectangle }
-guards: "Guards" { shape: diamond }
+classes: {
+  container: {
+    style: {
+      border-radius: 12
+      shadow: true
+      font-size: 14
+      bold: true
+    }
+  }
+  skill-node: {
+    style: {
+      fill: ${skill-fill}
+      stroke: "#6b46c1"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  source-node: {
+    style: {
+      fill: ${source-fill}
+      stroke: "#2c5282"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  workflow-node: {
+    style: {
+      fill: ${workflow-fill}
+      stroke: "#276749"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  output-node: {
+    style: {
+      fill: ${output-fill}
+      stroke: "#b7791f"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  data-flow: {
+    style: {
+      stroke: "#4a5568"
+      stroke-width: 2
+    }
+  }
+  skill-flow: {
+    style: {
+      stroke: ${skill-fill}
+      stroke-width: 2
+      stroke-dash: 3
+    }
+  }
+}
 
+# Title
+title: "toolskill - Skill Composition" {
+  shape: text
+  near: top-center
+  style: {
+    font-size: 28
+    bold: true
+    font-color: "#1a365d"
+  }
+}
 
-toolset -> toolskill: Curated tools
+# Source Libraries
+sources: "📥 Sources" {
+  class: container
+  style: {
+    fill: "#ebf8ff"
+    stroke: ${source-fill}
+  }
 
-toolrun -> toolskill: Execute
+  toolset: "toolset\nCurated Tools" {
+    shape: package
+    class: source-node
+  }
 
-toolobserve -> toolskill: Telemetry
+  toolrun: "toolrun\nExecution" {
+    shape: step
+    class: source-node
+  }
 
-toolskill -> planner
+  toolobserve: "toolobserve\nTelemetry" {
+    shape: hexagon
+    class: source-node
+  }
+}
 
-toolskill -> guards
+# Core Component
+core: "🎯 toolskill" {
+  class: container
+  style: {
+    fill: "#faf5ff"
+    stroke: ${skill-fill}
+    stroke-width: 3
+  }
 
-toolskill -> metatools: Expose skills
+  builder: "Builder\nSkill Definition" {
+    shape: package
+    class: skill-node
+  }
+
+  planner: "Planner\nStep Sequencing" {
+    shape: step
+    class: skill-node
+  }
+
+  guards: "Guards\nPre/Post Conditions" {
+    shape: diamond
+    class: skill-node
+  }
+
+  builder -> planner: "defines"
+  planner -> guards: "validates"
+}
+
+# Workflow Types
+workflows: "⚙️ Workflows" {
+  class: container
+  style: {
+    fill: "#f0fff4"
+    stroke: ${workflow-fill}
+  }
+
+  sequential: "Sequential\nStep-by-Step" {
+    shape: step
+    class: workflow-node
+  }
+
+  parallel: "Parallel\nConcurrent Tasks" {
+    shape: step
+    class: workflow-node
+  }
+
+  conditional: "Conditional\nBranching Logic" {
+    shape: diamond
+    class: workflow-node
+  }
+}
+
+# Outputs
+outputs: "📤 Outputs" {
+  class: container
+  style: {
+    fill: "#fffff0"
+    stroke: ${output-fill}
+  }
+
+  mcp: "metatools-mcp\nExpose Skills" {
+    shape: hexagon
+    class: output-node
+  }
+
+  agents: "Agent Loops\nAutonomous" {
+    shape: cloud
+    class: output-node
+  }
+
+  cli: "CLI\nDirect Invoke" {
+    shape: step
+    class: output-node
+  }
+}
+
+# Connections
+sources.toolset -> core.builder: "curated set" {
+  class: data-flow
+}
+sources.toolrun -> core.planner: "execute steps" {
+  class: data-flow
+}
+sources.toolobserve -> core.guards: "instrument" {
+  class: data-flow
+}
+
+core.guards -> workflows.sequential: "runs" {
+  class: skill-flow
+}
+core.guards -> workflows.parallel: "runs" {
+  class: skill-flow
+}
+core.guards -> workflows.conditional: "runs" {
+  class: skill-flow
+}
+
+workflows.sequential -> outputs.mcp: "expose" {
+  class: skill-flow
+}
+workflows.parallel -> outputs.agents: "power" {
+  class: skill-flow
+}
+workflows.conditional -> outputs.cli: "invoke" {
+  class: skill-flow
+}
+
+# Note
+note: |md
+  ## Skill Features
+
+  - **Composition**: Reusable workflows
+  - **Guards**: Pre/post conditions
+  - **Planning**: Step sequencing
+  - **Exposure**: MCP, CLI, agents
+| {
+  near: bottom-right
+  style: {
+    fill: "#f7fafc"
+    stroke: "#e2e8f0"
+    font-size: 10
+    border-radius: 8
+  }
+}
