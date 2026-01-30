@@ -6,6 +6,9 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 PROJECTS_DIR_DEFAULT="$HOME/Documents/Projects"
+if [[ -d "$ROOT_DIR/../toolmodel" && -d "$ROOT_DIR/../toolindex" ]]; then
+  PROJECTS_DIR_DEFAULT="$(cd "$ROOT_DIR/.." && pwd)"
+fi
 PROJECTS_DIR="$PROJECTS_DIR_DEFAULT"
 APPLY=false
 COMMIT=false
@@ -124,7 +127,7 @@ done
 
 cd "$ROOT_DIR"
 
-MODULE_OUTPUT="$(go list -m -f '{{.Path}} {{.Version}}' all | rg '^github.com/jonwraymond/' || true)"
+MODULE_OUTPUT="$(GOWORK=off go list -m -f '{{.Path}} {{.Version}}' all | rg '^github.com/jonwraymond/' || true)"
 if [[ -z "${MODULE_OUTPUT}" ]]; then
   echo "No jonwraymond modules found in go.mod" >&2
   exit 1

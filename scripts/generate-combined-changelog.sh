@@ -3,6 +3,9 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 PROJECTS_DIR_DEFAULT="$HOME/Documents/Projects"
+if [[ -d "$ROOT_DIR/../toolmodel" && -d "$ROOT_DIR/../toolindex" ]]; then
+  PROJECTS_DIR_DEFAULT="$(cd "$ROOT_DIR/.." && pwd)"
+fi
 PROJECTS_DIR="$PROJECTS_DIR_DEFAULT"
 OUTPUT="$ROOT_DIR/docs/operations/stack-changelog.md"
 
@@ -17,6 +20,10 @@ REPOS=(
   toolcode
   toolruntime
   toolsearch
+  toolobserve
+  toolcache
+  toolsemantic
+  toolskill
   metatools-mcp
 )
 

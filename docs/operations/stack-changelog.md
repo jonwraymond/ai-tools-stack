@@ -6,12 +6,18 @@ Aggregated highlights from each repo’s latest release. For full history, use e
 ### Version compatibility (current tags)
 
 - `toolmodel`: `v0.2.0`
+- `tooladapter`: `v0.2.0`
+- `toolset`: `v1.0.1`
 - `toolindex`: `v0.3.0`
 - `tooldocs`: `v0.2.0`
 - `toolrun`: `v0.3.0`
 - `toolcode`: `v0.3.0`
 - `toolruntime`: `v0.2.1`
 - `toolsearch`: `v0.3.0`
+- `toolobserve`: `v0.2.0`
+- `toolcache`: `v0.2.0`
+- `toolsemantic`: `v0.2.0`
+- `toolskill`: `v0.2.0`
 - `metatools-mcp`: `v0.4.0`
 
 Generated from `ai-tools-stack/go.mod`.
@@ -37,6 +43,32 @@ Generated from `ai-tools-stack/go.mod`.
 * use PAT for release-please ([1ba5e64](https://github.com/jonwraymond/ai-tools-stack/commit/1ba5e642963419160b41d119644d9aacd7fd106d))
 
 [Full changelog](https://github.com/jonwraymond/ai-tools-stack/blob/main/CHANGELOG.md)
+
+## tooladapter
+**Latest:** [0.2.0](https://github.com/jonwraymond/tooladapter/compare/tooladapter-v0.1.0...tooladapter-v0.2.0)
+
+
+
+### Features
+
+* **tooladapter:** add Adapter interface and SchemaFeature ([94a0617](https://github.com/jonwraymond/tooladapter/commit/94a06173efdc2eafb6eaaa7c9ba2c02856a22402))
+* **tooladapter:** add AdapterRegistry ([5d947b1](https://github.com/jonwraymond/tooladapter/commit/5d947b18158adc4b5654c24be4a959b69f893258))
+* **tooladapter:** add Anthropic adapter ([fe5c4f5](https://github.com/jonwraymond/tooladapter/commit/fe5c4f5d67c0f3da3b6f67ddbe258a36a253d102))
+* **tooladapter:** add CanonicalTool and JSONSchema ([5aff5f2](https://github.com/jonwraymond/tooladapter/commit/5aff5f2654dd7ea81301df62401b87c1f163f3c7))
+* **tooladapter:** add MCP adapter ([cb3d86e](https://github.com/jonwraymond/tooladapter/commit/cb3d86ed7fc22e7e16fe9484b192cc73f65e38a0))
+* **tooladapter:** add OpenAI adapter ([3472725](https://github.com/jonwraymond/tooladapter/commit/347272560a78a374257b469e7b5132047116b4eb))
+
+[Full changelog](https://github.com/jonwraymond/tooladapter/blob/main/CHANGELOG.md)
+
+## toolset
+**Latest:** [1.0.1](https://github.com/jonwraymond/toolset/compare/v1.0.0...v1.0.1)
+
+
+### Chores
+
+- bump tooladapter dependency to v0.2.0
+
+[Full changelog](https://github.com/jonwraymond/toolset/blob/main/CHANGELOG.md)
 
 ## toolmodel
 **Latest:** [0.2.0](https://github.com/jonwraymond/toolmodel/compare/toolmodel-v0.1.3...toolmodel-v0.2.0)
@@ -140,22 +172,88 @@ Generated from `ai-tools-stack/go.mod`.
 
 [Full changelog](https://github.com/jonwraymond/toolsearch/blob/main/CHANGELOG.md)
 
-## metatools-mcp
-**Latest:** [0.3.0](https://github.com/jonwraymond/metatools-mcp/compare/metatools-mcp-v0.2.0...metatools-mcp-v0.3.0)
+## toolobserve
+**Latest:** [0.2.0](https://github.com/jonwraymond/toolobserve/compare/toolobserve-v0.1.0...toolobserve-v0.2.0)
 
 
 
 ### Features
 
-* **mcp:** implement spec alignment per PRD-015 ([037326f](https://github.com/jonwraymond/metatools-mcp/commit/037326fbcc932e16dc761f773feea50fd63773fb))
-* **mcp:** implement spec alignment per PRD-015 ([bae429c](https://github.com/jonwraymond/metatools-mcp/commit/bae429cb5c43ea8f785f1e67a3b870943bf9d01f))
-* **mcp:** stabilize list_changed and add changelog ([7f191e8](https://github.com/jonwraymond/metatools-mcp/commit/7f191e8ceebed1a178f540912df51771293a54cc))
-* progress notifications and cancellation codes ([dc1d9a2](https://github.com/jonwraymond/metatools-mcp/commit/dc1d9a2874938518c615de6064489ff0573d8447))
+* **toolobserve:** add config validation and observer core ([e717465](https://github.com/jonwraymond/toolobserve/commit/e717465e21e075eadfd04df68b8547074280e2e5))
+* **toolobserve:** add execution middleware ([bfde9bf](https://github.com/jonwraymond/toolobserve/commit/bfde9bf35f6c8969bb81ea145064f08718b0b0f3))
+* **toolobserve:** add exporter configuration ([f2697e8](https://github.com/jonwraymond/toolobserve/commit/f2697e80c4c71ad5c6bae055957712fade01da3c))
+* **toolobserve:** add metrics ([1869b3f](https://github.com/jonwraymond/toolobserve/commit/1869b3f72af0d4f4e024a65483f497624c691cfc))
+* **toolobserve:** add structured logger ([c6e651c](https://github.com/jonwraymond/toolobserve/commit/c6e651cd314f1a999c5cf3f782fcdc0aa4119d51))
+* **toolobserve:** add tracing ([437cac2](https://github.com/jonwraymond/toolobserve/commit/437cac2eeafca9903b41928801f6812ea3a413de))
 
 
 ### Bug Fixes
 
-* satisfy revive context parameter order ([c1fefe6](https://github.com/jonwraymond/metatools-mcp/commit/c1fefe6d9431a2cb0eff31c90e8f35a17c3764ec))
+* **toolobserve:** wire exporters and structured logger ([0e6213a](https://github.com/jonwraymond/toolobserve/commit/0e6213a408188f5236243e5b12362719fed25ea1))
+
+[Full changelog](https://github.com/jonwraymond/toolobserve/blob/main/CHANGELOG.md)
+
+## toolcache
+**Latest:** [0.2.0](https://github.com/jonwraymond/toolcache/compare/toolcache-v0.1.0...toolcache-v0.2.0)
+
+
+
+### Features
+
+* **toolcache:** add cache primitives and middleware ([3656e97](https://github.com/jonwraymond/toolcache/commit/3656e97fbdccbeb3a2eff47f7d6b936604e10ed4))
+
+[Full changelog](https://github.com/jonwraymond/toolcache/blob/main/CHANGELOG.md)
+
+## toolsemantic
+**Latest:** [0.2.0](https://github.com/jonwraymond/toolsemantic/compare/toolsemantic-v0.1.0...toolsemantic-v0.2.0)
+
+
+
+### Features
+
+* **toolsemantic:** add document model ([39c83c2](https://github.com/jonwraymond/toolsemantic/commit/39c83c20b5b0bc3cb5e776afa78252f686e7a6b7))
+* **toolsemantic:** add filters ([8116bbd](https://github.com/jonwraymond/toolsemantic/commit/8116bbd24427892b5510b2e1dc45a20a38741baf))
+* **toolsemantic:** add in-memory indexer ([236b989](https://github.com/jonwraymond/toolsemantic/commit/236b989ff3da5211eac4c61264bd0a5cd52cfb67))
+* **toolsemantic:** add scoring strategies ([ebbfc11](https://github.com/jonwraymond/toolsemantic/commit/ebbfc11c0f172a76d363ba12d9c31810c5353097))
+* **toolsemantic:** add searcher interface ([9ac507b](https://github.com/jonwraymond/toolsemantic/commit/9ac507b55e2a890c3d504018ac9505b41bb62571))
+
+[Full changelog](https://github.com/jonwraymond/toolsemantic/blob/main/CHANGELOG.md)
+
+## toolskill
+**Latest:** [0.2.0](https://github.com/jonwraymond/toolskill/compare/toolskill-v0.1.0...toolskill-v0.2.0)
+
+
+
+### Features
+
+* **toolskill:** add deterministic planner ([1c168b1](https://github.com/jonwraymond/toolskill/commit/1c168b1689fc14271d33af08a6c037b6e2ac01eb))
+* **toolskill:** add execution adapter ([efe087a](https://github.com/jonwraymond/toolskill/commit/efe087a81bf80306546510c8879e265f4cfcd762))
+* **toolskill:** add guard policies ([7171124](https://github.com/jonwraymond/toolskill/commit/7171124fe49e9489e0dfb11c464f2434a1afb569))
+* **toolskill:** add skill and step models ([766c561](https://github.com/jonwraymond/toolskill/commit/766c561c03dae7e8d93576d9015314dcaa2ecb40))
+
+[Full changelog](https://github.com/jonwraymond/toolskill/blob/main/CHANGELOG.md)
+
+## metatools-mcp
+**Latest:** [0.4.0](https://github.com/jonwraymond/metatools-mcp/compare/metatools-mcp-v0.3.0...metatools-mcp-v0.4.0)
+
+
+
+### Features
+
+* **backend:** add registry, local backend, and adapter ([cd0f8a1](https://github.com/jonwraymond/metatools-mcp/commit/cd0f8a1204b6e55d6564dc182148a4bd4c4a9b87))
+* **cli:** add Cobra foundation ([bc492ad](https://github.com/jonwraymond/metatools-mcp/commit/bc492adea64eb1c14daf4f26497a83339fac7f1f))
+* **config:** add Koanf config layer (PRD-003) ([7fa2403](https://github.com/jonwraymond/metatools-mcp/commit/7fa2403c6b77a23442c2a4929c779d78d6a157d0))
+* **middleware:** add middleware chain and config ([4f70bd2](https://github.com/jonwraymond/metatools-mcp/commit/4f70bd2d6579f1aaeb841c36c6ff8ce161ee0e5a))
+* **server:** add provider registry and built-in providers ([3c8124f](https://github.com/jonwraymond/metatools-mcp/commit/3c8124f65b9ed388b6ddaff3827beda46ce1d721))
+* **transport:** add SSE transport abstraction (PRD-004) ([aa42715](https://github.com/jonwraymond/metatools-mcp/commit/aa4271596d49014f397e230c75663d06a3f60d6f))
+
+
+### Bug Fixes
+
+* **backend:** address lint issues ([550ebb2](https://github.com/jonwraymond/metatools-mcp/commit/550ebb2a26b527463b0d673b0b6c93bb1084a89c))
+* **backend:** silence revive unused params ([70698eb](https://github.com/jonwraymond/metatools-mcp/commit/70698ebc56e165a63583eba546ec8cae912355b5))
+* **middleware:** resolve lint in tests and config ([a306e51](https://github.com/jonwraymond/metatools-mcp/commit/a306e51cf3edc59fa53e5875f50791c2ac016228))
+* **middleware:** resolve revive unused params ([f87f926](https://github.com/jonwraymond/metatools-mcp/commit/f87f92600bcff0fc82eb2c0e2b4554df70e7e8e6))
 
 [Full changelog](https://github.com/jonwraymond/metatools-mcp/blob/main/CHANGELOG.md)
 
