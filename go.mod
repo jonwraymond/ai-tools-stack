@@ -3,13 +3,13 @@ module github.com/jonwraymond/ai-tools-stack
 go 1.24.4
 
 require (
-	github.com/jonwraymond/metatools-mcp v0.4.0
+	github.com/jonwraymond/metatools-mcp v0.5.0
 	github.com/jonwraymond/toolcode v0.3.0
 	github.com/jonwraymond/tooldocs v0.2.0
 	github.com/jonwraymond/toolindex v0.3.0
 	github.com/jonwraymond/toolmodel v0.2.0
 	github.com/jonwraymond/toolrun v0.3.0
-	github.com/jonwraymond/toolruntime v0.3.1
+	github.com/jonwraymond/toolruntime v0.4.0
 	github.com/jonwraymond/toolsearch v0.3.0
 	github.com/modelcontextprotocol/go-sdk v1.2.0
 )
