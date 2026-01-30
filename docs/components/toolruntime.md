@@ -15,6 +15,13 @@ backends with a single interface.
 - Backends (unsafe host, docker, kubernetes, gvisor, firecracker, wasm)
 - Security profiles and execution limits
 
+## WASM backend
+
+`toolruntime` defines the WASM contracts in `backend/wasm` (Runner, ModuleLoader,
+HealthChecker, StreamRunner). The `metatools-mcp` server provides a wazero-based
+implementation and wires it into `execute_code` when the `toolruntime` build tag
+is enabled.
+
 ## Example
 
 ```go

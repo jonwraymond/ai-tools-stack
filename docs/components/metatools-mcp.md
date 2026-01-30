@@ -33,6 +33,8 @@ profile at startup:
 - `dev` profile (default): unsafe subprocess backend.
 - `standard` profile: Docker sandbox (set `METATOOLS_RUNTIME_PROFILE=standard`).
 - `METATOOLS_DOCKER_IMAGE` overrides the sandbox image name.
+- `METATOOLS_WASM_ENABLED=true` enables the WASM backend (wazero).
+- `METATOOLS_RUNTIME_BACKEND=wasm` selects WASM for the standard profile.
 
 ## Example
 
