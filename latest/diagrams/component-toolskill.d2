@@ -1,0 +1,29 @@
+direction: right
+
+style: { font-size: 14 }
+
+toolset: "toolset" { shape: package }
+toolrun: "toolrun" { shape: package }
+toolobserve: "toolobserve" { shape: package }
+metatools: "metatools-mcp" { shape: package }
+
+toolskill: "toolskill" {
+  shape: package
+  style: { shadow: true }
+}
+
+planner: "Planner" { shape: rectangle }
+guards: "Guards" { shape: diamond }
+
+
+toolset -> toolskill: Curated tools
+
+toolrun -> toolskill: Execute
+
+toolobserve -> toolskill: Telemetry
+
+toolskill -> planner
+
+toolskill -> guards
+
+toolskill -> metatools: Expose skills

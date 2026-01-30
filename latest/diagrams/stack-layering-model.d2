@@ -2,67 +2,100 @@ direction: down
 
 style: { font-size: 14 }
 
-layer_core: {
-  label: "Core Layer"
+layer_foundation: {
+  label: "Foundation Layer"
   style: {
-  border-radius: 8
-  shadow: true
-}
+    border-radius: 8
+    shadow: true
+  }
   toolmodel: { shape: package }
-  toolindex: { shape: cylinder }
-  tooldocs: { shape: document }
-  toolrun: { shape: step }
-}
-
-layer_protocol: {
-  label: "Protocol Layer"
-  style: {
-  border-radius: 8
-  shadow: true
-}
-  tooladapter: { shape: package }
-  toolset: { shape: cylinder }
-}
-
-layer_exec: {
-  label: "Orchestration Layer"
-  style: {
-  border-radius: 8
-  shadow: true
-}
-  toolcode: { shape: page }
-  toolruntime: { shape: cloud }
 }
 
 layer_discovery: {
   label: "Discovery Layer"
   style: {
-  border-radius: 8
-  shadow: true
-}
+    border-radius: 8
+    shadow: true
+  }
+  toolindex: { shape: cylinder }
+  tooldocs: { shape: document }
   toolsearch: { shape: diamond }
+  toolsemantic: { shape: diamond }
+}
+
+layer_protocol: {
+  label: "Protocol Layer"
+  style: {
+    border-radius: 8
+    shadow: true
+  }
+  tooladapter: { shape: package }
+}
+
+layer_composition: {
+  label: "Composition Layer"
+  style: {
+    border-radius: 8
+    shadow: true
+  }
+  toolset: { shape: cylinder }
+  toolskill: { shape: page }
+}
+
+layer_execution: {
+  label: "Execution Layer"
+  style: {
+    border-radius: 8
+    shadow: true
+  }
+  toolrun: { shape: step }
+  toolcode: { shape: page }
+  toolruntime: { shape: cloud }
+}
+
+layer_crosscutting: {
+  label: "Cross-Cutting Concerns"
+  style: {
+    border-radius: 8
+    shadow: true
+  }
+  toolobserve: { shape: hexagon }
+  toolcache: { shape: cylinder }
 }
 
 layer_surface: {
   label: "MCP Surface"
   style: {
-  border-radius: 8
-  shadow: true
-}
+    border-radius: 8
+    shadow: true
+  }
   metatools: "metatools-mcp" { shape: hexagon }
 }
 
 toolmodel -> toolindex
 toolmodel -> tooladapter
+toolmodel -> tooldocs
+toolmodel -> toolrun
+
+toolindex -> tooldocs
+toolindex -> toolrun
+toolindex -> toolsearch
+toolindex -> toolsemantic
+
 tooladapter -> toolset
- toolindex -> tooldocs
- toolindex -> toolrun
- toolindex -> toolset
- toolrun -> toolcode
- toolcode -> toolruntime
- toolindex -> toolsearch
- toolindex -> metatools
- tooldocs -> metatools
- toolrun -> metatools
- toolcode -> metatools
- toolset -> metatools
+toolset -> toolrun
+toolset -> toolskill
+toolrun -> toolskill
+
+toolrun -> toolcode
+toolcode -> toolruntime
+
+toolobserve -> toolrun
+toolcache -> toolrun
+
+toolindex -> metatools
+tooldocs -> metatools
+toolrun -> metatools
+toolcode -> metatools
+toolset -> metatools
+toolskill -> metatools

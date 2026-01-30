@@ -2,587 +2,732 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/architecture/design-notes/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/architecture/overview/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/architecture/pluggable-architecture/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/architecture/progressive-disclosure/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/architecture/user-journeys/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/architecture/why-go/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/metatools-mcp/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/tooladapter/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolcache/</loc>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolcode/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/tooldocs/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolindex/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolmodel/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolobserve/</loc>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolrun/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolruntime/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolsearch/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolsemantic/</loc>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolset/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolskill/</loc>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/operations/ci-and-versioning/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/operations/stack-changelog/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolmodel/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolmodel/api/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolmodel/architecture/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolmodel/design-notes/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolmodel/examples/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolmodel/usage/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolmodel/user-journey/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/tooladapter/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/tooladapter/design-notes/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/tooladapter/user-journey/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/tooladapter/plans/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/tooladapter/plans/2026-01-29-prd-001-execution-plan/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/tooladapter/plans/2026-01-29-prd-001-tooladapter-library/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolset/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolset/design-notes/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolset/user-journey/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolset/plans/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolset/plans/2026-01-29-prd-001-execution-plan/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolset/plans/2026-01-29-prd-001-toolset-composition/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolindex/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolindex/api/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolindex/architecture/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolindex/changelog/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolindex/design-notes/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolindex/examples/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolindex/usage/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolindex/user-journey/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/tooldocs/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/tooldocs/api/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/tooldocs/architecture/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/tooldocs/design-notes/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/tooldocs/examples/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/tooldocs/usage/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/tooldocs/user-journey/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolrun/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolrun/api/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolrun/architecture/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolrun/changelog/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolrun/design-notes/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolrun/examples/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolrun/usage/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolrun/user-journey/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolcode/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolcode/api/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolcode/architecture/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolcode/design-notes/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolcode/examples/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolcode/usage/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolcode/user-journey/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolruntime/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolruntime/api/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolruntime/architecture/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolruntime/design-notes/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolruntime/examples/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolruntime/usage/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolruntime/user-journey/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolsearch/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolsearch/api/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolsearch/architecture/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolsearch/design-notes/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolsearch/examples/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolsearch/usage/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolsearch/user-journey/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolobserve/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolobserve/design-notes/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolobserve/user-journey/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolobserve/plans/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolobserve/plans/2026-01-29-prd-001-execution-plan/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolobserve/plans/2026-01-29-prd-001-toolobserve-library/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolcache/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolcache/design-notes/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolcache/user-journey/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolcache/plans/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolcache/plans/2026-01-29-prd-001-execution-plan/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolcache/plans/2026-01-29-prd-001-tdd-plan/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolcache/plans/2026-01-29-prd-001-toolcache-library/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolsemantic/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolsemantic/design-notes/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolsemantic/user-journey/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolsemantic/plans/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolsemantic/plans/2026-01-29-prd-001-execution-plan/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolsemantic/plans/2026-01-29-prd-001-toolsemantic-library/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolskill/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolskill/design-notes/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolskill/user-journey/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolskill/plans/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolskill/plans/2026-01-29-prd-001-execution-plan/</loc>
+         <lastmod>2026-01-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolskill/plans/2026-01-29-prd-001-toolskill-library/</loc>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/api/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/architecture/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/changelog/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/design-notes/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/examples/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plan-of-record/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/usage/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/user-journey/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-001-toolruntime-docker-backend/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-002-cli-cobra-foundation/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-003-koanf-config/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-004-transport-sse/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-005-tool-provider-registry/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-006-backend-registry/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-007-middleware-chain/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-008-tooladapter-library/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-009-toolset-composition/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-010-toolobserve-library/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-011-toolcache-library/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-012-multi-tenancy-core/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-013-toolsemantic-library/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-014-toolskill-library/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-015-execution-plan/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/plans/2026-01-28-prd-015-mcp-spec-alignment/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/proposals/ARCHITECTURE-REVIEW/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/proposals/ROADMAP/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/proposals/architecture-evaluation/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/proposals/component-library-analysis/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/proposals/implementation-phases/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/proposals/mcp-spec-alignment/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/proposals/multi-tenancy/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/proposals/pluggable-architecture/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/metatools-mcp/proposals/protocol-agnostic-tools/</loc>
-         <lastmod>2026-01-29</lastmod>
+         <lastmod>2026-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

@@ -1,0 +1,27 @@
+direction: right
+
+style: { font-size: 14 }
+
+toolrun: "toolrun" { shape: package }
+toolindex: "toolindex" { shape: package }
+
+toolcache: "toolcache" {
+  shape: package
+  style: { shadow: true }
+}
+
+backends: {
+  label: "Backends"
+  style: { border-radius: 8 }
+
+  memory: "Memory" { shape: cylinder }
+  redis: "Redis (optional)" { shape: cylinder }
+}
+
+toolrun -> toolcache: Execute
+
+toolindex -> toolcache: Lookup
+
+toolcache -> memory
+
+toolcache -> redis
