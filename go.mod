@@ -47,6 +47,7 @@ require (
 	github.com/jonwraymond/tooladapter v0.2.0 // indirect
 	github.com/jonwraymond/toolcache v0.2.0 // indirect
 	github.com/jonwraymond/toolobserve v0.2.0 // indirect
+	github.com/jonwraymond/toolsemantic v0.2.0 // indirect
 	github.com/jonwraymond/toolset v1.0.1 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/mschoch/smat v0.2.0 // indirect

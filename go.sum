@@ -92,6 +92,8 @@ github.com/jonwraymond/toolruntime v0.2.1 h1:cIGyjRIsD72tX68/bFMCA/tvOBQbXS/JfzT
 github.com/jonwraymond/toolruntime v0.2.1/go.mod h1:z4XwbjR3GDj86xIGnhWSR2KkopHgfeN37ZQMIFG4CXI=
 github.com/jonwraymond/toolsearch v0.3.0 h1:zF3XrLn1pJvU4vV2ZIie59jNSgfTIu7nfPKEQOYxxn8=
 github.com/jonwraymond/toolsearch v0.3.0/go.mod h1:o8nOuJayCzByEjoeicplaLZVhCmExJDNqRvAeRQT9uk=
+github.com/jonwraymond/toolsemantic v0.2.0 h1:zPzmoPZrjhDEVVfUjnxlALhRLk0Htkk9Fr0lXMLHzOM=
+github.com/jonwraymond/toolsemantic v0.2.0/go.mod h1:wSWMX69jlW8dpNJczPzkg0/ZfhRxHZ5KdByxKJ9fEaE=
 github.com/jonwraymond/toolset v0.2.0 h1:0idmchOYktscVbESGHYqObF4ZrAMaMQ6xLrZX/PXHjA=
 github.com/jonwraymond/toolset v0.2.0/go.mod h1:p32uSqSFfQdq63GvHaysyc/GMelvYNIfbkCFoE3qtTw=
 github.com/jonwraymond/toolset v0.2.1 h1:md0fdyOrn7Np/txHBe6PmBH7qhlbrddOyAjf66Ycu0c=
