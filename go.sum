@@ -100,6 +100,8 @@ github.com/jonwraymond/toolset v0.2.1 h1:md0fdyOrn7Np/txHBe6PmBH7qhlbrddOyAjf66Y
 github.com/jonwraymond/toolset v0.2.1/go.mod h1:/qKmA7h4R+zNkVUPTKaQX4FheVw5hqfUEW5dkwZKseU=
 github.com/jonwraymond/toolset v1.0.1 h1:ONRNxIcFp1N1XWzBuW8wwd0wdE/zJDCqqo1tgcPx0DE=
 github.com/jonwraymond/toolset v1.0.1/go.mod h1:ZZX3EjG3q9o5QiVgKb6gvucUfATWd5LOXo5qrT5tT64=
+github.com/jonwraymond/toolskill v0.2.0 h1:3xpk2ZvluqE5IKw3Bm69rHQ2YJNTxWbJ193d0vCBGgY=
+github.com/jonwraymond/toolskill v0.2.0/go.mod h1:+H6rqK0Q/jlrGk2GBJ9IOdMI28zXXzsCyDif9umNEh8=
 github.com/json-iterator/go v0.0.0-20171115153421-f7279a603ede h1:YrgBGwxMRK0Vq0WSCWFaZUnTsrA/PZE/xs1QZh+/edg=
 github.com/json-iterator/go v0.0.0-20171115153421-f7279a603ede/go.mod h1:+SdeFBvtyEkXs7REEP0seUULqWtbJapLOCVDaaPEHmU=
 github.com/json-iterator/go v1.1.12/go.mod h1:e30LSqwooZae/UwlEbR2852Gd8hjQvJoHmT4TnhNGBo=

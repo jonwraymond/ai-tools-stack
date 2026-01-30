@@ -49,6 +49,7 @@ require (
 	github.com/jonwraymond/toolobserve v0.2.0 // indirect
 	github.com/jonwraymond/toolsemantic v0.2.0 // indirect
 	github.com/jonwraymond/toolset v1.0.1 // indirect
+	github.com/jonwraymond/toolskill v0.2.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/mschoch/smat v0.2.0 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
