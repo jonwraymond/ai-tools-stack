@@ -1,43 +1,240 @@
+# Component: toolindex
+# Registry and discovery layer
+
 direction: right
 
-style: { font-size: 14 }
-
-toolindex: "toolindex" {
-  shape: cylinder
-  style: { shadow: true }
-}
-
-inputs: {
-  label: "Inputs"
-  style: { border-radius: 8 }
-  toolmodel: { shape: package }
-  registrars: "Tool Registrars" { shape: document }
-}
-
-extensions: {
-  label: "Pluggable Search"
-  style: {
-    border-radius: 8
-    stroke-dash: 4
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
   }
-  toolsearch: { shape: diamond }
+  registry-fill: "#3182ce"
+  input-fill: "#718096"
+  extension-fill: "#d69e2e"
+  consumer-fill: "#38a169"
 }
 
-consumers: {
-  label: "Consumers"
-  style: { border-radius: 8 }
-  tooldocs: { shape: document }
-  toolrun: { shape: step }
-  toolcode: { shape: page }
-  metatools: "metatools-mcp" { shape: hexagon }
+classes: {
+  container: {
+    style: {
+      border-radius: 12
+      shadow: true
+      font-size: 14
+      bold: true
+    }
+  }
+  registry-node: {
+    style: {
+      fill: ${registry-fill}
+      stroke: "#2c5282"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  input-node: {
+    style: {
+      fill: ${input-fill}
+      stroke: "#4a5568"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  extension-node: {
+    style: {
+      fill: ${extension-fill}
+      stroke: "#b7791f"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  consumer-node: {
+    style: {
+      fill: ${consumer-fill}
+      stroke: "#276749"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  data-flow: {
+    style: {
+      stroke: "#4a5568"
+      stroke-width: 2
+    }
+  }
+  extension-flow: {
+    style: {
+      stroke: ${extension-fill}
+      stroke-width: 2
+      stroke-dash: 3
+    }
+  }
 }
 
-inputs.toolmodel -> toolindex
-inputs.registrars -> toolindex
+# Title
+title: "toolindex - Discovery Layer" {
+  shape: text
+  near: top-center
+  style: {
+    font-size: 28
+    bold: true
+    font-color: "#1a365d"
+  }
+}
 
-toolindex -> extensions.toolsearch
+# Inputs
+inputs: "📥 Inputs" {
+  class: container
+  style: {
+    fill: "#f7fafc"
+    stroke: ${input-fill}
+  }
 
-toolindex -> consumers.tooldocs
- toolindex -> consumers.toolrun
- toolindex -> consumers.toolcode
- toolindex -> consumers.metatools
+  toolmodel: "toolmodel\nSchema Types" {
+    shape: package
+    class: input-node
+  }
+
+  registrars: "Tool Registrars\nMCP/Provider/Local" {
+    shape: document
+    class: input-node
+  }
+}
+
+# Core Component
+core: "📇 toolindex" {
+  class: container
+  style: {
+    fill: "#ebf8ff"
+    stroke: ${registry-fill}
+    stroke-width: 3
+  }
+
+  registry: "Registry\nThread-safe Store" {
+    shape: cylinder
+    class: registry-node
+  }
+
+  register: "Register()\nAdd Tools" {
+    shape: step
+    class: registry-node
+  }
+
+  search: "Search()\nFind Tools" {
+    shape: step
+    class: registry-node
+  }
+
+  get: "GetTool()\nFull Lookup" {
+    shape: step
+    class: registry-node
+  }
+
+  register -> registry: "stores"
+  registry -> search: "queries"
+  registry -> get: "resolves"
+}
+
+# Pluggable Search
+extension: "🔌 Pluggable Search" {
+  class: container
+  style: {
+    fill: "#fffff0"
+    stroke: ${extension-fill}
+    stroke-dash: 3
+  }
+
+  interface: "Searcher Interface" {
+    shape: diamond
+    class: extension-node
+  }
+
+  toolsearch: "toolsearch\nBM25" {
+    shape: hexagon
+    class: extension-node
+  }
+
+  toolsemantic: "toolsemantic\nVector" {
+    shape: hexagon
+    class: extension-node
+  }
+
+  interface -> toolsearch: "impl"
+  interface -> toolsemantic: "impl"
+}
+
+# Consumers
+consumers: "📤 Consumers" {
+  class: container
+  style: {
+    fill: "#f0fff4"
+    stroke: ${consumer-fill}
+  }
+
+  tooldocs: "tooldocs\nDocs API" {
+    shape: document
+    class: consumer-node
+  }
+
+  toolrun: "toolrun\nExecution" {
+    shape: step
+    class: consumer-node
+  }
+
+  toolcode: "toolcode\nOrchestration" {
+    shape: page
+    class: consumer-node
+  }
+
+  metatools: "metatools-mcp\nMCP Server" {
+    shape: hexagon
+    style: {
+      fill: "#2b6cb0"
+      stroke: "#1a365d"
+      font-color: "#fff"
+    }
+  }
+}
+
+# Connections
+inputs.toolmodel -> core.register: "types" {
+  class: data-flow
+}
+inputs.registrars -> core.register: "tools" {
+  class: data-flow
+}
+
+core.search -> extension.interface: "WithSearcher()" {
+  class: extension-flow
+  target-arrowhead.shape: diamond
+}
+
+core.get -> consumers.tooldocs: "lookup" {
+  class: data-flow
+}
+core.search -> consumers.toolrun: "resolve" {
+  class: data-flow
+}
+core.search -> consumers.toolcode: "discover" {
+  class: data-flow
+}
+core.search -> consumers.metatools: "search_tools" {
+  class: data-flow
+}
+
+# API note
+api: |md
+  ## Key APIs
+
+  - `Register(tool)` - Add tool to registry
+  - `Search(query, limit)` - Summary results
+  - `GetTool(id)` - Full tool definition
+  - `WithSearcher(s)` - Inject strategy
+| {
+  near: bottom-right
+  style: {
+    fill: "#f7fafc"
+    stroke: "#e2e8f0"
+    font-size: 10
+    border-radius: 8
+  }
+}

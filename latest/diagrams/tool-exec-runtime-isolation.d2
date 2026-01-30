@@ -1,34 +1,322 @@
-direction: right
+# Tool Execution and Runtime Isolation
+# Shows security profiles and backend selection
 
-style: { font-size: 14 }
+direction: down
 
-toolrun: "toolrun" {
-  shape: step
-  style: { shadow: true }
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+  dev-fill: "#d69e2e"
+  standard-fill: "#3182ce"
+  hardened-fill: "#e53e3e"
+  execution-fill: "#38a169"
 }
 
-toolruntime: "toolruntime" {
-  shape: cloud
+classes: {
+  container: {
+    style: {
+      border-radius: 12
+      shadow: true
+      font-size: 14
+      bold: true
+    }
+  }
+  dev-profile: {
+    style: {
+      fill: ${dev-fill}
+      stroke: "#b7791f"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  standard-profile: {
+    style: {
+      fill: ${standard-fill}
+      stroke: "#2c5282"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  hardened-profile: {
+    style: {
+      fill: ${hardened-fill}
+      stroke: "#c53030"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  execution-node: {
+    style: {
+      fill: ${execution-fill}
+      stroke: "#276749"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  request-flow: {
+    style: {
+      stroke: "#4a5568"
+      stroke-width: 2
+    }
+  }
+  profile-flow: {
+    style: {
+      stroke-width: 2
+    }
+  }
 }
 
-backends: {
-  label: "Runtime Backends"
+# Title
+title: "Runtime Isolation & Security Profiles" {
+  shape: text
+  near: top-center
   style: {
-  border-radius: 8
-  shadow: true
-}
-  host: "Unsafe host" { shape: step }
-  docker: "Docker" { shape: step }
-  kube: "Kubernetes" { shape: step }
-  firecracker: "Firecracker" { shape: step }
-  gvisor: "gVisor" { shape: step }
-  wasm: "WASM" { shape: step }
+    font-size: 28
+    bold: true
+    font-color: "#1a365d"
+  }
 }
 
-toolrun -> toolruntime
- toolruntime -> backends.host
- toolruntime -> backends.docker
- toolruntime -> backends.kube
- toolruntime -> backends.firecracker
- toolruntime -> backends.gvisor
- toolruntime -> backends.wasm
+# Input
+input: "📥 ExecuteRequest" {
+  shape: step
+  style: {
+    fill: "#4a5568"
+    stroke: "#2d3748"
+    font-color: "#fff"
+  }
+}
+
+# Runtime
+runtime: "🔧 toolruntime.Runtime" {
+  class: container
+  style: {
+    fill: "#f7fafc"
+    stroke: "#4a5568"
+  }
+
+  router: "Backend Router\nProfile Selection" {
+    shape: diamond
+    style: {
+      fill: "#718096"
+      stroke: "#4a5568"
+      font-color: "#fff"
+    }
+  }
+}
+
+# Security Profiles
+profiles: "🔒 Security Profiles" {
+  class: container
+  style: {
+    fill: "#f7fafc"
+    stroke: "#718096"
+  }
+
+  dev: "⚠️ ProfileDev" {
+    class: container
+    style: {
+      fill: "#fffff0"
+      stroke: ${dev-fill}
+    }
+
+    dev_desc: "Minimal Restrictions\nDirect Host Access\nNo Isolation" {
+      shape: text
+      style.font-size: 11
+    }
+
+    unsafe: "UnsafeHost\nDev Only" {
+      shape: cloud
+      class: dev-profile
+    }
+  }
+
+  standard: "🔐 ProfileStandard" {
+    class: container
+    style: {
+      fill: "#ebf8ff"
+      stroke: ${standard-fill}
+    }
+
+    std_desc: "No Network Egress\nRead-only Rootfs\nContainer Isolation" {
+      shape: text
+      style.font-size: 11
+    }
+
+    docker: "Docker" {
+      shape: hexagon
+      class: standard-profile
+    }
+
+    k8s: "Kubernetes" {
+      shape: hexagon
+      class: standard-profile
+    }
+  }
+
+  hardened: "🛡️ ProfileHardened" {
+    class: container
+    style: {
+      fill: "#fff5f5"
+      stroke: ${hardened-fill}
+    }
+
+    hard_desc: "Seccomp Filters\nUser-space Kernel\nMaximum Isolation" {
+      shape: text
+      style.font-size: 11
+    }
+
+    gvisor: "gVisor" {
+      shape: hexagon
+      class: hardened-profile
+    }
+
+    kata: "Kata Containers" {
+      shape: hexagon
+      class: hardened-profile
+    }
+
+    firecracker: "Firecracker" {
+      shape: hexagon
+      class: hardened-profile
+    }
+  }
+
+  universal: "🌐 Universal" {
+    class: container
+    style: {
+      fill: "#f0fff4"
+      stroke: ${execution-fill}
+    }
+
+    wasm: "WASM\nAny Profile" {
+      shape: hexagon
+      class: execution-node
+    }
+  }
+}
+
+# Tool Gateway
+gateway: "🚪 ToolGateway" {
+  class: container
+  style: {
+    fill: "#f0fff4"
+    stroke: ${execution-fill}
+  }
+
+  search: "SearchTools()" {
+    shape: step
+    class: execution-node
+  }
+
+  describe: "DescribeTool()" {
+    shape: step
+    class: execution-node
+  }
+
+  run: "RunTool()" {
+    shape: step
+    class: execution-node
+  }
+}
+
+# Output
+output: "📦 ExecuteResult\n+ LimitsEnforced" {
+  shape: document
+  style: {
+    fill: "#c6f6d5"
+    stroke: ${execution-fill}
+    font-color: "#22543d"
+  }
+}
+
+# Flow
+input -> runtime.router: "request" {
+  class: request-flow
+}
+
+runtime.router -> profiles.dev.unsafe: "dev profile" {
+  class: profile-flow
+  style.stroke: ${dev-fill}
+}
+
+runtime.router -> profiles.standard.docker: "standard" {
+  class: profile-flow
+  style.stroke: ${standard-fill}
+}
+
+runtime.router -> profiles.standard.k8s: "standard" {
+  class: profile-flow
+  style.stroke: ${standard-fill}
+}
+
+runtime.router -> profiles.hardened.gvisor: "hardened" {
+  class: profile-flow
+  style.stroke: ${hardened-fill}
+}
+
+runtime.router -> profiles.hardened.kata: "hardened" {
+  class: profile-flow
+  style.stroke: ${hardened-fill}
+}
+
+runtime.router -> profiles.hardened.firecracker: "hardened" {
+  class: profile-flow
+  style.stroke: ${hardened-fill}
+}
+
+runtime.router -> profiles.universal.wasm: "any" {
+  class: profile-flow
+  style.stroke: ${execution-fill}
+}
+
+# All backends connect to gateway
+profiles.dev.unsafe -> gateway: "gateway access" {
+  class: request-flow
+  style.stroke-dash: 2
+}
+
+profiles.standard.docker -> gateway {
+  class: request-flow
+}
+
+profiles.standard.k8s -> gateway {
+  class: request-flow
+}
+
+profiles.hardened.gvisor -> gateway {
+  class: request-flow
+}
+
+profiles.hardened.kata -> gateway {
+  class: request-flow
+}
+
+profiles.universal.wasm -> gateway {
+  class: request-flow
+}
+
+gateway -> output: "result" {
+  class: request-flow
+  target-arrowhead.shape: arrow
+}
+
+# Error types note
+errors: |md
+  ## Common Errors
+
+  - `ErrRuntimeUnavailable` - No backend for profile
+  - `ErrBackendDenied` - Policy blocks backend
+  - `ErrTimeout` - Execution timeout
+  - `ErrResourceLimit` - Memory/CPU exceeded
+| {
+  near: bottom-right
+  style: {
+    fill: "#fff5f5"
+    stroke: "#feb2b2"
+    font-size: 11
+    border-radius: 8
+  }
+}

@@ -1,28 +1,263 @@
+# Search Strategy Layering
+# Shows pluggable search engines in toolindex
+
 direction: right
 
-style: { font-size: 14 }
-
-toolindex: "toolindex" {
-  shape: cylinder
-  style: { shadow: true }
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+  registry-fill: "#3182ce"
+  search-fill: "#d69e2e"
+  bm25-fill: "#38a169"
+  semantic-fill: "#6b46c1"
+  hybrid-fill: "#e53e3e"
 }
 
-toolsearch: "toolsearch" {
-  shape: diamond
+classes: {
+  container: {
+    style: {
+      border-radius: 12
+      shadow: true
+      font-size: 14
+      bold: true
+    }
+  }
+  registry-node: {
+    style: {
+      fill: ${registry-fill}
+      stroke: "#2c5282"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  search-node: {
+    style: {
+      fill: ${search-fill}
+      stroke: "#b7791f"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  bm25-node: {
+    style: {
+      fill: ${bm25-fill}
+      stroke: "#276749"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  semantic-node: {
+    style: {
+      fill: ${semantic-fill}
+      stroke: "#553c9a"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  hybrid-node: {
+    style: {
+      fill: ${hybrid-fill}
+      stroke: "#c53030"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  interface-flow: {
+    style: {
+      stroke: ${search-fill}
+      stroke-width: 2
+      stroke-dash: 3
+    }
+  }
+  impl-flow: {
+    style: {
+      stroke: "#4a5568"
+      stroke-width: 2
+    }
+  }
 }
 
-engines: {
-  label: "Search Engines"
+# Title
+title: "Search Strategy Layering" {
+  shape: text
+  near: top-center
   style: {
-  border-radius: 8
-  shadow: true
-}
-  bm25: "BM25" { shape: step }
-  semantic: "Semantic (future)" { shape: step }
-  hybrid: "Hybrid (future)" { shape: step }
+    font-size: 28
+    bold: true
+    font-color: "#1a365d"
+  }
 }
 
-toolindex -> toolsearch
- toolsearch -> engines.bm25
- toolsearch -> engines.semantic
- toolsearch -> engines.hybrid
+# Registry
+registry: "📇 toolindex" {
+  class: container
+  style: {
+    fill: "#ebf8ff"
+    stroke: ${registry-fill}
+  }
+
+  index: "Registry\nThread-safe Store" {
+    shape: cylinder
+    class: registry-node
+  }
+
+  search_api: "Search API\nWithSearcher()" {
+    shape: step
+    class: registry-node
+  }
+
+  index -> search_api
+}
+
+# Search Interface
+interface: "🔌 Searcher Interface" {
+  class: container
+  style: {
+    fill: "#fffff0"
+    stroke: ${search-fill}
+    stroke-dash: 3
+  }
+
+  searcher: "Search(docs, query, limit)\n→ Summary[]" {
+    shape: diamond
+    class: search-node
+  }
+}
+
+# Search Strategies
+strategies: "🎯 Search Strategies" {
+  class: container
+  style: {
+    fill: "#f7fafc"
+    stroke: "#718096"
+  }
+
+  # BM25 Strategy
+  bm25: "🔍 BM25 (toolsearch)" {
+    class: container
+    style: {
+      fill: "#f0fff4"
+      stroke: ${bm25-fill}
+    }
+
+    desc: "TF-IDF Ranking\nDeterministic Order\nField Boosts" {
+      shape: text
+      style.font-size: 11
+    }
+
+    engine: "Bleve Index" {
+      shape: cylinder
+      class: bm25-node
+    }
+
+    status: "✅ Production Ready" {
+      shape: text
+      style: {
+        font-size: 10
+        font-color: "#276749"
+        bold: true
+      }
+    }
+  }
+
+  # Semantic Strategy
+  semantic: "🧠 Semantic (toolsemantic)" {
+    class: container
+    style: {
+      fill: "#faf5ff"
+      stroke: ${semantic-fill}
+    }
+
+    desc: "Vector Similarity\nEmbedding-based\nContext-aware" {
+      shape: text
+      style.font-size: 11
+    }
+
+    engine: "Vector Store" {
+      shape: cylinder
+      class: semantic-node
+    }
+
+    status: "🔄 In Development" {
+      shape: text
+      style: {
+        font-size: 10
+        font-color: "#6b46c1"
+        bold: true
+      }
+    }
+  }
+
+  # Hybrid Strategy
+  hybrid: "🔀 Hybrid (future)" {
+    class: container
+    style: {
+      fill: "#fff5f5"
+      stroke: ${hybrid-fill}
+      stroke-dash: 4
+    }
+
+    desc: "BM25 + Semantic\nReranking\nBest of Both" {
+      shape: text
+      style.font-size: 11
+    }
+
+    engine: "Combined" {
+      shape: hexagon
+      class: hybrid-node
+    }
+
+    status: "📋 Planned" {
+      shape: text
+      style: {
+        font-size: 10
+        font-color: "#c53030"
+        bold: true
+      }
+    }
+  }
+}
+
+# Connections
+registry.search_api -> interface.searcher: "plugs in" {
+  class: interface-flow
+  target-arrowhead.shape: diamond
+}
+
+interface.searcher -> strategies.bm25.engine: "implements" {
+  class: impl-flow
+  style.stroke: ${bm25-fill}
+}
+
+interface.searcher -> strategies.semantic.engine: "implements" {
+  class: impl-flow
+  style.stroke: ${semantic-fill}
+}
+
+interface.searcher -> strategies.hybrid.engine: "implements" {
+  class: impl-flow
+  style.stroke: ${hybrid-fill}
+  style.stroke-dash: 4
+}
+
+# Configuration note
+config: |md
+  ## Configuration
+
+  ```bash
+  # Enable BM25
+  export METATOOLS_SEARCH_STRATEGY=bm25
+  export METATOOLS_SEARCH_BM25_NAME_BOOST=4
+  export METATOOLS_SEARCH_BM25_TAGS_BOOST=2
+  ```
+| {
+  near: bottom-right
+  style: {
+    fill: "#f7fafc"
+    stroke: "#e2e8f0"
+    font-size: 10
+    border-radius: 8
+  }
+}

@@ -1,28 +1,316 @@
+# Progressive Disclosure Pattern
+# Shows the token-efficient discovery → describe → execute flow
+
 direction: down
 
-style: { font-size: 14 }
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+  # Phase colors
+  phase1-fill: "#3182ce"
+  phase2-fill: "#d69e2e"
+  phase3-fill: "#38a169"
+  phase4-fill: "#6b46c1"
+  agent-fill: "#4a5568"
+  surface-fill: "#2b6cb0"
+}
 
-agent: "Agent" { shape: oval }
+classes: {
+  phase-box: {
+    style: {
+      border-radius: 12
+      shadow: true
+      font-size: 14
+      bold: true
+    }
+  }
+  agent-node: {
+    style: {
+      fill: ${agent-fill}
+      stroke: "#2d3748"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  surface-node: {
+    style: {
+      fill: ${surface-fill}
+      stroke: "#1a365d"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  phase1-node: {
+    style: {
+      fill: ${phase1-fill}
+      stroke: "#2c5282"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  phase2-node: {
+    style: {
+      fill: ${phase2-fill}
+      stroke: "#b7791f"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  phase3-node: {
+    style: {
+      fill: ${phase3-fill}
+      stroke: "#276749"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  phase4-node: {
+    style: {
+      fill: ${phase4-fill}
+      stroke: "#553c9a"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  request-arrow: {
+    style: {
+      stroke: "#2b6cb0"
+      stroke-width: 2
+    }
+  }
+  response-arrow: {
+    style: {
+      stroke: "#38a169"
+      stroke-width: 2
+      stroke-dash: 3
+    }
+  }
+}
 
-metatools: "metatools-mcp" { shape: hexagon }
+# Title
+title: "Progressive Disclosure Pattern" {
+  shape: text
+  near: top-center
+  style: {
+    font-size: 28
+    bold: true
+    font-color: "#1a365d"
+  }
+}
 
-index: "toolindex" { shape: cylinder }
+# Agent
+agent: "🤖 AI Agent" {
+  shape: person
+  class: agent-node
+  width: 100
+}
 
-docs: "tooldocs" { shape: document }
+# MCP Server
+mcp: "🔷 metatools-mcp" {
+  shape: hexagon
+  class: surface-node
+}
 
-runner: "toolrun" { shape: step }
+# Phase 1: Discovery
+phase1: "📇 Phase 1: Discovery" {
+  class: phase-box
+  style: {
+    fill: "#ebf8ff"
+    stroke: ${phase1-fill}
+  }
 
-agent -> metatools: "search_tools(query)"
-metatools -> index: "Search(query)"
-index -> metatools: "summaries"
-metatools -> agent: "summaries"
+  toolindex: "toolindex" {
+    shape: cylinder
+    class: phase1-node
+  }
 
-agent -> metatools: "describe_tool(id, schema)"
-metatools -> docs: "DescribeTool(id, schema)"
-docs -> metatools: "tool schema"
-metatools -> agent: "schema"
+  result1: "Summary[]\n~50 tokens each\nID, Name, Tags only" {
+    shape: document
+    style: {
+      fill: "#bee3f8"
+      stroke: ${phase1-fill}
+      font-size: 12
+    }
+  }
 
-agent -> metatools: "run_tool(id, args)"
-metatools -> runner: "Run(id, args)"
-runner -> metatools: "result"
-metatools -> agent: "result"
+  toolindex -> result1
+}
+
+# Phase 2: Documentation
+phase2: "📚 Phase 2: Documentation" {
+  class: phase-box
+  style: {
+    fill: "#fffff0"
+    stroke: ${phase2-fill}
+  }
+
+  tooldocs: "tooldocs" {
+    shape: document
+    class: phase2-node
+  }
+
+  result2: "ToolDoc\nSchema + Description\nOnly when needed" {
+    shape: document
+    style: {
+      fill: "#fefcbf"
+      stroke: ${phase2-fill}
+      font-size: 12
+    }
+  }
+
+  tooldocs -> result2
+}
+
+# Phase 3: Execution
+phase3: "▶️ Phase 3: Execution" {
+  class: phase-box
+  style: {
+    fill: "#f0fff4"
+    stroke: ${phase3-fill}
+  }
+
+  toolrun: "toolrun" {
+    shape: step
+    class: phase3-node
+  }
+
+  result3: "RunResult\nStructured | Text | Error\nBackend metadata" {
+    shape: document
+    style: {
+      fill: "#c6f6d5"
+      stroke: ${phase3-fill}
+      font-size: 12
+    }
+  }
+
+  toolrun -> result3
+}
+
+# Phase 4: Orchestration (Optional)
+phase4: "💻 Phase 4: Orchestration" {
+  class: phase-box
+  style: {
+    fill: "#faf5ff"
+    stroke: ${phase4-fill}
+    stroke-dash: 4
+  }
+
+  toolcode: "toolcode" {
+    shape: page
+    class: phase4-node
+  }
+
+  result4: "ExecuteResult\nValue + ToolCalls[]\nAudit trail" {
+    shape: document
+    style: {
+      fill: "#e9d8fd"
+      stroke: ${phase4-fill}
+      font-size: 12
+    }
+  }
+
+  toolcode -> result4
+}
+
+# Flow connections
+agent -> mcp: "1. search_tools(query)" {
+  class: request-arrow
+  target-arrowhead.shape: arrow
+}
+
+mcp -> phase1.toolindex: "Search()" {
+  class: request-arrow
+}
+
+phase1.result1 -> mcp: "summaries" {
+  class: response-arrow
+  target-arrowhead.shape: arrow
+}
+
+mcp -> agent: "summaries" {
+  class: response-arrow
+  target-arrowhead.shape: arrow
+}
+
+agent -> mcp: "2. describe_tool(id)" {
+  class: request-arrow
+  target-arrowhead.shape: arrow
+}
+
+mcp -> phase2.tooldocs: "Describe()" {
+  class: request-arrow
+}
+
+phase2.result2 -> mcp: "schema" {
+  class: response-arrow
+  target-arrowhead.shape: arrow
+}
+
+mcp -> agent: "tool schema" {
+  class: response-arrow
+  target-arrowhead.shape: arrow
+}
+
+agent -> mcp: "3. run_tool(id, args)" {
+  class: request-arrow
+  target-arrowhead.shape: arrow
+}
+
+mcp -> phase3.toolrun: "Run()" {
+  class: request-arrow
+}
+
+phase3.result3 -> mcp: "result" {
+  class: response-arrow
+  target-arrowhead.shape: arrow
+}
+
+mcp -> agent: "execution result" {
+  class: response-arrow
+  target-arrowhead.shape: arrow
+}
+
+agent -> mcp: "4. execute_code(snippet)" {
+  class: request-arrow
+  style.stroke-dash: 4
+  target-arrowhead.shape: arrow
+}
+
+mcp -> phase4.toolcode: "Execute()" {
+  class: request-arrow
+  style.stroke-dash: 4
+}
+
+phase4.result4 -> mcp: "code result" {
+  class: response-arrow
+  style.stroke-dash: 4
+  target-arrowhead.shape: arrow
+}
+
+mcp -> agent: "orchestration result" {
+  class: response-arrow
+  style.stroke-dash: 4
+  target-arrowhead.shape: arrow
+}
+
+# Token efficiency note
+note: |md
+  ## Token Efficiency
+
+  - **Phase 1**: ~50 tokens/tool (summary only)
+  - **Phase 2**: Full schema on demand
+  - **Phase 3**: Execution when needed
+  - **Phase 4**: Complex workflows (optional)
+
+  **Result**: 90%+ token savings vs. loading all schemas upfront
+| {
+  near: bottom-right
+  style: {
+    fill: "#f7fafc"
+    stroke: "#e2e8f0"
+    font-size: 12
+    border-radius: 8
+  }
+}
