@@ -1,35 +1,274 @@
+# Component: metatools-mcp
+# MCP server exposing the tool stack
+
 direction: right
 
-style: { font-size: 14 }
-
-metatools: "metatools-mcp" {
-  shape: hexagon
-  style: { shadow: true }
-}
-
-core: {
-  label: "Core Libraries"
-  style: { border-radius: 8 }
-  toolindex: { shape: cylinder }
-  tooldocs: { shape: document }
-  toolrun: { shape: step }
-}
-
-optional: {
-  label: "Optional"
-  style: {
-    border-radius: 8
-    stroke-dash: 4
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
   }
-  toolcode: { shape: page }
-  toolruntime: { shape: cloud }
-  toolsearch: { shape: diamond }
+  surface-fill: "#2b6cb0"
+  core-fill: "#3182ce"
+  optional-fill: "#6b46c1"
+  discovery-fill: "#38a169"
 }
 
-metatools -> core.toolindex
-metatools -> core.tooldocs
-metatools -> core.toolrun
-metatools -> optional.toolcode
+classes: {
+  container: {
+    style: {
+      border-radius: 12
+      shadow: true
+      font-size: 14
+      bold: true
+    }
+  }
+  surface-node: {
+    style: {
+      fill: ${surface-fill}
+      stroke: "#1a365d"
+      stroke-width: 3
+      font-color: "#fff"
+    }
+  }
+  core-node: {
+    style: {
+      fill: ${core-fill}
+      stroke: "#2c5282"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  optional-node: {
+    style: {
+      fill: ${optional-fill}
+      stroke: "#553c9a"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  discovery-node: {
+    style: {
+      fill: ${discovery-fill}
+      stroke: "#276749"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  data-flow: {
+    style: {
+      stroke: "#4a5568"
+      stroke-width: 2
+    }
+  }
+  optional-flow: {
+    style: {
+      stroke: ${optional-fill}
+      stroke-width: 2
+      stroke-dash: 3
+    }
+  }
+}
 
-core.toolindex -> optional.toolsearch
-optional.toolcode -> optional.toolruntime
+# Title
+title: "metatools-mcp - MCP Surface" {
+  shape: text
+  near: top-center
+  style: {
+    font-size: 28
+    bold: true
+    font-color: "#1a365d"
+  }
+}
+
+# MCP Server
+server: "🔷 metatools-mcp" {
+  class: container
+  style: {
+    fill: "#ebf8ff"
+    stroke: ${surface-fill}
+    stroke-width: 3
+  }
+
+  mcp: "MCP Server\n7 Tools Exposed" {
+    shape: hexagon
+    class: surface-node
+  }
+
+  # Discovery Tools
+  discovery: "📇 Discovery" {
+    style: {
+      fill: "#f0fff4"
+      border-radius: 8
+    }
+
+    search: "search_tools" {
+      shape: step
+      class: discovery-node
+    }
+
+    list_ns: "list_namespaces" {
+      shape: step
+      class: discovery-node
+    }
+  }
+
+  # Documentation Tools
+  docs: "📚 Documentation" {
+    style: {
+      fill: "#fffff0"
+      border-radius: 8
+    }
+
+    describe: "describe_tool" {
+      shape: step
+      style: {
+        fill: "#d69e2e"
+        stroke: "#b7791f"
+        font-color: "#fff"
+      }
+    }
+
+    examples: "list_examples" {
+      shape: step
+      style: {
+        fill: "#d69e2e"
+        stroke: "#b7791f"
+        font-color: "#fff"
+      }
+    }
+  }
+
+  # Execution Tools
+  exec: "▶️ Execution" {
+    style: {
+      fill: "#f0fff4"
+      border-radius: 8
+    }
+
+    run: "run_tool" {
+      shape: step
+      class: discovery-node
+    }
+
+    chain: "run_chain" {
+      shape: step
+      class: discovery-node
+    }
+  }
+
+  # Orchestration
+  orch: "💻 Orchestration" {
+    style: {
+      fill: "#faf5ff"
+      border-radius: 8
+      stroke-dash: 3
+    }
+
+    code: "execute_code" {
+      shape: step
+      class: optional-node
+    }
+  }
+}
+
+# Core Libraries
+core: "📦 Core Libraries" {
+  class: container
+  style: {
+    fill: "#ebf8ff"
+    stroke: ${core-fill}
+  }
+
+  toolindex: "toolindex\nRegistry" {
+    shape: cylinder
+    class: core-node
+  }
+
+  tooldocs: "tooldocs\nDocs API" {
+    shape: document
+    class: core-node
+  }
+
+  toolrun: "toolrun\nExecution" {
+    shape: step
+    class: core-node
+  }
+}
+
+# Optional Extensions
+optional: "🔌 Optional" {
+  class: container
+  style: {
+    fill: "#faf5ff"
+    stroke: ${optional-fill}
+    stroke-dash: 3
+  }
+
+  toolcode: "toolcode\nOrchestration" {
+    shape: page
+    class: optional-node
+  }
+
+  toolruntime: "toolruntime\nSandbox" {
+    shape: cloud
+    class: optional-node
+  }
+
+  toolsearch: "toolsearch\nBM25" {
+    shape: diamond
+    class: optional-node
+  }
+}
+
+# Connections
+server.discovery.search -> core.toolindex: "Search()" {
+  class: data-flow
+}
+server.discovery.list_ns -> core.toolindex: "ListNamespaces()" {
+  class: data-flow
+}
+server.docs.describe -> core.tooldocs: "Describe()" {
+  class: data-flow
+}
+server.docs.examples -> core.tooldocs: "ListExamples()" {
+  class: data-flow
+}
+server.exec.run -> core.toolrun: "Run()" {
+  class: data-flow
+}
+server.exec.chain -> core.toolrun: "RunChain()" {
+  class: data-flow
+}
+
+server.orch.code -> optional.toolcode: "Execute()" {
+  class: optional-flow
+}
+
+core.toolindex -> optional.toolsearch: "plugs in" {
+  class: optional-flow
+}
+optional.toolcode -> optional.toolruntime: "sandboxes" {
+  class: optional-flow
+}
+
+# API note
+api: |md
+  ## MCP Tools
+
+  - search_tools → toolindex
+  - list_namespaces → toolindex
+  - describe_tool → tooldocs
+  - list_examples → tooldocs
+  - run_tool → toolrun
+  - run_chain → toolrun
+  - execute_code → toolcode
+| {
+  near: bottom-right
+  style: {
+    fill: "#f7fafc"
+    stroke: "#e2e8f0"
+    font-size: 9
+    border-radius: 8
+  }
+}
