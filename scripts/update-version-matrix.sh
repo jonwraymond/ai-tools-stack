@@ -27,6 +27,10 @@ REPOS=(
   toolcode
   toolruntime
   toolsearch
+  toolobserve
+  toolcache
+  toolsemantic
+  toolskill
   metatools-mcp
   ai-tools-stack
 )
@@ -41,6 +45,10 @@ ORDERED_LABELS=(
   toolcode
   toolruntime
   toolsearch
+  toolobserve
+  toolcache
+  toolsemantic
+  toolskill
   metatools-mcp
 )
 
@@ -124,7 +132,12 @@ fi
 
 version_for() {
   local label="$1"
-  rg -n "^github.com/jonwraymond/${label} " <<< "$MODULE_OUTPUT" | awk '{print $2}' | head -n1
+  local line
+  line="$(rg -n "^github.com/jonwraymond/${label} " <<< "$MODULE_OUTPUT" || true)"
+  if [[ -z "$line" ]]; then
+    return 0
+  fi
+  awk '{print $2}' <<< "$line" | head -n1
 }
 
 versions_md() {
