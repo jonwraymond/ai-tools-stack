@@ -1,0 +1,74 @@
+.diagram-zoomable {
+  cursor: zoom-in;
+}
+
+#diagram-zoom-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+#diagram-zoom-overlay.is-visible {
+  display: flex;
+}
+
+.diagram-zoom-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.8);
+}
+
+.diagram-zoom-container {
+  position: relative;
+  width: min(94vw, 1400px);
+  height: min(90vh, 900px);
+  background: #0b0f17;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.diagram-zoom-image {
+  max-width: none;
+  max-height: none;
+  width: auto;
+  height: auto;
+  user-select: none;
+  touch-action: none;
+  cursor: grab;
+  transform-origin: 0 0;
+}
+
+.diagram-zoom-image.is-panning {
+  cursor: grabbing;
+}
+
+.diagram-zoom-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.diagram-zoom-close:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+body.diagram-zoom-open {
+  overflow: hidden;
+}
