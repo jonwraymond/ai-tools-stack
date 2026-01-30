@@ -1,68 +1,257 @@
+# ApertureStack High-Level Data Flow
+# Shows the core flow from agent request to tool execution
+
 direction: right
 
-style: { font-size: 14 }
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+  # Color palette
+  agent-fill: "#4a5568"
+  surface-fill: "#2b6cb0"
+  core-fill: "#3182ce"
+  protocol-fill: "#d69e2e"
+  orchestration-fill: "#6b46c1"
+  discovery-fill: "#38a169"
+}
 
-core: {
-  label: "Core"
+classes: {
+  container: {
+    style: {
+      border-radius: 12
+      shadow: true
+      font-size: 14
+      bold: true
+    }
+  }
+  agent-style: {
+    style: {
+      fill: ${agent-fill}
+      stroke: "#2d3748"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  surface-style: {
+    style: {
+      fill: ${surface-fill}
+      stroke: "#1a365d"
+      stroke-width: 3
+      font-color: "#fff"
+    }
+  }
+  core-style: {
+    style: {
+      fill: ${core-fill}
+      stroke: "#2c5282"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  protocol-style: {
+    style: {
+      fill: ${protocol-fill}
+      stroke: "#b7791f"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  orchestration-style: {
+    style: {
+      fill: ${orchestration-fill}
+      stroke: "#553c9a"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  discovery-style: {
+    style: {
+      fill: ${discovery-fill}
+      stroke: "#276749"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  request-flow: {
+    style: {
+      stroke: "#2b6cb0"
+      stroke-width: 2
+      animated: true
+    }
+  }
+  data-flow: {
+    style: {
+      stroke: "#4a5568"
+      stroke-width: 2
+    }
+  }
+  optional-flow: {
+    style: {
+      stroke: "#6b46c1"
+      stroke-width: 2
+      stroke-dash: 4
+    }
+  }
+}
+
+# External Agent
+agent: "🤖 AI Agent" {
+  shape: person
+  class: agent-style
+  width: 100
+}
+
+# MCP Surface Layer
+surface: "🔷 metatools-mcp" {
+  class: container
   style: {
-  border-radius: 8
-  shadow: true
-}
-  toolmodel: { shape: package }
-  toolindex: { shape: cylinder }
-  tooldocs: { shape: document }
-  toolrun: { shape: step }
+    fill: "#ebf8ff"
+    stroke: ${surface-fill}
+    stroke-width: 3
+  }
+
+  metatools: "MCP Server\n7 Tools Exposed" {
+    shape: hexagon
+    class: surface-style
+  }
 }
 
-protocol: {
-  label: "Protocol/Composition"
+# Core Library Layer
+core: "📦 Core Libraries" {
+  class: container
   style: {
-  border-radius: 8
-  shadow: true
-}
-  tooladapter: { shape: package }
-  toolset: { shape: cylinder }
+    fill: "#ebf8ff"
+    stroke: ${core-fill}
+  }
+
+  toolmodel: "toolmodel\nSchema Definition" {
+    shape: package
+    class: core-style
+  }
+
+  toolindex: "toolindex\nRegistry + Search" {
+    shape: cylinder
+    class: core-style
+  }
+
+  tooldocs: "tooldocs\nDocumentation" {
+    shape: document
+    class: core-style
+  }
+
+  toolrun: "toolrun\nExecution Engine" {
+    shape: step
+    class: core-style
+  }
 }
 
-orchestration: {
-  label: "Orchestration"
+# Protocol/Composition Layer
+protocol: "🔌 Protocol + Composition" {
+  class: container
   style: {
-  border-radius: 8
-  shadow: true
-}
-  toolcode: { shape: page }
-  toolruntime: { shape: cloud }
+    fill: "#fffff0"
+    stroke: ${protocol-fill}
+  }
+
+  tooladapter: "tooladapter\nFormat Conversion" {
+    shape: package
+    class: protocol-style
+  }
+
+  toolset: "toolset\nTool Collections" {
+    shape: cylinder
+    class: protocol-style
+  }
 }
 
-discovery: {
-  label: "Discovery"
+# Orchestration Layer
+orchestration: "💻 Orchestration" {
+  class: container
   style: {
-  border-radius: 8
-  shadow: true
-}
-  toolsearch: { shape: diamond }
+    fill: "#faf5ff"
+    stroke: ${orchestration-fill}
+    stroke-dash: 3
+  }
+
+  toolcode: "toolcode\nCode Execution" {
+    shape: page
+    class: orchestration-style
+  }
+
+  toolruntime: "toolruntime\nSandbox" {
+    shape: cloud
+    class: orchestration-style
+  }
 }
 
-surface: {
-  label: "Surface"
+# Discovery Layer
+discovery: "🔍 Discovery" {
+  class: container
   style: {
-  border-radius: 8
-  shadow: true
-}
-  metatools: "metatools-mcp" { shape: hexagon }
+    fill: "#f0fff4"
+    stroke: ${discovery-fill}
+  }
+
+  toolsearch: "toolsearch\nBM25 Strategy" {
+    shape: diamond
+    class: discovery-style
+  }
 }
 
-toolmodel -> toolindex
-toolmodel -> tooladapter
-tooladapter -> toolset
- toolindex -> tooldocs
- toolindex -> toolrun
- toolindex -> toolset
- toolrun -> toolcode
- toolcode -> toolruntime
- toolindex -> toolsearch
- toolindex -> metatools
- tooldocs -> metatools
- toolrun -> metatools
- toolcode -> metatools
- toolset -> metatools
+# Main request flow
+agent -> surface.metatools: "MCP Request\n(JSON-RPC)" {
+  class: request-flow
+  target-arrowhead.shape: arrow
+}
+
+# Surface to Core connections
+surface.metatools -> core.toolindex: "search_tools\nlist_namespaces" {
+  class: data-flow
+}
+surface.metatools -> core.tooldocs: "describe_tool\nlist_examples" {
+  class: data-flow
+}
+surface.metatools -> core.toolrun: "run_tool\nrun_chain" {
+  class: data-flow
+}
+
+# Core internal dependencies
+core.toolmodel -> core.toolindex: "schema types" {
+  class: data-flow
+  style.stroke-dash: 2
+}
+core.toolindex -> core.tooldocs: "tool lookup" {
+  class: data-flow
+}
+core.toolindex -> core.toolrun: "resolution" {
+  class: data-flow
+}
+
+# Discovery integration
+core.toolindex -> discovery.toolsearch: "search strategy" {
+  class: data-flow
+}
+
+# Protocol integration
+core.toolmodel -> protocol.tooladapter: "type defs" {
+  class: data-flow
+}
+protocol.tooladapter -> protocol.toolset: "formatted tools" {
+  class: data-flow
+}
+protocol.toolset -> core.toolrun: "collections" {
+  class: data-flow
+}
+
+# Orchestration (optional)
+surface.metatools -> orchestration.toolcode: "execute_code" {
+  class: optional-flow
+}
+core.toolrun -> orchestration.toolcode: "powers" {
+  class: optional-flow
+}
+orchestration.toolcode -> orchestration.toolruntime: "sandboxed execution" {
+  class: optional-flow
+}

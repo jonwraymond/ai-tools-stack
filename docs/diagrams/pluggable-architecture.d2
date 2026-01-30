@@ -1,38 +1,301 @@
+# ApertureStack Pluggable Architecture
+# Shows extension points and how strategies can be swapped
+
 direction: right
 
-style: { font-size: 14 }
-
-flow: {
-  label: "Core Flow"
-  style: {
-  border-radius: 8
-  shadow: true
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+  core-fill: "#3182ce"
+  extension-fill: "#d69e2e"
+  strategy-fill: "#38a169"
 }
 
-  toolmodel: { shape: package }
-  toolindex: { shape: cylinder }
-  tooldocs: { shape: document }
-  toolrun: { shape: step }
-  toolcode: { shape: page }
+classes: {
+  container: {
+    style: {
+      border-radius: 12
+      shadow: true
+      font-size: 14
+      bold: true
+    }
+  }
+  core-component: {
+    style: {
+      fill: ${core-fill}
+      stroke: "#2c5282"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  extension-point: {
+    style: {
+      fill: ${extension-fill}
+      stroke: "#b7791f"
+      stroke-width: 2
+      font-color: "#fff"
+      stroke-dash: 3
+    }
+  }
+  strategy-impl: {
+    style: {
+      fill: ${strategy-fill}
+      stroke: "#276749"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  interface-flow: {
+    style: {
+      stroke: ${extension-fill}
+      stroke-width: 2
+      stroke-dash: 3
+    }
+  }
+  impl-flow: {
+    style: {
+      stroke: ${strategy-fill}
+      stroke-width: 2
+    }
+  }
 }
 
-extensions: {
-  label: "Extension Points"
+# Title
+title: "Pluggable Architecture" {
+  shape: text
+  near: top-center
   style: {
-    border-radius: 8
-    stroke-dash: 4
+    font-size: 28
+    bold: true
+    font-color: "#1a365d"
+  }
+}
+
+# Core Flow
+core: "📦 Core Flow" {
+  class: container
+  style: {
+    fill: "#ebf8ff"
+    stroke: ${core-fill}
   }
 
-  searcher: "Search Strategy" { shape: diamond }
-  backend: "Backend Adapter" { shape: step }
-  engine: "Runtime Engine" { shape: cloud }
+  toolmodel: "toolmodel\nSchema Types" {
+    shape: package
+    class: core-component
+  }
+
+  toolindex: "toolindex\nRegistry" {
+    shape: cylinder
+    class: core-component
+  }
+
+  tooldocs: "tooldocs\nDocumentation" {
+    shape: document
+    class: core-component
+  }
+
+  toolrun: "toolrun\nExecution" {
+    shape: step
+    class: core-component
+  }
+
+  toolcode: "toolcode\nOrchestration" {
+    shape: page
+    class: core-component
+  }
+
+  toolmodel -> toolindex
+  toolindex -> tooldocs
+  toolindex -> toolrun
+  toolrun -> toolcode
 }
 
-toolmodel -> toolindex
- toolindex -> tooldocs
- toolindex -> toolrun
- toolrun -> toolcode
+# Extension Points
+extensions: "🔌 Extension Points" {
+  class: container
+  style: {
+    fill: "#fffff0"
+    stroke: ${extension-fill}
+    stroke-dash: 3
+  }
 
- toolindex -> extensions.searcher
- toolrun -> extensions.backend
- toolcode -> extensions.engine
+  searcher: "Searcher Interface\nSearch(docs, query, limit)" {
+    shape: diamond
+    class: extension-point
+  }
+
+  backend: "Backend Interface\nExecute(ctx, tool, args)" {
+    shape: diamond
+    class: extension-point
+  }
+
+  engine: "Engine Interface\nRun(ctx, code)" {
+    shape: diamond
+    class: extension-point
+  }
+}
+
+# Strategy Implementations
+strategies: "🎯 Strategy Implementations" {
+  class: container
+  style: {
+    fill: "#f0fff4"
+    stroke: ${strategy-fill}
+  }
+
+  # Search strategies
+  search_strategies: "Search Strategies" {
+    style: {
+      fill: "#c6f6d5"
+      border-radius: 8
+    }
+
+    lexical: "Lexical\nSubstring Match" {
+      shape: hexagon
+      class: strategy-impl
+    }
+
+    bm25: "BM25\ntoolsearch" {
+      shape: hexagon
+      class: strategy-impl
+    }
+
+    semantic: "Semantic\ntoolsemantic" {
+      shape: hexagon
+      class: strategy-impl
+    }
+  }
+
+  # Backend strategies
+  backend_strategies: "Backend Strategies" {
+    style: {
+      fill: "#c6f6d5"
+      border-radius: 8
+    }
+
+    local: "Local\nIn-process" {
+      shape: hexagon
+      class: strategy-impl
+    }
+
+    provider: "Provider\nSDK-based" {
+      shape: hexagon
+      class: strategy-impl
+    }
+
+    mcp: "MCP\nRemote Server" {
+      shape: hexagon
+      class: strategy-impl
+    }
+  }
+
+  # Runtime strategies
+  runtime_strategies: "Runtime Strategies" {
+    style: {
+      fill: "#c6f6d5"
+      border-radius: 8
+    }
+
+    unsafe: "Unsafe Host\nDev Only" {
+      shape: hexagon
+      style: {
+        fill: "#fed7d7"
+        stroke: "#c53030"
+        font-color: "#742a2a"
+      }
+    }
+
+    docker: "Docker\nContainer" {
+      shape: hexagon
+      class: strategy-impl
+    }
+
+    wasm: "WASM\nIn-process" {
+      shape: hexagon
+      class: strategy-impl
+    }
+
+    gvisor: "gVisor\nHardened" {
+      shape: hexagon
+      class: strategy-impl
+    }
+  }
+}
+
+# Core to Extension connections
+core.toolindex -> extensions.searcher: "WithSearcher()" {
+  class: interface-flow
+  target-arrowhead.shape: diamond
+}
+
+core.toolrun -> extensions.backend: "WithBackend()" {
+  class: interface-flow
+  target-arrowhead.shape: diamond
+}
+
+core.toolcode -> extensions.engine: "WithEngine()" {
+  class: interface-flow
+  target-arrowhead.shape: diamond
+}
+
+# Extension to Strategy connections
+extensions.searcher -> strategies.search_strategies.lexical: "implements" {
+  class: impl-flow
+}
+extensions.searcher -> strategies.search_strategies.bm25: "implements" {
+  class: impl-flow
+}
+extensions.searcher -> strategies.search_strategies.semantic: "implements" {
+  class: impl-flow
+}
+
+extensions.backend -> strategies.backend_strategies.local: "implements" {
+  class: impl-flow
+}
+extensions.backend -> strategies.backend_strategies.provider: "implements" {
+  class: impl-flow
+}
+extensions.backend -> strategies.backend_strategies.mcp: "implements" {
+  class: impl-flow
+}
+
+extensions.engine -> strategies.runtime_strategies.unsafe: "implements" {
+  class: impl-flow
+  style.stroke: "#c53030"
+}
+extensions.engine -> strategies.runtime_strategies.docker: "implements" {
+  class: impl-flow
+}
+extensions.engine -> strategies.runtime_strategies.wasm: "implements" {
+  class: impl-flow
+}
+extensions.engine -> strategies.runtime_strategies.gvisor: "implements" {
+  class: impl-flow
+}
+
+# Note
+note: |md
+  ## Extension Pattern
+
+  Each extension point follows a consistent pattern:
+  1. **Interface** defined in core library
+  2. **Default** implementation provided
+  3. **Alternative** implementations in separate modules
+  4. **Injected** via functional options
+
+  ```go
+  idx := toolindex.New(
+    toolindex.WithSearcher(bm25.NewSearcher()),
+  )
+  ```
+| {
+  near: bottom-left
+  style: {
+    fill: "#f7fafc"
+    stroke: "#e2e8f0"
+    font-size: 11
+    border-radius: 8
+  }
+}
