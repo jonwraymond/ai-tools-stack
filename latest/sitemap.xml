@@ -111,6 +111,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/operations/consolidation-validation-report/</loc>
+         <lastmod>2026-01-31</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/operations/stack-changelog/</loc>
          <lastmod>2026-01-31</lastmod>
          <changefreq>daily</changefreq>
