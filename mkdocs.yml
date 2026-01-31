@@ -1,5 +1,5 @@
 site_name: AI Tools Stack
-site_description: Unified documentation for toolmodel, toolindex, tooldocs, toolrun, toolcode, toolruntime, toolsearch, and metatools-mcp.
+site_description: Unified documentation for toolfoundation, tooldiscovery, toolexec, toolcompose, toolops, toolprotocol, and metatools-mcp.
 site_url: https://jonwraymond.github.io/ai-tools-stack/
 repo_name: jonwraymond/ai-tools-stack
 repo_url: https://github.com/jonwraymond/ai-tools-stack
@@ -15,6 +15,12 @@ nav:
       - Design Notes Index: architecture/design-notes.md
       - User Journeys Index: architecture/user-journeys.md
   - Components:
+      - toolfoundation: components/toolfoundation.md
+      - tooldiscovery: components/tooldiscovery.md
+      - toolexec: components/toolexec.md
+      - toolcompose: components/toolcompose.md
+      - toolops: components/toolops.md
+      - toolprotocol: components/toolprotocol.md
       - toolmodel: components/toolmodel.md
       - tooladapter: components/tooladapter.md
       - toolset: components/toolset.md
@@ -31,8 +37,15 @@ nav:
       - metatools-mcp: components/metatools-mcp.md
   - Operations:
       - CI and Versioning: operations/ci-and-versioning.md
+      - Migration Guide: operations/migration-guide.md
       - Stack Changelog: operations/stack-changelog.md
   - Library Docs (from repos):
+      - toolfoundation: '!import https://github.com/jonwraymond/toolfoundation?branch=main&docs_dir=docs/*'
+      - tooldiscovery: '!import https://github.com/jonwraymond/tooldiscovery?branch=main&docs_dir=docs/*'
+      - toolexec: '!import https://github.com/jonwraymond/toolexec?branch=main&docs_dir=docs/*'
+      - toolcompose: '!import https://github.com/jonwraymond/toolcompose?branch=main&docs_dir=docs/*'
+      - toolops: '!import https://github.com/jonwraymond/toolops?branch=main&docs_dir=docs/*'
+      - toolprotocol: '!import https://github.com/jonwraymond/toolprotocol?branch=main&docs_dir=docs/*'
       - toolmodel: '!import https://github.com/jonwraymond/toolmodel?branch=main&docs_dir=docs/*'
       - tooladapter: '!import https://github.com/jonwraymond/tooladapter?branch=main&docs_dir=docs/*'
       - toolset: '!import https://github.com/jonwraymond/toolset?branch=main&docs_dir=docs/*'

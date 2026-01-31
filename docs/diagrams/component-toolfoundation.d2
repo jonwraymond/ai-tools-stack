@@ -1,0 +1,149 @@
+# toolfoundation Component Diagram
+# Foundation layer: model + adapter packages
+
+direction: right
+
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+  foundation-fill: "#718096"
+  foundation-stroke: "#4a5568"
+}
+
+classes: {
+  package: {
+    style: {
+      fill: ${foundation-fill}
+      stroke: ${foundation-stroke}
+      stroke-width: 2
+      font-color: "#fff"
+      border-radius: 8
+    }
+  }
+  type: {
+    style: {
+      fill: "#f7fafc"
+      stroke: ${foundation-stroke}
+      stroke-width: 1
+    }
+  }
+  interface: {
+    style: {
+      fill: "#e2e8f0"
+      stroke: ${foundation-stroke}
+      stroke-width: 1
+      stroke-dash: 3
+    }
+  }
+}
+
+toolfoundation: "🧱 toolfoundation" {
+  style: {
+    fill: "#f7fafc"
+    stroke: ${foundation-stroke}
+    stroke-width: 2
+    border-radius: 12
+    shadow: true
+  }
+
+  model: "model" {
+    class: package
+
+    Tool: "Tool\n- Namespace string\n- mcp.Tool (embedded)\n- Version string\n- Tags []string" {
+      shape: class
+      class: type
+    }
+
+    ToolBackend: "ToolBackend\n- Kind: mcp|provider|local\n- ServerName string\n- ProviderID string" {
+      shape: class
+      class: type
+    }
+
+    SchemaValidator: "«interface»\nSchemaValidator\n+ Validate(schema, data) error" {
+      shape: class
+      class: interface
+    }
+
+    Tool -> ToolBackend: "backend"
+    Tool -> SchemaValidator: "validates"
+  }
+
+  adapter: "adapter" {
+    class: package
+
+    CanonicalTool: "CanonicalTool\nProtocol-agnostic\nintermediate form" {
+      shape: class
+      class: type
+    }
+
+    Adapter: "«interface»\nAdapter\n+ Name() string\n+ ToCanonical(any) CanonicalTool\n+ FromCanonical(CanonicalTool) any" {
+      shape: class
+      class: interface
+    }
+
+    Registry: "AdapterRegistry\n+ Register(Adapter)\n+ Convert(tool, from, to) Result" {
+      shape: class
+      class: type
+    }
+
+    MCPAdapter: "MCPAdapter" {
+      class: type
+    }
+    OpenAIAdapter: "OpenAIAdapter" {
+      class: type
+    }
+    AnthropicAdapter: "AnthropicAdapter" {
+      class: type
+    }
+
+    Adapter -> CanonicalTool: "produces/consumes"
+    Registry -> Adapter: "manages"
+    MCPAdapter -> Adapter: "implements"
+    OpenAIAdapter -> Adapter: "implements"
+    AnthropicAdapter -> Adapter: "implements"
+  }
+}
+
+# Cross-package dependency
+toolfoundation.model.Tool -> toolfoundation.adapter.CanonicalTool: "converts to" {
+  style: {
+    stroke: "#4a5568"
+    stroke-dash: 3
+  }
+}
+
+# External connections
+external: "External" {
+  style: {
+    fill: "#2d3748"
+    stroke: "#1a202c"
+  }
+
+  mcp_sdk: "MCP Go SDK\nmcp.Tool" {
+    style: {
+      fill: "#2b6cb0"
+      font-color: "#fff"
+    }
+  }
+
+  openai: "OpenAI Format" {
+    style: {
+      fill: "#10a37f"
+      font-color: "#fff"
+    }
+  }
+
+  anthropic: "Anthropic Format" {
+    style: {
+      fill: "#d4a574"
+      font-color: "#000"
+    }
+  }
+}
+
+external.mcp_sdk -> toolfoundation.model.Tool: "embedded"
+toolfoundation.adapter.MCPAdapter -> external.mcp_sdk: "converts"
+toolfoundation.adapter.OpenAIAdapter -> external.openai: "converts"
+toolfoundation.adapter.AnthropicAdapter -> external.anthropic: "converts"

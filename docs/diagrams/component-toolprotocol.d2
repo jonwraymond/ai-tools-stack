@@ -1,0 +1,184 @@
+# toolprotocol Component Diagram
+# Protocol layer: content, discover, transport, wire packages
+
+direction: down
+
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+  protocol-fill: "#d69e2e"
+  protocol-stroke: "#b7791f"
+}
+
+classes: {
+  package: {
+    style: {
+      fill: ${protocol-fill}
+      stroke: ${protocol-stroke}
+      stroke-width: 2
+      font-color: "#fff"
+      border-radius: 8
+    }
+  }
+  type: {
+    style: {
+      fill: "#fffff0"
+      stroke: ${protocol-stroke}
+      stroke-width: 1
+    }
+  }
+  interface: {
+    style: {
+      fill: "#fefcbf"
+      stroke: ${protocol-stroke}
+      stroke-width: 1
+      stroke-dash: 3
+    }
+  }
+}
+
+toolprotocol: "📡 toolprotocol" {
+  style: {
+    fill: "#fffff0"
+    stroke: ${protocol-stroke}
+    stroke-width: 2
+    border-radius: 12
+    shadow: true
+  }
+
+  content: "content" {
+    class: package
+
+    ContentHandler: "ContentHandler\n- defaultType ContentType\n- maxSize int64" {
+      shape: class
+      class: type
+    }
+
+    ContentType: "ContentType\n• JSON\n• Binary\n• Text" {
+      shape: class
+      class: type
+    }
+
+    Serializer: "«interface»\nSerializer\n+ Serialize(any) ([]byte, error)\n+ Deserialize([]byte, any) error" {
+      shape: class
+      class: interface
+    }
+
+    ContentHandler -> ContentType: "uses"
+    ContentHandler -> Serializer: "uses"
+  }
+
+  discover: "discover" {
+    class: package
+
+    Discoverer: "Discoverer\n- transport Transport\n- capabilities Capabilities" {
+      shape: class
+      class: type
+    }
+
+    Capabilities: "Capabilities\n- Tools bool\n- Resources bool\n- Prompts bool" {
+      shape: class
+      class: type
+    }
+
+    Discoverer -> Capabilities: "negotiates"
+  }
+
+  transport: "transport" {
+    class: package
+
+    Transport: "«interface»\nTransport\n+ Send(ctx, Message) error\n+ Receive(ctx) (Message, error)\n+ Close() error" {
+      shape: class
+      class: interface
+    }
+
+    StdioTransport: "StdioTransport\nstdin/stdout" {
+      shape: class
+      class: type
+    }
+
+    SSETransport: "SSETransport\nServer-Sent Events" {
+      shape: class
+      class: type
+    }
+
+    WebSocketTransport: "WebSocketTransport\nBidirectional WS" {
+      shape: class
+      class: type
+    }
+
+    StdioTransport -> Transport: "implements"
+    SSETransport -> Transport: "implements"
+    WebSocketTransport -> Transport: "implements"
+  }
+
+  wire: "wire" {
+    class: package
+
+    Codec: "«interface»\nCodec\n+ EncodeRequest(Request) []byte\n+ DecodeRequest([]byte) Request\n+ EncodeResponse(Response) []byte\n+ DecodeResponse([]byte) Response" {
+      shape: class
+      class: interface
+    }
+
+    JSONRPCCodec: "JSONRPCCodec\nJSON-RPC 2.0" {
+      shape: class
+      class: type
+    }
+
+    Request: "Request\n- Method string\n- Params any\n- ID any" {
+      shape: class
+      class: type
+    }
+
+    Response: "Response\n- Result any\n- Error *Error\n- ID any" {
+      shape: class
+      class: type
+    }
+
+    JSONRPCCodec -> Codec: "implements"
+    Codec -> Request: "encodes/decodes"
+    Codec -> Response: "encodes/decodes"
+  }
+}
+
+# Package flow
+flow: "Protocol Flow" {
+  style: {
+    fill: "#2d3748"
+    font-color: "#fff"
+    border-radius: 8
+  }
+
+  client: "Client" {
+    shape: person
+  }
+  transport_layer: "Transport\n(stdio/SSE/WS)" {
+    shape: parallelogram
+  }
+  wire_layer: "Wire\n(JSON-RPC)" {
+    shape: step
+  }
+  content_layer: "Content\n(Serialize)" {
+    shape: step
+  }
+  handler: "Handler" {
+    shape: hexagon
+  }
+
+  client -> transport_layer: "connect"
+  transport_layer -> wire_layer: "decode"
+  wire_layer -> content_layer: "parse"
+  content_layer -> handler: "route"
+
+  handler -> content_layer: "result"
+  content_layer -> wire_layer: "encode"
+  wire_layer -> transport_layer: "frame"
+  transport_layer -> client: "send"
+}
+
+# Connect packages to flow
+toolprotocol.transport.Transport -> flow.transport_layer
+toolprotocol.wire.Codec -> flow.wire_layer
+toolprotocol.content.ContentHandler -> flow.content_layer
