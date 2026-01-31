@@ -36,20 +36,30 @@ The `observe` package provides OpenTelemetry-based observability middleware.
 ### Example
 
 ```go
-import "github.com/jonwraymond/toolops/observe"
+import (
+  "context"
+  "log"
 
-// Create middleware
-mw := observe.NewMiddleware(observe.Config{
+  "github.com/jonwraymond/toolops/observe"
+)
+
+obs, err := observe.NewObserver(ctx, observe.Config{
   ServiceName: "metatools-mcp",
-  Tracing:     observe.TracingConfig{Enabled: true},
-  Metrics:     observe.MetricsConfig{Enabled: true},
+  Tracing:     observe.TracingConfig{Enabled: true, Exporter: "otlp"},
+  Metrics:     observe.MetricsConfig{Enabled: true, Exporter: "prometheus"},
+  Logging:     observe.LoggingConfig{Enabled: true, Level: "info"},
+})
+if err != nil {
+  log.Fatal(err)
+}
+defer obs.Shutdown(ctx)
+
+mw, _ := observe.MiddlewareFromObserver(obs)
+wrapped := mw.Wrap(func(ctx context.Context, tool observe.ToolMeta, input any) (any, error) {
+  return map[string]any{"ok": true}, nil
 })
 
-// Wrap runner
-observedRunner := mw.Wrap(runner)
-
-// Executions now emit traces and metrics
-result, err := observedRunner.Run(ctx, toolID, args)
+_, _ = wrapped(ctx, observe.ToolMeta{Name: toolID}, args)
 ```
 
 ### Metrics Emitted
@@ -74,19 +84,20 @@ The `cache` package provides deterministic caching with pluggable backends.
 ### Example
 
 ```go
-import "github.com/jonwraymond/toolops/cache"
+import (
+  "context"
 
-// Create cache
-c := cache.New(cache.Config{
-  Backend: cache.NewMemoryBackend(1000),
-  TTL:     5 * time.Minute,
+  "github.com/jonwraymond/toolops/cache"
+)
+
+policy := cache.DefaultPolicy()
+c := cache.NewMemoryCache(policy)
+keyer := cache.NewDefaultKeyer()
+mw := cache.NewCacheMiddleware(c, keyer, policy, nil)
+
+result, err := mw.Execute(ctx, toolID, args, []string{"cacheable"}, func(ctx context.Context, toolID string, input any) ([]byte, error) {
+  return []byte("{\"ok\":true}"), nil
 })
-
-// Wrap runner
-cachedRunner := c.Wrap(runner)
-
-// Subsequent calls with same args return cached result
-result, err := cachedRunner.Run(ctx, toolID, args)
 ```
 
 ## auth Package
@@ -103,18 +114,29 @@ The `auth` package provides authentication and authorization middleware.
 ### Example
 
 ```go
-import "github.com/jonwraymond/toolops/auth"
+import (
+  "context"
 
-// Create auth middleware
-authMW := auth.NewMiddleware(auth.Config{
-  Provider: auth.NewJWTProvider(jwtSecret),
-  Rules: []auth.Rule{
-    {Namespace: "admin:*", Require: "admin"},
+  "github.com/jonwraymond/toolops/auth"
+)
+
+authenticator := auth.NewJWTAuthenticator(auth.JWTConfig{Issuer: "issuer"})
+authorizer := auth.NewSimpleRBACAuthorizer(auth.RBACConfig{
+  DefaultRole: "reader",
+  Roles: map[string]auth.RoleConfig{
+    "reader": {AllowedTools: []string{"github:*"}, AllowedActions: []string{"list"}},
   },
 })
 
-// Wrap server handler
-authedHandler := authMW.Wrap(handler)
+req := &auth.AuthRequest{Headers: map[string][]string{"Authorization": {"Bearer token"}}}
+result, _ := authenticator.Authenticate(ctx, req)
+if result != nil && result.Identity != nil {
+  _ = authorizer.Authorize(ctx, &auth.AuthzRequest{
+    Subject:  result.Identity,
+    Resource: "tool:github:list_issues",
+    Action:   "list",
+  })
+}
 ```
 
 ## health Package
@@ -130,19 +152,21 @@ The `health` package provides health check endpoints and probes.
 ### Example
 
 ```go
-import "github.com/jonwraymond/toolops/health"
+import (
+  "context"
 
-// Create health checker
-checker := health.New(health.Config{
-  Checks: []health.Check{
-    health.DatabaseCheck(db),
-    health.MCPServerCheck(mcpClient),
-  },
-})
+  "github.com/jonwraymond/toolops/health"
+)
 
-// Register endpoints
-http.Handle("/healthz", checker.LivenessHandler())
-http.Handle("/readyz", checker.ReadinessHandler())
+agg := health.NewAggregator()
+agg.Register("memory", health.NewMemoryChecker(health.MemoryCheckerConfig{
+  WarningThreshold:  0.80,
+  CriticalThreshold: 0.95,
+}))
+
+results := agg.CheckAll(ctx)
+overall := agg.OverallStatus(results)
+_ = overall
 ```
 
 ## resilience Package
@@ -159,18 +183,26 @@ The `resilience` package provides circuit breakers, retries, and rate limiting.
 ### Example
 
 ```go
-import "github.com/jonwraymond/toolops/resilience"
+import (
+  "context"
+  "time"
 
-// Create resilient runner
-resilientRunner := resilience.Wrap(runner, resilience.Config{
-  CircuitBreaker: resilience.CBConfig{
-    Threshold:   5,
-    Timeout:     30 * time.Second,
-  },
-  Retry: resilience.RetryConfig{
+  "github.com/jonwraymond/toolops/resilience"
+)
+
+executor := resilience.NewExecutor(
+  resilience.WithCircuitBreaker(resilience.NewCircuitBreaker(resilience.CircuitBreakerConfig{
+    MaxFailures:  5,
+    ResetTimeout: 30 * time.Second,
+  })),
+  resilience.WithRetry(resilience.NewRetry(resilience.RetryConfig{
     MaxAttempts: 3,
-    Backoff:     resilience.ExponentialBackoff(100*time.Millisecond),
-  },
+  })),
+  resilience.WithTimeout(5*time.Second),
+)
+
+_ = executor.Execute(ctx, func(ctx context.Context) error {
+  return nil
 })
 ```
 
@@ -192,9 +224,9 @@ flowchart LR
 
 ## Key Design Decisions
 
-1. **Middleware pattern**: All features wrap existing runners
-2. **Composable**: Stack middlewares in any order
-3. **Zero-cost when disabled**: Features have no overhead when off
+1. **Middleware pattern**: Observe/cache wrap execution functions
+2. **Composable**: Patterns stack in a deterministic order
+3. **Explicit wiring**: No implicit instrumentation or caching
 4. **Standards-based**: OpenTelemetry, Prometheus, K8s probes
 
 ## Links
