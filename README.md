@@ -2,7 +2,7 @@
 
 [![Docs](https://img.shields.io/badge/docs-ai--tools--stack-blue)](https://jonwraymond.github.io/ai-tools-stack/)
 
-This repo is the release-train control point for the `jonwraymond` tool stack.
+This repo is the release-train control point for the ApertureStack tool ecosystem.
 It exists to contain version sprawl and chain effects.
 
 It does three things:
@@ -11,22 +11,37 @@ It does three things:
 - Runs a cross-library smoke test (`smoke_test.go`).
 - Provides the canonical bump order and workflow.
 
+## Repository Structure
+
+ApertureStack consists of 8 repositories:
+
+| Repository | Description | Packages |
+|------------|-------------|----------|
+| [toolfoundation](https://github.com/jonwraymond/toolfoundation) | Core schemas, adapters, versioning | model, adapter, version |
+| [tooldiscovery](https://github.com/jonwraymond/tooldiscovery) | Registry, search, semantic, docs | index, search, semantic, tooldoc |
+| [toolexec](https://github.com/jonwraymond/toolexec) | Execution, runtime, orchestration | run, runtime, code, backend |
+| [toolcompose](https://github.com/jonwraymond/toolcompose) | Toolsets, skills | set, skill |
+| [toolops](https://github.com/jonwraymond/toolops) | Observability, caching, auth | observe, cache, auth, resilience, health |
+| [toolprotocol](https://github.com/jonwraymond/toolprotocol) | MCP protocol support | transport, wire, discover, content, task, stream, session, elicit, resource, prompt |
+| [metatools-mcp](https://github.com/jonwraymond/metatools-mcp) | MCP server application | — |
+| [ai-tools-stack](https://github.com/jonwraymond/ai-tools-stack) | This repo - docs & version matrix | — |
+
 ## What the smoke test covers
 
 `smoke_test.go` checks that the full stack still composes:
 
-- `toolindex` discovery (with `toolsearch` BM25 injection)
-- `tooldocs` progressive disclosure
-- `toolrun` execution
-- `toolcode` orchestration
-- `toolruntime` engine adapter
+- `tooldiscovery/index` discovery (with `tooldiscovery/search` BM25 injection)
+- `tooldiscovery/tooldoc` progressive disclosure
+- `toolexec/run` execution
+- `toolexec/code` orchestration
+- `toolexec/runtime` engine adapter
 - `metatools-mcp` type compatibility
 
 This is intentionally integration-heavy and implementation-light.
 
 ## Version compatibility
 
-See `VERSIONS.md` for the authoritative, auto-generated compatibility matrix.
+See `VERSIONS.md` for the authoritative compatibility matrix.
 
 ## Documentation site
 
@@ -53,12 +68,13 @@ mike serve
 
 Always bump in this order unless you deliberately want to pay the blast radius:
 
-1) `toolmodel`
-2) `toolindex`
-3) `tooldocs` and `toolrun`
-4) `toolcode`
-5) `toolruntime`
-6) `metatools-mcp`
+1) `toolfoundation` (foundation layer)
+2) `tooldiscovery` (discovery layer)
+3) `toolexec` (execution layer)
+4) `toolcompose` (composition layer)
+5) `toolops` (operations layer)
+6) `toolprotocol` (protocol layer)
+7) `metatools-mcp` (application layer)
 
 ## Release workflow (the point of this repo)
 
@@ -72,7 +88,7 @@ When you cut or receive a new upstream tag:
 Example:
 
 ```bash
-go get github.com/jonwraymond/toolindex@v0.1.3
+go get github.com/jonwraymond/toolfoundation@v0.1.1
 go mod tidy
 go test ./...
 go vet ./...
@@ -85,8 +101,8 @@ If this repo is red, do not bump the DAG.
 Use the DAG-aware bump helper. It is dry-run by default:
 
 ```bash
-./scripts/bump-dep.sh --dep toolindex --latest
-./scripts/bump-dep.sh --dep toolindex --version v0.1.3 --apply
+./scripts/bump-dep.sh --dep toolfoundation --latest
+./scripts/bump-dep.sh --dep toolfoundation --version v0.1.1 --apply
 ```
 
 This updates impacted repos under `~/Documents/Projects`, runs `go mod tidy`,

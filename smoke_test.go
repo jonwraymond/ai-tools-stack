@@ -8,21 +8,21 @@ import (
 	"time"
 
 	"github.com/jonwraymond/metatools-mcp/pkg/metatools"
-	"github.com/jonwraymond/toolcode"
-	"github.com/jonwraymond/tooldocs"
-	"github.com/jonwraymond/toolindex"
-	"github.com/jonwraymond/toolmodel"
-	"github.com/jonwraymond/toolrun"
-	"github.com/jonwraymond/toolruntime"
-	"github.com/jonwraymond/toolruntime/toolcodeengine"
-	"github.com/jonwraymond/toolsearch"
+	"github.com/jonwraymond/tooldiscovery/index"
+	"github.com/jonwraymond/tooldiscovery/search"
+	"github.com/jonwraymond/tooldiscovery/tooldoc"
+	"github.com/jonwraymond/toolexec/code"
+	"github.com/jonwraymond/toolexec/run"
+	"github.com/jonwraymond/toolexec/runtime"
+	"github.com/jonwraymond/toolexec/runtime/toolcodeengine"
+	"github.com/jonwraymond/toolfoundation/model"
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
 
 // localRegistry is a tiny LocalRegistry implementation for smoke tests.
-type localRegistry map[string]toolrun.LocalHandler
+type localRegistry map[string]run.LocalHandler
 
-func (r localRegistry) Get(name string) (toolrun.LocalHandler, bool) {
+func (r localRegistry) Get(name string) (run.LocalHandler, bool) {
 	h, ok := r[name]
 	return h, ok
 }
@@ -33,19 +33,19 @@ type gatewayBackend struct {
 	toolID string
 }
 
-func (b gatewayBackend) Kind() toolruntime.BackendKind { return toolruntime.BackendUnsafeHost }
+func (b gatewayBackend) Kind() runtime.BackendKind { return runtime.BackendUnsafeHost }
 
-func (b gatewayBackend) Execute(ctx context.Context, req toolruntime.ExecuteRequest) (toolruntime.ExecuteResult, error) {
+func (b gatewayBackend) Execute(ctx context.Context, req runtime.ExecuteRequest) (runtime.ExecuteResult, error) {
 	runRes, err := req.Gateway.RunTool(ctx, b.toolID, map[string]any{
 		"a": 1.0,
 		"b": 2.0,
 	})
 	if err != nil {
-		return toolruntime.ExecuteResult{}, err
+		return runtime.ExecuteResult{}, err
 	}
-	return toolruntime.ExecuteResult{
+	return runtime.ExecuteResult{
 		Value:   runRes.Structured,
-		Backend: toolruntime.BackendInfo{Kind: b.Kind()},
+		Backend: runtime.BackendInfo{Kind: b.Kind()},
 	}, nil
 }
 
@@ -75,11 +75,11 @@ func TestReleaseTrainSmoke(t *testing.T) {
 	ctx := context.Background()
 
 	// 1) Index with BM25 searcher injected.
-	idx := toolindex.NewInMemoryIndex(toolindex.IndexOptions{
-		Searcher: toolsearch.NewBM25Searcher(toolsearch.BM25Config{}),
+	idx := index.NewInMemoryIndex(index.IndexOptions{
+		Searcher: search.NewBM25Searcher(search.BM25Config{}),
 	})
 
-	addTool := toolmodel.Tool{
+	addTool := model.Tool{
 		Tool: mcp.Tool{
 			Name:        "add",
 			Title:       "Add Numbers",
@@ -104,12 +104,12 @@ func TestReleaseTrainSmoke(t *testing.T) {
 		Tags:      []string{"math", "arithmetic", "add"},
 	}
 
-	addBackend := toolmodel.ToolBackend{
-		Kind:  toolmodel.BackendKindLocal,
-		Local: &toolmodel.LocalBackend{Name: "math-add"},
+	addBackend := model.ToolBackend{
+		Kind:  model.BackendKindLocal,
+		Local: &model.LocalBackend{Name: "math-add"},
 	}
 
-	if err := idx.RegisterTools([]toolindex.ToolRegistration{{
+	if err := idx.RegisterTools([]index.ToolRegistration{{
 		Tool:    addTool,
 		Backend: addBackend,
 	}}); err != nil {
@@ -117,8 +117,8 @@ func TestReleaseTrainSmoke(t *testing.T) {
 	}
 
 	// 2) Docs store layered on the index.
-	docs := tooldocs.NewInMemoryStore(tooldocs.StoreOptions{Index: idx})
-	if err := docs.RegisterExamples(addTool.ToolID(), []tooldocs.ToolExample{
+	docs := tooldoc.NewInMemoryStore(tooldoc.StoreOptions{Index: idx})
+	if err := docs.RegisterExamples(addTool.ToolID(), []tooldoc.ToolExample{
 		{
 			Title:       "Add small numbers",
 			Description: "Adds 1 and 2.",
@@ -137,19 +137,19 @@ func TestReleaseTrainSmoke(t *testing.T) {
 		"math-add": func(_ context.Context, args map[string]any) (any, error) {
 			a, ok := toFloat(args["a"])
 			if !ok {
-				return nil, toolmodel.ErrInvalidSchema
+				return nil, model.ErrInvalidSchema
 			}
 			b, ok := toFloat(args["b"])
 			if !ok {
-				return nil, toolmodel.ErrInvalidSchema
+				return nil, model.ErrInvalidSchema
 			}
 			return map[string]any{"sum": a + b}, nil
 		},
 	}
 
-	runner := toolrun.NewRunner(
-		toolrun.WithIndex(idx),
-		toolrun.WithLocalRegistry(reg),
+	runner := run.NewRunner(
+		run.WithIndex(idx),
+		run.WithLocalRegistry(reg),
 	)
 
 	// 4) Progressive discovery still works.
@@ -166,7 +166,7 @@ func TestReleaseTrainSmoke(t *testing.T) {
 		t.Fatalf("metatools limit = %d, want > 0", limit)
 	}
 
-	doc, err := docs.DescribeTool(addTool.ToolID(), tooldocs.DetailFull)
+	doc, err := docs.DescribeTool(addTool.ToolID(), tooldoc.DetailFull)
 	if err != nil {
 		t.Fatalf("DescribeTool() error = %v", err)
 	}
@@ -174,7 +174,7 @@ func TestReleaseTrainSmoke(t *testing.T) {
 		t.Fatalf("unexpected doc: %+v", doc)
 	}
 
-	// 5) Execution via toolrun is aligned.
+	// 5) Execution via run is aligned.
 	runRes, err := runner.Run(ctx, addTool.ToolID(), map[string]any{"a": 1.0, "b": 2.0})
 	if err != nil {
 		t.Fatalf("Run() error = %v", err)
@@ -188,23 +188,23 @@ func TestReleaseTrainSmoke(t *testing.T) {
 		t.Fatalf("Run() sum = %v, want 3", runMap["sum"])
 	}
 
-	// 6) toolcode + toolruntime adapter still composes.
-	rt := toolruntime.NewDefaultRuntime(toolruntime.RuntimeConfig{
-		Backends: map[toolruntime.SecurityProfile]toolruntime.Backend{
-			toolruntime.ProfileStandard: gatewayBackend{toolID: addTool.ToolID()},
+	// 6) code + runtime adapter still composes.
+	rt := runtime.NewDefaultRuntime(runtime.RuntimeConfig{
+		Backends: map[runtime.SecurityProfile]runtime.Backend{
+			runtime.ProfileStandard: gatewayBackend{toolID: addTool.ToolID()},
 		},
-		DefaultProfile: toolruntime.ProfileStandard,
+		DefaultProfile: runtime.ProfileStandard,
 	})
 
 	engine, err := toolcodeengine.New(toolcodeengine.Config{
 		Runtime: rt,
-		Profile: toolruntime.ProfileStandard,
+		Profile: runtime.ProfileStandard,
 	})
 	if err != nil {
 		t.Fatalf("toolcodeengine.New() error = %v", err)
 	}
 
-	exec, err := toolcode.NewDefaultExecutor(toolcode.Config{
+	exec, err := code.NewDefaultExecutor(code.Config{
 		Index:          idx,
 		Docs:           docs,
 		Run:            runner,
@@ -215,7 +215,7 @@ func TestReleaseTrainSmoke(t *testing.T) {
 		t.Fatalf("NewDefaultExecutor() error = %v", err)
 	}
 
-	execRes, err := exec.ExecuteCode(ctx, toolcode.ExecuteParams{
+	execRes, err := exec.ExecuteCode(ctx, code.ExecuteParams{
 		Language: "go",
 		Code:     "__out = \"ignored by gateway backend\"",
 		Timeout:  time.Second,
