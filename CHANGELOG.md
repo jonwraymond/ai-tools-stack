@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/jonwraymond/ai-tools-stack/compare/ai-tools-stack-v0.2.0...ai-tools-stack-v0.3.0) (2026-01-31)
+
+
+### Features
+
+* update ai-tools-stack for consolidated repos (PRD-181) ([a6706b4](https://github.com/jonwraymond/ai-tools-stack/commit/a6706b4fa3b97cbaaaddb571c51ebff8361cd8b8))
+
 ## [0.2.0](https://github.com/jonwraymond/ai-tools-stack/compare/ai-tools-stack-v0.1.9...ai-tools-stack-v0.2.0) (2026-01-28)
 
 
