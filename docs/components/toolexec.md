@@ -100,14 +100,30 @@ The `runtime` package provides sandbox and runtime isolation for tool execution.
 ### Example
 
 ```go
-import "github.com/jonwraymond/toolexec/runtime"
+import (
+  "github.com/jonwraymond/tooldiscovery/tooldoc"
+  "github.com/jonwraymond/toolexec/runtime"
+  "github.com/jonwraymond/toolexec/runtime/backend/unsafe"
+  "github.com/jonwraymond/toolexec/runtime/gateway/direct"
+)
 
-rt := runtime.NewDockerRuntime(runtime.DockerConfig{
-  Image:   "tools:latest",
-  Timeout: 30 * time.Second,
+docs := tooldoc.NewInMemoryStore(tooldoc.StoreOptions{Index: idx})
+gateway := direct.New(direct.Config{Index: idx, Docs: docs, Runner: runner})
+
+rt := runtime.NewDefaultRuntime(runtime.RuntimeConfig{
+  Backends: map[runtime.SecurityProfile]runtime.Backend{
+    runtime.ProfileDev: unsafe.New(unsafe.Config{RequireOptIn: true}),
+  },
+  DefaultProfile: runtime.ProfileDev,
 })
 
-result, err := rt.Execute(ctx, tool, args)
+result, err := rt.Execute(ctx, runtime.ExecuteRequest{
+  Language: "go",
+  Code:     `__out = "ok"`,
+  Profile:  runtime.ProfileDev,
+  Gateway:  gateway,
+  Metadata: map[string]any{"unsafeOptIn": true},
+})
 ```
 
 ## backend Package
