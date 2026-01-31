@@ -10,6 +10,7 @@ ApertureStack components depend on.
 |---------|---------|
 | `model` | Canonical MCP tool schema definitions, validation, backend bindings |
 | `adapter` | Protocol-agnostic tool format conversion (MCP, OpenAI, Anthropic) |
+| `version` | Semantic version parsing, constraints, compatibility matrices |
 
 ## Motivation
 
@@ -116,6 +117,23 @@ for _, w := range result.Warnings {
 2. **Pure transforms**: Adapter conversions have no I/O or side effects
 3. **Loss visibility**: Feature loss is tracked as warnings, not errors
 4. **Minimal deps**: Foundation has minimal external dependencies
+5. **Explicit versioning**: Compatibility rules are defined via `version.Matrix`
+
+## version Package
+
+The `version` package provides SemVer parsing, constraints, and compatibility
+negotiation across stack components.
+
+```go
+import "github.com/jonwraymond/toolfoundation/version"
+
+base := version.MustParse("v1.0.0")
+current := version.MustParse("v1.2.3")
+
+if current.Compatible(base) {
+  fmt.Println("compatible")
+}
+```
 
 ## Links
 

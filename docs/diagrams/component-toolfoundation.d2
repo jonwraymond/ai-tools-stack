@@ -104,6 +104,28 @@ toolfoundation: "🧱 toolfoundation" {
     OpenAIAdapter -> Adapter: "implements"
     AnthropicAdapter -> Adapter: "implements"
   }
+
+  version: "version" {
+    class: package
+
+    Version: "Version\n- Major/Minor/Patch\n- Prerelease/Build" {
+      shape: class
+      class: type
+    }
+
+    Constraint: "Constraint\n- Op\n- Version" {
+      shape: class
+      class: type
+    }
+
+    Matrix: "Matrix\n+ Add(Compatibility)\n+ Check(component, v)\n+ Negotiate(component, versions)" {
+      shape: class
+      class: type
+    }
+
+    Constraint -> Version: "uses"
+    Matrix -> Version: "compares"
+  }
 }
 
 # Cross-package dependency
