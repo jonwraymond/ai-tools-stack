@@ -31,38 +31,37 @@ The `set` package provides filtered tool collections using predicates.
 ### Example
 
 ```go
-import "github.com/jonwraymond/toolcompose/set"
+import (
+  "github.com/jonwraymond/toolcompose/set"
+  "github.com/jonwraymond/toolfoundation/adapter"
+)
 
-// Create a toolset from index
-ts := set.FromIndex(idx)
+tools := []*adapter.CanonicalTool{
+  {Namespace: "github", Name: "create_issue", Tags: []string{"issues"}, InputSchema: &adapter.JSONSchema{Type: "object"}},
+  {Namespace: "github", Name: "add_labels", Tags: []string{"issues"}, InputSchema: &adapter.JSONSchema{Type: "object"}},
+}
 
-// Filter by namespace
-githubTools := ts.Where(set.Namespace("github"))
+ts, _ := set.NewBuilder("github-issues").
+  FromTools(tools).
+  WithNamespace("github").
+  WithTags([]string{"issues"}).
+  WithPolicy(set.DenyTags("danger")).
+  Build()
 
-// Filter by tags
-issueTools := ts.Where(set.HasTag("issues"))
-
-// Chain filters
-filtered := ts.
-  Where(set.Namespace("github")).
-  Where(set.HasTag("issues")).
-  Where(set.NameContains("create"))
-
-// List tools
-tools := filtered.List()
+ids := ts.IDs()
 ```
 
 ### Built-in Predicates
 
 | Predicate | Description |
 |-----------|-------------|
-| `Namespace(ns)` | Match exact namespace |
-| `HasTag(tag)` | Has specific tag |
-| `NameContains(s)` | Name contains substring |
-| `DescriptionContains(s)` | Description contains substring |
-| `And(p1, p2)` | Both predicates match |
-| `Or(p1, p2)` | Either predicate matches |
-| `Not(p)` | Predicate does not match |
+| `NamespaceFilter(ns...)` | Match any namespace |
+| `TagsAny(tags...)` | Match tools with any tag |
+| `TagsAll(tags...)` | Match tools with all tags |
+| `TagsNone(tags...)` | Match tools with none of the tags |
+| `CategoryFilter(cats...)` | Match any category |
+| `AllowIDs(ids...)` | Allow only listed IDs |
+| `DenyIDs(ids...)` | Exclude listed IDs |
 
 ## skill Package
 
@@ -70,42 +69,42 @@ The `skill` package provides skill-based workflow composition.
 
 ### Features
 
-- Define reusable skills from tool combinations
-- Parameterize skills with inputs
-- Chain skills into workflows
-- Handle errors and retries
+- Define declarative skills from tool steps
+- Deterministic planning (sorted by step ID)
+- Guardrails for max steps and allowed tool IDs
+- Execution via a pluggable runner
 
 ### Example
 
 ```go
-import "github.com/jonwraymond/toolcompose/skill"
+import (
+  "context"
 
-// Define a skill
-createIssueSkill := skill.Define("create-issue", skill.Config{
-  Description: "Create a GitHub issue with labels",
-  Inputs: []skill.Input{
-    {Name: "title", Type: "string", Required: true},
-    {Name: "body", Type: "string"},
-    {Name: "labels", Type: "[]string"},
-  },
+  "github.com/jonwraymond/toolcompose/skill"
+  "github.com/jonwraymond/toolexec/run"
+)
+
+sk := skill.Skill{
+  Name: "create-issue",
   Steps: []skill.Step{
-    {Tool: "github:create_issue", Args: map[string]any{
-      "title": "{{.title}}",
-      "body":  "{{.body}}",
-    }},
-    {Tool: "github:add_labels", Args: map[string]any{
-      "issue":  "{{.prev.number}}",
-      "labels": "{{.labels}}",
-    }, If: "{{.labels}}"},
+    {ID: "create", ToolID: "github:create_issue", Inputs: map[string]any{"title": "Bug report"}},
+    {ID: "label", ToolID: "github:add_labels", Inputs: map[string]any{"labels": []string{"bug"}}},
   },
-})
+}
 
-// Execute skill
-result, err := createIssueSkill.Execute(ctx, runner, map[string]any{
-  "title":  "Bug report",
-  "body":   "Description here",
-  "labels": []string{"bug", "priority:high"},
-})
+plan, _ := skill.NewPlanner().Plan(sk)
+
+type runAdapter struct{ exec run.Runner }
+func (r runAdapter) Run(ctx context.Context, step skill.Step) (any, error) {
+  res, err := r.exec.Run(ctx, step.ToolID, step.Inputs)
+  if err != nil {
+    return nil, err
+  }
+  return res.Output, nil
+}
+
+runner := run.NewRunner()
+_, err := skill.Execute(context.Background(), plan, runAdapter{exec: runner})
 ```
 
 ### Skill Composition
@@ -125,10 +124,10 @@ flowchart TB
 
 ## Key Design Decisions
 
-1. **Immutable sets**: Filter operations return new sets
-2. **Lazy evaluation**: Predicates are applied on List()
-3. **Template expansion**: Skill args support Go templates
-4. **Conditional steps**: Steps can have If conditions
+1. **Deterministic sets**: Toolset listing is sorted and repeatable
+2. **Filter + policy**: Filters reduce candidates, policies enforce access
+3. **Declarative skills**: Skills are pure definitions, not executors
+4. **Pluggable runners**: Execution integrates with any tool runner
 
 ## Links
 
