@@ -57,6 +57,12 @@ tool := model.Tool{
 _ = tool.Validate()
 ```
 
+### Schema contracts
+
+Canonical schema rules and JSON Schema requirements are documented here:
+
+- [tool schemas](../library-docs-from-repos/toolfoundation/schemas.md)
+
 ## adapter Package
 
 The `adapter` package enables bidirectional transformation between MCP, OpenAI,
@@ -139,5 +145,6 @@ if current.Compatible(base) {
 
 - [Repository](https://github.com/jonwraymond/toolfoundation)
 - [Docs index](../library-docs-from-repos/toolfoundation/index.md)
+- [Tool schemas](../library-docs-from-repos/toolfoundation/schemas.md)
 - [Design notes](../library-docs-from-repos/toolfoundation/design-notes.md)
 - [User journey](../library-docs-from-repos/toolfoundation/user-journey.md)
