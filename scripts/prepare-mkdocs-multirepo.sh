@@ -51,6 +51,21 @@ def patch_clone_script(path: Path) -> None:
         clone_line + len(script_dir_lines) + 1,
         "cp \"$script_dir/mv_docs_up.sh\" \"$name/mv_docs_up.sh\"",
     )
+    stub_marker = "# multirepo-stub-mkdocs"
+    if stub_marker not in text:
+        stub_lines = [
+            stub_marker,
+            "if [ ! -f mkdocs.yml ]; then",
+            "  cat > mkdocs.yml <<'EOF'",
+            "site_name: imported-docs",
+            "docs_dir: docs",
+            "EOF",
+            "fi",
+        ]
+        for idx, line in enumerate(lines):
+            if line.strip() == "rm -rf .git":
+                lines[idx:idx] = stub_lines
+                break
     path.write_text("\n".join(lines) + "\n")
 
 patch_clone_script(temp_dir / "sparse_clone.sh")
