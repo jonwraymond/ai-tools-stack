@@ -48,15 +48,41 @@ toolexec: "▶️ toolexec" {
     shadow: true
   }
 
-  run: "run" {
+  exec: "exec" {
     class: package
 
-    Runner: "Runner\n- index Index\n- backends BackendRegistry\n- middleware []Middleware" {
+    Exec: "Exec\n- index Index\n- docs Store\n- runner Runner\n- opts Options" {
       shape: class
       class: type
     }
 
-    RunResult: "RunResult\n- Output any\n- Error error\n- Duration time.Duration\n- Metadata map" {
+    Options: "Options\n+ Index (required)\n+ Docs (required)\n+ LocalHandlers\n+ MCPExecutor\n+ ProviderExecutor\n+ ValidateInput/Output" {
+      shape: class
+      class: type
+    }
+
+    Result: "Result\n- Value any\n- ToolID string\n- Duration time.Duration\n- Error error" {
+      shape: class
+      class: type
+    }
+
+    Exec -> Result: "returns"
+  }
+
+  run: "run" {
+    class: package
+
+    Runner: "«interface»\nRunner\n+ Run\n+ RunStream\n+ RunChain" {
+      shape: class
+      class: interface
+    }
+
+    DefaultRunner: "DefaultRunner\n- cfg Config" {
+      shape: class
+      class: type
+    }
+
+    RunResult: "RunResult\n- Tool model.Tool\n- Backend model.ToolBackend\n- Structured any\n- MCPResult *mcp.CallToolResult" {
       shape: class
       class: type
     }
@@ -66,8 +92,9 @@ toolexec: "▶️ toolexec" {
       class: type
     }
 
-    Runner -> RunResult: "returns"
-    Runner -> Pipeline: "executes"
+    DefaultRunner -> Runner: "implements"
+    DefaultRunner -> RunResult: "returns"
+    DefaultRunner -> Pipeline: "executes"
   }
 
   code: "code" {
@@ -150,8 +177,9 @@ toolexec: "▶️ toolexec" {
 }
 
 # Package dependencies
-toolexec.run.Runner -> toolexec.backend.BackendRegistry: "uses"
-toolexec.run.Runner -> toolexec.code.Executor: "powers"
+toolexec.exec.Exec -> toolexec.run.Runner: "uses"
+toolexec.run.DefaultRunner -> toolexec.backend.BackendRegistry: "uses"
+toolexec.run.DefaultRunner -> toolexec.code.Executor: "powers"
 toolexec.code.Executor -> toolexec.runtime.Runtime: "isolates via"
 
 # External dependencies
@@ -161,6 +189,12 @@ tooldiscovery: "tooldiscovery" {
     font-color: "#fff"
   }
   index: "index.Index" {
+    style: {
+      fill: "#3182ce"
+      font-color: "#fff"
+    }
+  }
+  tooldoc: "tooldoc.Store" {
     style: {
       fill: "#3182ce"
       font-color: "#fff"
@@ -181,14 +215,28 @@ toolfoundation: "toolfoundation" {
   }
 }
 
-tooldiscovery.index -> toolexec.run.Runner: "tool resolution" {
+tooldiscovery.index -> toolexec.exec.Exec: "search tools" {
   style: {
     stroke: "#3182ce"
     stroke-width: 2
   }
 }
 
-toolfoundation.model -> toolexec.run.Runner: "schema validation" {
+tooldiscovery.index -> toolexec.run.DefaultRunner: "tool resolution" {
+  style: {
+    stroke: "#3182ce"
+    stroke-width: 2
+  }
+}
+
+tooldiscovery.tooldoc -> toolexec.exec.Exec: "tool docs" {
+  style: {
+    stroke: "#3182ce"
+    stroke-width: 2
+  }
+}
+
+toolfoundation.model -> toolexec.run.DefaultRunner: "schema validation" {
   style: {
     stroke: "#718096"
     stroke-width: 2

@@ -210,6 +210,23 @@ go run ./examples/full
 
 ![toolexec component diagram](../assets/diagrams/component-toolexec.svg)
 
+## Architecture Plan Summary
+
+The `toolexec` architecture plan focused on delivering a unified execution
+surface while keeping each layer isolated and testable:
+
+- **Facade-first API**: `exec.Exec` provides the primary entry point, composing
+  discovery, documentation, and execution behind a single interface.
+- **Deterministic execution**: `run.DefaultRunner` enforces a strict pipeline
+  (resolve → validate → execute → normalize → validate) with structured results.
+- **Runtime isolation**: the `runtime` package allows sandboxed execution for
+  code workflows without coupling to tool execution paths.
+- **Schema contracts**: execution never invents schemas; it validates against
+  `toolfoundation` and surfaces structured results for downstream chaining.
+
+See the full plan for rationale and milestones:
+[Architecture plan](../library-docs-from-repos/toolexec/ARCHITECTURE_PLAN.md).
+
 ## Key Design Decisions
 
 1. **Schema validation**: Both input and output are validated
