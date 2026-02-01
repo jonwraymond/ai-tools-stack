@@ -81,27 +81,27 @@ core: "📦 Core Flow" {
     stroke: ${core-fill}
   }
 
-  toolmodel: "toolmodel\nSchema Types" {
+  toolmodel: "toolfoundation/model\nSchema Types" {
     shape: package
     class: core-component
   }
 
-  toolindex: "toolindex\nRegistry" {
+  toolindex: "tooldiscovery/index\nRegistry" {
     shape: cylinder
     class: core-component
   }
 
-  tooldocs: "tooldocs\nDocumentation" {
+  tooldocs: "tooldiscovery/tooldoc\nDocumentation" {
     shape: document
     class: core-component
   }
 
-  toolrun: "toolrun\nExecution" {
+  toolrun: "toolexec/run\nExecution" {
     shape: step
     class: core-component
   }
 
-  toolcode: "toolcode\nOrchestration" {
+  toolcode: "toolexec/code\nOrchestration" {
     shape: page
     class: core-component
   }
@@ -157,12 +157,12 @@ strategies: "🎯 Strategy Implementations" {
       class: strategy-impl
     }
 
-    bm25: "BM25\ntoolsearch" {
+    bm25: "BM25\ntooldiscovery/search" {
       shape: hexagon
       class: strategy-impl
     }
 
-    semantic: "Semantic\ntoolsemantic" {
+    semantic: "Semantic\ntooldiscovery/semantic" {
       shape: hexagon
       class: strategy-impl
     }
@@ -286,8 +286,8 @@ note: |md
   4. **Injected** via functional options
 
   ```go
-  idx := toolindex.New(
-    toolindex.WithSearcher(bm25.NewSearcher()),
+  idx := index.New(
+    index.WithSearcher(search.NewBM25Searcher(search.BM25Config{})),
   )
   ```
 | {
