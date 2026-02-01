@@ -59,6 +59,8 @@ def patch_clone_script(path: Path) -> None:
             "  cat > mkdocs.yml <<'EOF'",
             "site_name: imported-docs",
             "docs_dir: docs",
+            "nav:",
+            "  - Home: index.md",
             "EOF",
             "fi",
         ]
