@@ -134,4 +134,5 @@ Current version: See the stack version matrix in
 ## Links
 
 - [Repository](https://github.com/jonwraymond/tooladapter)
-- [Library Docs](../library-docs-from-repos/tooladapter/index.md) (via multirepo import)
+- Consolidated into `toolfoundation/adapter`
+- [toolfoundation docs](../library-docs-from-repos/toolfoundation/index.md)

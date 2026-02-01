@@ -31,5 +31,5 @@ toolrun/toolindex --> toolcache --> backends
 
 ## Links
 
-- Repository: https://github.com/jonwraymond/toolcache
-- Library docs: ../library-docs-from-repos/toolcache/index.md
+- Consolidated into `toolops/cache`
+- [toolops docs](../library-docs-from-repos/toolops/index.md)

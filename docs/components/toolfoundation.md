@@ -138,5 +138,6 @@ if current.Compatible(base) {
 ## Links
 
 - [Repository](https://github.com/jonwraymond/toolfoundation)
-- [model docs](../library-docs-from-repos/toolfoundation/model/index.md)
-- [adapter docs](../library-docs-from-repos/toolfoundation/adapter/index.md)
+- [Docs index](../library-docs-from-repos/toolfoundation/index.md)
+- [Design notes](../library-docs-from-repos/toolfoundation/design-notes.md)
+- [User journey](../library-docs-from-repos/toolfoundation/user-journey.md)

@@ -32,5 +32,5 @@ toolrun/toolruntime --> toolobserve --> exporters
 
 ## Links
 
-- Repository: https://github.com/jonwraymond/toolobserve
-- Library docs: ../library-docs-from-repos/toolobserve/index.md
+- Consolidated into `toolops/observe`
+- [toolops docs](../library-docs-from-repos/toolops/index.md)

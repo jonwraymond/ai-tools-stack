@@ -78,4 +78,6 @@ sequenceDiagram
 ## Links
 
 - [Repository](https://github.com/jonwraymond/toolprotocol)
-- [toolprotocol docs](../library-docs-from-repos/toolprotocol/index.md)
+- [Docs index](../library-docs-from-repos/toolprotocol/index.md)
+- [Design notes](../library-docs-from-repos/toolprotocol/design-notes.md)
+- [User journey](../library-docs-from-repos/toolprotocol/user-journey.md)

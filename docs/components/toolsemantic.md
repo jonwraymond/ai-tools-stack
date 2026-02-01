@@ -31,5 +31,5 @@ toolindex --> toolsemantic --> search strategies
 
 ## Links
 
-- Repository: https://github.com/jonwraymond/toolsemantic
-- Library docs: ../library-docs-from-repos/toolsemantic/index.md
+- Consolidated into `tooldiscovery/semantic`
+- [tooldiscovery docs](../library-docs-from-repos/tooldiscovery/index.md)

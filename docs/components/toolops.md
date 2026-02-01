@@ -232,8 +232,6 @@ flowchart LR
 ## Links
 
 - [Repository](https://github.com/jonwraymond/toolops)
-- [observe docs](../library-docs-from-repos/toolops/observe/index.md)
-- [cache docs](../library-docs-from-repos/toolops/cache/index.md)
-- [auth docs](../library-docs-from-repos/toolops/auth/index.md)
-- [health docs](../library-docs-from-repos/toolops/health/index.md)
-- [resilience docs](../library-docs-from-repos/toolops/resilience/index.md)
+- [Docs index](../library-docs-from-repos/toolops/index.md)
+- [Design notes](../library-docs-from-repos/toolops/design-notes.md)
+- [User journey](../library-docs-from-repos/toolops/user-journey.md)

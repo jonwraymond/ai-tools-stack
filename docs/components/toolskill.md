@@ -31,5 +31,5 @@ toolset + toolrun + toolobserve --> toolskill --> metatools-mcp
 
 ## Links
 
-- Repository: https://github.com/jonwraymond/toolskill
-- Library docs: ../library-docs-from-repos/toolskill/index.md
+- Consolidated into `toolcompose/skill`
+- [toolcompose docs](../library-docs-from-repos/toolcompose/index.md)

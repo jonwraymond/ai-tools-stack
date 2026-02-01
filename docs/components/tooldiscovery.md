@@ -138,7 +138,6 @@ flowchart TB
 ## Links
 
 - [Repository](https://github.com/jonwraymond/tooldiscovery)
-- [index docs](../library-docs-from-repos/tooldiscovery/index/index.md)
-- [search docs](../library-docs-from-repos/tooldiscovery/search/index.md)
-- [semantic docs](../library-docs-from-repos/tooldiscovery/semantic/index.md)
-- [tooldoc docs](../library-docs-from-repos/tooldiscovery/tooldoc/index.md)
+- [Docs index](../library-docs-from-repos/tooldiscovery/index.md)
+- [Design notes](../library-docs-from-repos/tooldiscovery/design-notes.md)
+- [User journey](../library-docs-from-repos/tooldiscovery/user-journey.md)

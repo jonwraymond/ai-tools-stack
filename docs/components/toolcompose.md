@@ -132,5 +132,6 @@ flowchart TB
 ## Links
 
 - [Repository](https://github.com/jonwraymond/toolcompose)
-- [set docs](../library-docs-from-repos/toolcompose/set/index.md)
-- [skill docs](../library-docs-from-repos/toolcompose/skill/index.md)
+- [Docs index](../library-docs-from-repos/toolcompose/index.md)
+- [Design notes](../library-docs-from-repos/toolcompose/design-notes.md)
+- [User journey](../library-docs-from-repos/toolcompose/user-journey.md)

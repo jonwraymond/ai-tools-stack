@@ -168,7 +168,6 @@ b, err := registry.Resolve(tool.Backend)
 ## Links
 
 - [Repository](https://github.com/jonwraymond/toolexec)
-- [run docs](../library-docs-from-repos/toolexec/run/index.md)
-- [code docs](../library-docs-from-repos/toolexec/code/index.md)
-- [runtime docs](../library-docs-from-repos/toolexec/runtime/index.md)
-- [backend docs](../library-docs-from-repos/toolexec/backend/index.md)
+- [Docs index](../library-docs-from-repos/toolexec/index.md)
+- [Design notes](../library-docs-from-repos/toolexec/design-notes.md)
+- [User journey](../library-docs-from-repos/toolexec/user-journey.md)

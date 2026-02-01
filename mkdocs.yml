@@ -22,10 +22,30 @@ nav:
       - toolops: components/toolops.md
       - toolprotocol: components/toolprotocol.md
       - metatools-mcp: components/metatools-mcp.md
+      - toolmodel: components/toolmodel.md
+      - toolindex: components/toolindex.md
+      - tooldocs: components/tooldocs.md
+      - toolrun: components/toolrun.md
+      - toolruntime: components/toolruntime.md
+      - toolcode: components/toolcode.md
+      - tooladapter: components/tooladapter.md
+      - toolset: components/toolset.md
+      - toolskill: components/toolskill.md
+      - toolobserve: components/toolobserve.md
+      - toolcache: components/toolcache.md
+      - toolsearch: components/toolsearch.md
+      - toolsemantic: components/toolsemantic.md
   - Operations:
       - CI and Versioning: operations/ci-and-versioning.md
       - Migration Guide: operations/migration-guide.md
       - Stack Changelog: operations/stack-changelog.md
+      - Consolidation Validation: operations/consolidation-validation-report.md
+  - Contributor Notes:
+      - Root: CLAUDE.md
+      - Architecture: architecture/CLAUDE.md
+      - Components: components/CLAUDE.md
+      - Diagrams: diagrams/CLAUDE.md
+      - Operations: operations/CLAUDE.md
   - Library Docs (from repos):
       - toolfoundation: '!import https://github.com/jonwraymond/toolfoundation?branch=main&docs_dir=docs/*'
       - tooldiscovery: '!import https://github.com/jonwraymond/tooldiscovery?branch=main&docs_dir=docs/*'
