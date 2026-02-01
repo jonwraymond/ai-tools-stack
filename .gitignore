@@ -25,3 +25,5 @@ secrets.*
 .venv/
 site/
 temp_dir/
+
+.claude/
