@@ -83,14 +83,13 @@ and Anthropic tool definitions through a canonical intermediate representation.
 ```go
 import (
   "github.com/jonwraymond/toolfoundation/adapter"
-  "github.com/jonwraymond/toolfoundation/adapter/adapters"
 )
 
 // Set up registry with all adapters
 registry := adapter.NewRegistry()
-registry.Register(adapters.NewMCPAdapter())
-registry.Register(adapters.NewOpenAIAdapter())
-registry.Register(adapters.NewAnthropicAdapter())
+registry.Register(adapter.NewMCPAdapter())
+registry.Register(adapter.NewOpenAIAdapter())
+registry.Register(adapter.NewAnthropicAdapter())
 
 // Convert MCP tool to OpenAI format
 result, err := registry.Convert(mcpTool, "mcp", "openai")
