@@ -27,3 +27,5 @@ site/
 temp_dir/
 
 .claude/
+
+CLAUDE.md
