@@ -36,7 +36,7 @@ The ApertureStack consolidation is complete. All 13 standalone repositories are 
 |------------|----|-------|
 | toolprotocol | ✓ success | Last run 2026-01-31 |
 | metatools-mcp | ✓ success | Last run 2026-01-31 |
-| ai-tools-stack | pending | Fix applied to remove local `replace` directives; CI should pass after push |
+| ai-tools-stack | ✓ success | Docs workflow green (2026-02-01) |
 
 ## Archive Status
 
@@ -76,10 +76,9 @@ toolprotocol
 ## Documentation Status
 
 - D2 diagrams rendered to SVG for ai-tools-stack and metatools-mcp.
-- MkDocs build not run locally (mkdocs not installed); rely on CI after push.
+- MkDocs build validated in CI (Docs workflow).
 - Documentation structure and navigation aligned to consolidated repos.
 
 ## Conclusion
 
-**Gate G7: PASSED (local validation)**  
-Remaining action: push changes and confirm ai-tools-stack CI green.
+**Gate G7: PASSED**
