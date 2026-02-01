@@ -56,8 +56,8 @@ github.com/jonwraymond/metatools-mcp v0.5.2 h1:S2oDBNMCyaRmIkYQ9W2JZUgx6K0xp1pKk
 github.com/jonwraymond/metatools-mcp v0.5.2/go.mod h1:RLsfDTXjw0/Ky1tzHt47l/FJVRkipWue0pt1ihefiWA=
 github.com/jonwraymond/tooldiscovery v0.2.1 h1:/XBhHSrnSCPs+Cea9EivnIjJccJMcJa5BoC0qwJ8flg=
 github.com/jonwraymond/tooldiscovery v0.2.1/go.mod h1:2LxR6cm4RUPu+o88QstDdfLVAABmYan2TWE6eg1xtcU=
-github.com/jonwraymond/toolexec v0.1.2 h1:RsziQ6vYUQRR0j6jETXVsIPWOiptoqDFkxf6C7k8oVU=
-github.com/jonwraymond/toolexec v0.1.2/go.mod h1:QSvUCflbxiKA2Dh/uceS0mDusowzsmxczx9/t5iCqao=
+github.com/jonwraymond/toolexec v0.1.3 h1:ufREcpvvGwrKuhH7rPjTx+Rv8j665WEombAxFsJpXNI=
+github.com/jonwraymond/toolexec v0.1.3/go.mod h1:4So5zZuLZobwKop98wu1CqotKQvXZGqPuVLEkc44FfQ=
 github.com/jonwraymond/toolfoundation v0.2.0 h1:Uqk0XPVCPFi4vtOn8R9Y/965KhxU3ptaZSCaN5N3qXg=
 github.com/jonwraymond/toolfoundation v0.2.0/go.mod h1:sUvAa1lxc/l57jdC+hAQVWKky3wpobDB2sNo40lQSCY=
 github.com/json-iterator/go v1.1.12 h1:PV8peI4a0ysnczrg+LtxykD8LfKY9ML6u2jnxaEnrnM=
