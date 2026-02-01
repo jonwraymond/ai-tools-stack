@@ -34,8 +34,8 @@ The ApertureStack consolidation is complete. All 13 standalone repositories are 
 
 | Repository | CI | Notes |
 |------------|----|-------|
-| toolprotocol | ✓ success | Last run 2026-01-31 |
-| metatools-mcp | ✓ success | Last run 2026-01-31 |
+| toolprotocol | ✓ success | Last run 2026-02-01 |
+| metatools-mcp | ✓ success | Last run 2026-02-01 |
 | ai-tools-stack | ✓ success | Docs workflow green (2026-02-01) |
 
 ## Archive Status
