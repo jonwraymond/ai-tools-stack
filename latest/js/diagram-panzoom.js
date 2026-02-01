@@ -1,5 +1,11 @@
 (function () {
-  const DIAGRAM_SELECTOR = 'img[src*="/assets/diagrams/"], img[src*="assets/diagrams/"]';
+  const DIAGRAM_SELECTOR = [
+    'img[src*="/assets/diagrams/"]',
+    'img[src*="assets/diagrams/"]',
+    'img[src*="/diagrams/"]',
+    'img[src*="diagrams/"]',
+    'img[data-diagram="true"]',
+  ].join(', ');
   const MERMAID_SELECTOR = '.mermaid svg';
   const MAX_SCALE = 6;
   const MIN_SCALE = 0.2;
