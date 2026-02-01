@@ -29,6 +29,9 @@ progressive-disclosure MCP surface.
 
 ![AI Tools Stack Flow](assets/diagrams/stack-high-level-flow.svg)
 
+!!! tip "Diagram controls"
+    Click any diagram to open a zoomable, pannable view. Scroll/pinch to zoom and drag to pan.
+
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2b6cb0', 'primaryTextColor': '#fff', 'lineColor': '#4a5568'}}}%%
 flowchart TB
