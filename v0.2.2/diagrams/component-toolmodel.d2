@@ -1,0 +1,193 @@
+# Component: toolmodel
+# Canonical MCP tool schema and validation
+
+direction: right
+
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+  foundation-fill: "#718096"
+  consumer-fill: "#3182ce"
+  validation-fill: "#38a169"
+}
+
+classes: {
+  container: {
+    style: {
+      border-radius: 12
+      shadow: true
+      font-size: 14
+      bold: true
+    }
+  }
+  foundation-node: {
+    style: {
+      fill: ${foundation-fill}
+      stroke: "#4a5568"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  consumer-node: {
+    style: {
+      fill: ${consumer-fill}
+      stroke: "#2c5282"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  validation-node: {
+    style: {
+      fill: ${validation-fill}
+      stroke: "#276749"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  dependency-flow: {
+    style: {
+      stroke: "#4a5568"
+      stroke-width: 2
+    }
+  }
+}
+
+# Title
+title: "toolmodel - Foundation Layer" {
+  shape: text
+  near: top-center
+  style: {
+    font-size: 28
+    bold: true
+    font-color: "#1a365d"
+  }
+}
+
+# Core Component
+core: "🧱 toolmodel" {
+  class: container
+  style: {
+    fill: "#f7fafc"
+    stroke: ${foundation-fill}
+    stroke-width: 3
+  }
+
+  tool: "Tool\nCanonical Schema" {
+    shape: package
+    class: foundation-node
+  }
+
+  schema: "InputSchema\nJSON Schema Def" {
+    shape: document
+    class: foundation-node
+  }
+
+  backend: "BackendRef\nExecution Binding" {
+    shape: step
+    class: foundation-node
+  }
+
+  validate: "Validate()\nSchema Validation" {
+    shape: hexagon
+    class: validation-node
+  }
+
+  tool -> schema: "has"
+  tool -> backend: "has"
+  tool -> validate: "calls"
+}
+
+# Consumers
+consumers: "📦 Consumer Libraries" {
+  class: container
+  style: {
+    fill: "#ebf8ff"
+    stroke: ${consumer-fill}
+  }
+
+  toolindex: "toolindex\nRegistry" {
+    shape: cylinder
+    class: consumer-node
+  }
+
+  tooldocs: "tooldocs\nDocumentation" {
+    shape: document
+    class: consumer-node
+  }
+
+  toolrun: "toolrun\nExecution" {
+    shape: step
+    class: consumer-node
+  }
+
+  toolcode: "toolcode\nOrchestration" {
+    shape: page
+    class: consumer-node
+  }
+
+  tooladapter: "tooladapter\nProtocol" {
+    shape: package
+    class: consumer-node
+  }
+}
+
+# Surface
+surface: "🔷 MCP Surface" {
+  class: container
+  style: {
+    fill: "#ebf8ff"
+    stroke: "#2b6cb0"
+    stroke-width: 2
+  }
+
+  metatools: "metatools-mcp\nMCP Server" {
+    shape: hexagon
+    style: {
+      fill: "#2b6cb0"
+      stroke: "#1a365d"
+      font-color: "#fff"
+    }
+  }
+}
+
+# Dependencies
+core.tool -> consumers.toolindex: "registers in" {
+  class: dependency-flow
+}
+core.tool -> consumers.tooldocs: "documented by" {
+  class: dependency-flow
+}
+core.tool -> consumers.toolrun: "executed by" {
+  class: dependency-flow
+}
+core.tool -> consumers.toolcode: "orchestrated by" {
+  class: dependency-flow
+}
+core.tool -> consumers.tooladapter: "converted by" {
+  class: dependency-flow
+}
+
+consumers.toolindex -> surface.metatools {
+  class: dependency-flow
+  style.stroke-dash: 2
+}
+
+# Key types note
+types: |md
+  ## Key Types
+
+  - `Tool` - Complete tool definition
+  - `InputSchema` - JSON Schema for args
+  - `BackendRef` - Local/Provider/MCP
+  - `ToolError` - Structured errors
+| {
+  near: bottom-left
+  style: {
+    fill: "#f7fafc"
+    stroke: "#e2e8f0"
+    font-size: 10
+    border-radius: 8
+  }
+}

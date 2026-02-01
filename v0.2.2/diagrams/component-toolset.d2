@@ -1,0 +1,199 @@
+# Component: toolset
+# Composable tool collections with access control
+
+direction: right
+
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+  toolset-fill: "#805ad5"
+  source-fill: "#718096"
+  filter-fill: "#d69e2e"
+  output-fill: "#38a169"
+}
+
+classes: {
+  container: {
+    style: {
+      border-radius: 12
+      shadow: true
+      font-size: 14
+      bold: true
+    }
+  }
+  toolset-node: {
+    style: {
+      fill: ${toolset-fill}
+      stroke: "#6b46c1"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  source-node: {
+    style: {
+      fill: ${source-fill}
+      stroke: "#4a5568"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  filter-node: {
+    style: {
+      fill: ${filter-fill}
+      stroke: "#b7791f"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  output-node: {
+    style: {
+      fill: ${output-fill}
+      stroke: "#276749"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  data-flow: {
+    style: {
+      stroke: "#4a5568"
+      stroke-width: 2
+    }
+  }
+}
+
+# Title
+title: "toolset - Composition Layer" {
+  shape: text
+  near: top-center
+  style: {
+    font-size: 28
+    bold: true
+    font-color: "#1a365d"
+  }
+}
+
+# Sources
+sources: "📥 Sources" {
+  class: container
+  style: {
+    fill: "#f7fafc"
+    stroke: ${source-fill}
+  }
+
+  registry: "toolindex\nRegistry" {
+    shape: cylinder
+    class: source-node
+  }
+
+  slice: "Tool Slice\nExplicit List" {
+    shape: document
+    class: source-node
+  }
+
+  other_sets: "Other Toolsets\nComposition" {
+    shape: package
+    class: source-node
+  }
+}
+
+# Core Component
+core: "🎼 toolset" {
+  class: container
+  style: {
+    fill: "#faf5ff"
+    stroke: ${toolset-fill}
+    stroke-width: 3
+  }
+
+  builder: "Builder\nConstruct Set" {
+    shape: package
+    class: toolset-node
+  }
+
+  filters: "Filters\nInclude/Exclude" {
+    shape: diamond
+    class: filter-node
+  }
+
+  policy: "Policy\nAccess Control" {
+    shape: hexagon
+    class: filter-node
+  }
+
+  set: "Toolset\nFinal Collection" {
+    shape: cylinder
+    class: toolset-node
+  }
+
+  builder -> filters: "apply"
+  filters -> policy: "evaluate"
+  policy -> set: "build"
+}
+
+# Exposure
+exposure: "📤 Exposure" {
+  class: container
+  style: {
+    fill: "#f0fff4"
+    stroke: ${output-fill}
+  }
+
+  mcp: "MCP\nServer Export" {
+    shape: hexagon
+    class: output-node
+  }
+
+  openai: "OpenAI\nFunction Format" {
+    shape: hexagon
+    class: output-node
+  }
+
+  anthropic: "Anthropic\nTool Format" {
+    shape: hexagon
+    class: output-node
+  }
+}
+
+# Connections
+sources.registry -> core.builder: "all tools" {
+  class: data-flow
+}
+sources.slice -> core.builder: "selected" {
+  class: data-flow
+}
+sources.other_sets -> core.builder: "compose" {
+  class: data-flow
+}
+
+core.set -> exposure.mcp: "export" {
+  class: data-flow
+  style.stroke: ${output-fill}
+}
+core.set -> exposure.openai: "export" {
+  class: data-flow
+  style.stroke: ${output-fill}
+}
+core.set -> exposure.anthropic: "export" {
+  class: data-flow
+  style.stroke: ${output-fill}
+}
+
+# Note
+note: |md
+  ## Key Features
+
+  - **Composition**: Combine sets
+  - **Filtering**: Include/exclude
+  - **Policy**: Access control
+  - **Export**: Multi-format
+| {
+  near: bottom-right
+  style: {
+    fill: "#f7fafc"
+    stroke: "#e2e8f0"
+    font-size: 10
+    border-radius: 8
+  }
+}

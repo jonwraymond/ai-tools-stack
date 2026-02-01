@@ -1,0 +1,144 @@
+# metatools-mcp Component Wiring
+# Library dependencies and extensions
+
+direction: right
+
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+  surface-fill: "#2b6cb0"
+  core-fill: "#3182ce"
+  optional-fill: "#805ad5"
+}
+
+classes: {
+  container: {
+    style: {
+      border-radius: 12
+      shadow: true
+      font-size: 14
+      bold: true
+    }
+  }
+  surface-node: {
+    style: {
+      fill: ${surface-fill}
+      stroke: "#1a365d"
+      stroke-width: 3
+      font-color: "#fff"
+    }
+  }
+  core-node: {
+    style: {
+      fill: ${core-fill}
+      stroke: "#2c5282"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  optional-node: {
+    style: {
+      fill: ${optional-fill}
+      stroke: "#6b46c1"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  core-flow: {
+    style: {
+      stroke: ${core-fill}
+      stroke-width: 2
+    }
+  }
+  optional-flow: {
+    style: {
+      stroke: ${optional-fill}
+      stroke-width: 2
+      stroke-dash: 3
+    }
+  }
+}
+
+# Title
+title: "metatools-mcp - Component Wiring" {
+  shape: text
+  near: top-center
+  style: {
+    font-size: 24
+    bold: true
+    font-color: "#1a365d"
+  }
+}
+
+# MCP Server
+metatools: "🔷 metatools-mcp\nMCP Server" {
+  shape: hexagon
+  class: surface-node
+}
+
+# Core Libraries
+core: "📦 Core Libraries" {
+  class: container
+  style: {
+    fill: "#ebf8ff"
+    stroke: ${core-fill}
+  }
+
+  toolmodel: "📋 toolfoundation/model\nSchema" {
+    shape: package
+    class: core-node
+  }
+  toolindex: "🗂️ tooldiscovery/index\nRegistry" {
+    shape: cylinder
+    class: core-node
+  }
+  tooldocs: "📚 tooldiscovery/tooldoc\nDocs" {
+    shape: document
+    class: core-node
+  }
+  toolrun: "▶️ toolexec/run\nExec" {
+    shape: step
+    class: core-node
+  }
+}
+
+# Optional Extensions
+optional: "🔌 Optional Extensions" {
+  class: container
+  style: {
+    fill: "#faf5ff"
+    stroke: ${optional-fill}
+    stroke-dash: 3
+  }
+
+  toolcode: "💻 toolexec/code\nOrchestration" {
+    shape: page
+    class: optional-node
+  }
+  toolruntime: "🔒 toolexec/runtime\nSandbox" {
+    shape: cloud
+    class: optional-node
+  }
+  toolsearch: "🔍 tooldiscovery/search\nBM25" {
+    shape: diamond
+    class: optional-node
+  }
+}
+
+# Connections
+metatools -> core: "requires" {
+  class: core-flow
+}
+metatools -> optional: "plugs in" {
+  class: optional-flow
+}
+
+core.toolindex -> optional.toolsearch: "search strategy" {
+  class: optional-flow
+}
+
+optional.toolcode -> optional.toolruntime: "sandboxes" {
+  class: optional-flow
+}
