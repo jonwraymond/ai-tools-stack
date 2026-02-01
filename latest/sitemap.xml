@@ -166,6 +166,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolfoundation/schemas/</loc>
+         <lastmod>2026-02-01</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolfoundation/user-journey/</loc>
          <lastmod>2026-02-01</lastmod>
          <changefreq>daily</changefreq>
