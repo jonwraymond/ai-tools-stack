@@ -12,6 +12,7 @@ search approaches.
 | `search` | BM25-based full-text search strategy |
 | `semantic` | Embedding-based semantic search (optional) |
 | `tooldoc` | Progressive documentation with detail levels |
+| `discovery` | Unified facade combining index + search + semantic + tooldoc |
 
 ## Motivation
 
@@ -19,6 +20,26 @@ search approaches.
 - Decouple search quality from core registry
 - Support multiple search strategies (lexical, BM25, semantic)
 - Provide progressive disclosure of tool documentation
+- Offer a unified facade for most consumers (`discovery`)
+
+## discovery Package
+
+The `discovery` package provides a simple API that composes index, search,
+semantic search, and documentation into one facade.
+
+### Example
+
+```go
+import "github.com/jonwraymond/tooldiscovery/discovery"
+
+disc, _ := discovery.New(discovery.Options{})
+_ = disc.RegisterTool(tool, backend)
+
+results, _ := disc.Search(context.Background(), "create issue", 5)
+for _, r := range results {
+  fmt.Println(r.ScoreType, r.Summary.ID)
+}
+```
 
 ## index Package
 
@@ -92,7 +113,6 @@ The `tooldoc` package provides progressive documentation with multiple detail le
 | Level | Contents | Use Case |
 |-------|----------|----------|
 | `Summary` | Name, namespace, short description | Listing, filtering |
-| `Description` | Full description, tags, examples | Selection |
 | `Schema` | Input/output JSON schemas | Execution |
 | `Full` | Everything including metadata | Documentation |
 
@@ -105,8 +125,16 @@ store := tooldoc.NewInMemoryStore()
 
 // Get progressive documentation
 doc, _ := store.GetDoc(toolID, tooldoc.DetailSchema)
-fmt.Println(doc.InputSchema)
+fmt.Println(doc.Tool.InputSchema)
 ```
+
+## Schemas and Contracts
+
+tooldiscovery defines data contracts for discovery payloads (summaries,
+documentation records, and results) and relies on toolfoundation for JSON
+Schema validation. See:
+
+- [schemas and contracts](../library-docs-from-repos/tooldiscovery/schemas.md)
 
 ## Diagram
 
@@ -141,3 +169,6 @@ flowchart TB
 - [Docs index](../library-docs-from-repos/tooldiscovery/index.md)
 - [Design notes](../library-docs-from-repos/tooldiscovery/design-notes.md)
 - [User journey](../library-docs-from-repos/tooldiscovery/user-journey.md)
+- [Schemas and contracts](../library-docs-from-repos/tooldiscovery/schemas.md)
+- [Architecture](../library-docs-from-repos/tooldiscovery/architecture.md)
+- [Concurrency](../library-docs-from-repos/tooldiscovery/concurrency.md)
