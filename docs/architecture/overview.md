@@ -43,9 +43,9 @@ flowchart TB
 
 ---
 
-## Layering Model (All 14 Components)
+## Layering Model (Consolidated Stack)
 
-Complete view of all stack components organized by architectural layer.
+Complete view of the consolidated repositories organized by layer.
 
 ![Stack Layering Model](../assets/diagrams/stack-layering-model.svg)
 
@@ -54,81 +54,62 @@ Complete view of all stack components organized by architectural layer.
 flowchart TB
     subgraph surface["MCP Surface Layer"]
         direction LR
-        metatools["🔷 metatools-mcp<br/><small>v0.4.0 • MCP Server</small>"]
-    end
-
-    subgraph composition["Composition Layer"]
-        direction LR
-        toolset["📦 toolset<br/><small>v1.0.1 • Filtered Collections</small>"]
-        toolskill["🎯 toolskill<br/><small>v0.2.0 • Skill Workflows</small>"]
+        metatools["🔷 metatools-mcp<br/><small>v0.5.0 • MCP Server</small>"]
     end
 
     subgraph protocol["Protocol Layer"]
         direction LR
-        tooladapter["🔄 tooladapter<br/><small>v0.2.0 • Format Conversion</small>"]
+        toolprotocol["📡 toolprotocol<br/><small>v0.1.0 • Transports + Wire</small>"]
+    end
+
+    subgraph operations["Operations Layer"]
+        direction LR
+        toolops["👁️ toolops<br/><small>v0.1.0 • Observe/Cache/Auth</small>"]
+    end
+
+    subgraph composition["Composition Layer"]
+        direction LR
+        toolcompose["📦 toolcompose<br/><small>v0.1.0 • Set + Skill</small>"]
     end
 
     subgraph execution["Execution Layer"]
         direction LR
-        toolrun["▶️ toolrun<br/><small>v0.3.0 • Execution + Chaining</small>"]
-        toolcode["💻 toolcode<br/><small>v0.3.0 • Code Orchestration</small>"]
-        toolruntime["🏃 toolruntime<br/><small>v0.2.1 • Runtime Isolation</small>"]
+        toolexec["▶️ toolexec<br/><small>v0.1.0 • Run/Code/Runtime</small>"]
     end
 
     subgraph discovery["Discovery Layer"]
         direction LR
-        toolindex["📇 toolindex<br/><small>v0.3.0 • Registry + Search</small>"]
-        tooldocs["📚 tooldocs<br/><small>v0.2.0 • Progressive Docs</small>"]
-        toolsearch["🔍 toolsearch<br/><small>v0.3.0 • BM25 Strategy</small>"]
-        toolsemantic["🧠 toolsemantic<br/><small>v0.2.0 • Semantic Search</small>"]
+        tooldiscovery["📇 tooldiscovery<br/><small>v0.1.0 • Index/Search/Docs</small>"]
     end
 
     subgraph foundation["Foundation Layer"]
         direction LR
-        toolmodel["🧱 toolmodel<br/><small>v0.2.0 • Canonical Schema</small>"]
+        toolfoundation["🧱 toolfoundation<br/><small>v0.1.0 • Model/Adapter/Version</small>"]
     end
 
-    subgraph crosscutting["Cross-Cutting Concerns"]
-        direction LR
-        toolobserve["👁️ toolobserve<br/><small>v0.2.0 • Observability</small>"]
-        toolcache["💾 toolcache<br/><small>v0.2.0 • Caching</small>"]
-    end
+    toolfoundation --> tooldiscovery
+    toolfoundation --> toolexec
+    toolfoundation --> toolprotocol
+    toolfoundation --> toolops
+    toolfoundation --> toolcompose
 
-    toolmodel --> toolindex
-    toolmodel --> tooladapter
-    toolmodel --> tooldocs
-    toolmodel --> toolrun
+    tooldiscovery --> toolcompose
+    toolexec --> toolcompose
 
-    tooladapter --> toolset
-    toolindex --> tooldocs
-    toolindex --> toolrun
-    toolsearch --> toolindex
-    toolsemantic -.-> toolindex
-
-    toolrun --> toolcode
-    toolcode --> toolruntime
-    toolset --> toolrun
-    toolskill --> toolrun
-    toolskill --> toolset
-
-    toolindex --> metatools
-    tooldocs --> metatools
-    toolrun --> metatools
-    toolcode --> metatools
-    toolset --> metatools
-    toolskill -.-> metatools
-
-    toolobserve -.-> toolrun
-    toolobserve -.-> metatools
-    toolcache -.-> toolrun
+    toolprotocol --> metatools
+    toolops --> metatools
+    toolcompose --> metatools
+    toolexec --> metatools
+    tooldiscovery --> metatools
+    toolfoundation --> metatools
 
     style surface fill:#2b6cb0,stroke:#2c5282,stroke-width:2px
-    style composition fill:#6b46c1,stroke:#553c9a,stroke-width:2px
     style protocol fill:#d69e2e,stroke:#b7791f,stroke-width:2px
+    style operations fill:#e53e3e,stroke:#c53030,stroke-width:2px
+    style composition fill:#6b46c1,stroke:#553c9a,stroke-width:2px
     style execution fill:#38a169,stroke:#276749,stroke-width:2px
     style discovery fill:#3182ce,stroke:#2c5282,stroke-width:2px
     style foundation fill:#718096,stroke:#4a5568,stroke-width:2px
-    style crosscutting fill:#e53e3e,stroke:#c53030,stroke-width:2px
 ```
 
 ---
@@ -144,10 +125,10 @@ sequenceDiagram
 
     participant Agent as 🤖 AI Agent
     participant MCP as 🔷 metatools-mcp
-    participant Index as 📇 toolindex
-    participant Search as 🔍 toolsearch
-    participant Docs as 📚 tooldocs
-    participant Run as ▶️ toolrun
+    participant Index as 📇 tooldiscovery/index
+    participant Search as 🔍 tooldiscovery/search
+    participant Docs as 📚 tooldiscovery/tooldoc
+    participant Run as ▶️ toolexec/run
 
     rect rgb(43, 108, 176, 0.1)
         Note over Agent,Search: Phase 1: Discovery (Token-Cheap)
@@ -255,7 +236,7 @@ flowchart TB
         Input["🔍 'create github issue'"]
     end
 
-    subgraph index["toolindex"]
+    subgraph index["tooldiscovery/index"]
         Search["Index.Search(query, limit)"]
         Docs["SearchDoc[]<br/><small>ID, Name, Namespace,<br/>Description, Tags</small>"]
     end
@@ -267,13 +248,13 @@ flowchart TB
             Simple["Simple substring<br/>matching"]
         end
 
-        subgraph bm25["BM25 (toolsearch)"]
+        subgraph bm25["BM25 (tooldiscovery/search)"]
             BM["BM25Searcher"]
             Boosts["Field Boosts:<br/><small>name: 4x<br/>namespace: 2x<br/>tags: 1x</small>"]
             Bleve["Bleve Index"]
         end
 
-        subgraph semantic["Semantic (toolsemantic)"]
+        subgraph semantic["Semantic (tooldiscovery/semantic)"]
             Embed["Embedder"]
             Vector["Vector Store"]
             Similarity["Cosine Similarity"]
@@ -319,70 +300,51 @@ Directed acyclic graph showing module dependencies and bump order.
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#4a5568'}}}%%
 flowchart TD
     subgraph order1["Bump Order 1"]
-        toolmodel["🧱 toolmodel"]
+        toolfoundation["🧱 toolfoundation"]
     end
 
     subgraph order2["Bump Order 2"]
-        toolindex["📇 toolindex"]
-        tooladapter["🔄 tooladapter"]
+        tooldiscovery["📇 tooldiscovery"]
+        toolexec["▶️ toolexec"]
+        toolprotocol["📡 toolprotocol"]
+        toolops["👁️ toolops"]
     end
 
     subgraph order3["Bump Order 3"]
-        tooldocs["📚 tooldocs"]
-        toolrun["▶️ toolrun"]
-        toolset["📦 toolset"]
-        toolsearch["🔍 toolsearch"]
-        toolsemantic["🧠 toolsemantic"]
+        toolcompose["📦 toolcompose"]
     end
 
     subgraph order4["Bump Order 4"]
-        toolcode["💻 toolcode"]
-        toolskill["🎯 toolskill"]
-        toolobserve["👁️ toolobserve"]
-        toolcache["💾 toolcache"]
-    end
-
-    subgraph order5["Bump Order 5"]
-        toolruntime["🏃 toolruntime"]
-    end
-
-    subgraph order6["Bump Order 6"]
         metatools["🔷 metatools-mcp"]
     end
 
-    toolmodel --> toolindex
-    toolmodel --> tooladapter
-    toolindex --> tooldocs
-    toolindex --> toolrun
-    toolindex --> toolsearch
-    toolindex --> toolsemantic
-    tooladapter --> toolset
-    toolset --> toolrun
-    toolrun --> toolcode
-    toolrun --> toolskill
-    toolrun --> toolobserve
-    toolrun --> toolcache
-    toolcode --> toolruntime
+    toolfoundation --> tooldiscovery
+    toolfoundation --> toolexec
+    toolfoundation --> toolprotocol
+    toolfoundation --> toolops
+    toolfoundation --> toolcompose
 
-    toolindex --> metatools
-    tooldocs --> metatools
-    toolrun --> metatools
-    toolcode --> metatools
-    toolset --> metatools
+    tooldiscovery --> toolcompose
+    toolexec --> toolcompose
+
+    toolprotocol --> metatools
+    toolops --> metatools
+    toolcompose --> metatools
+    toolexec --> metatools
+    tooldiscovery --> metatools
+    toolfoundation --> metatools
 
     style order1 fill:#718096,stroke:#4a5568
     style order2 fill:#3182ce,stroke:#2c5282
     style order3 fill:#38a169,stroke:#276749
-    style order4 fill:#d69e2e,stroke:#b7791f
-    style order5 fill:#e53e3e,stroke:#c53030
-    style order6 fill:#6b46c1,stroke:#553c9a
+    style order4 fill:#6b46c1,stroke:#553c9a
 ```
 
 ---
 
 ## Observability Integration
 
-How toolobserve wraps around tool execution with traces, metrics, and logs.
+How toolops/observe wraps around tool execution with traces, metrics, and logs.
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#e53e3e'}}}%%
@@ -391,7 +353,7 @@ flowchart TB
         Request["📥 Tool Request"]
     end
 
-    subgraph middleware["toolobserve Middleware"]
+    subgraph middleware["toolops/observe Middleware"]
         direction TB
         MW["🔀 Middleware.Wrap()"]
 
@@ -412,7 +374,7 @@ flowchart TB
     end
 
     subgraph execution["Actual Execution"]
-        Runner["▶️ toolrun.Runner"]
+        Runner["▶️ toolexec/run.Runner"]
     end
 
     subgraph exporters["Exporters"]

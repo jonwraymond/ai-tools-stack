@@ -21,12 +21,12 @@ sequenceDiagram
 
     participant Agent as 🤖 AI Agent
     participant MCP as 🔷 metatools-mcp
-    participant Index as 📇 toolindex
-    participant Search as 🔍 toolsearch
-    participant Docs as 📚 tooldocs
-    participant Run as ▶️ toolrun
-    participant Cache as 💾 toolcache
-    participant Observe as 👁️ toolobserve
+    participant Index as 📇 tooldiscovery/index
+    participant Search as 🔍 tooldiscovery/search
+    participant Docs as 📚 tooldiscovery/tooldoc
+    participant Run as ▶️ toolexec/run
+    participant Cache as 💾 toolops/cache
+    participant Observe as 👁️ toolops/observe
 
     rect rgb(43, 108, 176, 0.1)
         Note over Agent,Search: Phase 1: Discovery (Token-Cheap)
@@ -108,14 +108,14 @@ flowchart LR
 
 | Component | Role in Progressive Disclosure |
 |-----------|-------------------------------|
-| `toolindex` | Fast, summary-only discovery |
-| `toolsearch` | Pluggable ranking strategy (BM25, semantic) |
-| `toolsemantic` | Vector-based intent matching |
-| `tooldocs` | Structured detail (summary/schema/full/examples) |
-| `toolrun` | Execution with validation + consistent errors |
-| `toolcode` | Optional code-mode orchestration |
-| `toolcache` | Cache results to avoid re-execution |
-| `toolobserve` | Trace execution for debugging |
+| `tooldiscovery/index` | Fast, summary-only discovery |
+| `tooldiscovery/search` | Pluggable ranking strategy (BM25, semantic) |
+| `tooldiscovery/semantic` | Vector-based intent matching |
+| `tooldiscovery/tooldoc` | Structured detail (summary/schema/full/examples) |
+| `toolexec/run` | Execution with validation + consistent errors |
+| `toolexec/code` | Optional code-mode orchestration |
+| `toolops/cache` | Cache results to avoid re-execution |
+| `toolops/observe` | Trace execution for debugging |
 
 ## Token Economics
 

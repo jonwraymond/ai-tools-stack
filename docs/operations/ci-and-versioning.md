@@ -27,9 +27,9 @@ are immediately usable in CI and local workflows.
 scripts/update-version-matrix.sh --apply
 ```
 
-### New modules (example: tooladapter)
+### New modules (example: toolprotocol)
 
-When a new module is added to the stack (for example `tooladapter`), the propagation
+When a new module is added to the stack (for example `toolprotocol`), the propagation
 steps are:
 
 1) Tag the new module (`vX.Y.Z`).
@@ -42,7 +42,7 @@ steps are:
 Use the DAG-aware bump tool:
 
 ```bash
-scripts/bump-dep.sh --dep toolruntime --latest --apply
+scripts/bump-dep.sh --dep toolexec --latest --apply
 ```
 
 This updates all downstream repos and ai-tools-stack in order.

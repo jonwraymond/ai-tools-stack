@@ -1,5 +1,5 @@
-# ApertureStack Layering Model
-# Comprehensive 7-layer architecture diagram with enhanced styling
+# ApertureStack Layering Model (Consolidated)
+# 6 library repos + surface
 
 direction: down
 
@@ -8,19 +8,18 @@ vars: {
     layout-engine: elk
     theme-id: 0
   }
-  # Color palette matching architectural layers
   foundation-fill: "#718096"
   foundation-stroke: "#4a5568"
   discovery-fill: "#3182ce"
   discovery-stroke: "#2c5282"
-  protocol-fill: "#d69e2e"
-  protocol-stroke: "#b7791f"
-  composition-fill: "#805ad5"
-  composition-stroke: "#6b46c1"
   execution-fill: "#38a169"
   execution-stroke: "#276749"
-  crosscut-fill: "#e53e3e"
-  crosscut-stroke: "#c53030"
+  composition-fill: "#805ad5"
+  composition-stroke: "#6b46c1"
+  operations-fill: "#e53e3e"
+  operations-stroke: "#c53030"
+  protocol-fill: "#d69e2e"
+  protocol-stroke: "#b7791f"
   surface-fill: "#2b6cb0"
   surface-stroke: "#1a365d"
 }
@@ -34,297 +33,70 @@ classes: {
       bold: true
     }
   }
-  foundation-component: {
-    style: {
-      fill: ${foundation-fill}
-      stroke: ${foundation-stroke}
-      stroke-width: 2
-      font-color: "#fff"
-    }
-  }
-  discovery-component: {
-    style: {
-      fill: ${discovery-fill}
-      stroke: ${discovery-stroke}
-      stroke-width: 2
-      font-color: "#fff"
-    }
-  }
-  protocol-component: {
-    style: {
-      fill: ${protocol-fill}
-      stroke: ${protocol-stroke}
-      stroke-width: 2
-      font-color: "#fff"
-    }
-  }
-  composition-component: {
-    style: {
-      fill: ${composition-fill}
-      stroke: ${composition-stroke}
-      stroke-width: 2
-      font-color: "#fff"
-    }
-  }
-  execution-component: {
-    style: {
-      fill: ${execution-fill}
-      stroke: ${execution-stroke}
-      stroke-width: 2
-      font-color: "#fff"
-    }
-  }
-  crosscut-component: {
-    style: {
-      fill: ${crosscut-fill}
-      stroke: ${crosscut-stroke}
-      stroke-width: 2
-      font-color: "#fff"
-    }
-  }
-  surface-component: {
-    style: {
-      fill: ${surface-fill}
-      stroke: ${surface-stroke}
-      stroke-width: 3
-      font-color: "#fff"
-    }
-  }
-  data-flow: {
-    style: {
-      stroke: "#4a5568"
-      stroke-width: 2
-    }
-  }
-  api-flow: {
-    style: {
-      stroke: "#2b6cb0"
-      stroke-width: 2
-      stroke-dash: 3
-    }
-  }
+  foundation-component: { style: { fill: ${foundation-fill}; stroke: ${foundation-stroke}; stroke-width: 2; font-color: "#fff" } }
+  discovery-component: { style: { fill: ${discovery-fill}; stroke: ${discovery-stroke}; stroke-width: 2; font-color: "#fff" } }
+  execution-component: { style: { fill: ${execution-fill}; stroke: ${execution-stroke}; stroke-width: 2; font-color: "#fff" } }
+  composition-component: { style: { fill: ${composition-fill}; stroke: ${composition-stroke}; stroke-width: 2; font-color: "#fff" } }
+  operations-component: { style: { fill: ${operations-fill}; stroke: ${operations-stroke}; stroke-width: 2; font-color: "#fff" } }
+  protocol-component: { style: { fill: ${protocol-fill}; stroke: ${protocol-stroke}; stroke-width: 2; font-color: "#fff" } }
+  surface-component: { style: { fill: ${surface-fill}; stroke: ${surface-stroke}; stroke-width: 3; font-color: "#fff" } }
+  data-flow: { style: { stroke: "#4a5568"; stroke-width: 2 } }
 }
 
-# Layer 1: Foundation
 layer_foundation: "🧱 Foundation Layer" {
   class: layer
-  style: {
-    fill: "#f7fafc"
-    stroke: ${foundation-stroke}
-  }
-
-  toolmodel: "toolmodel\nCanonical Tool Schema" {
-    shape: package
-    class: foundation-component
-  }
+  style: { fill: "#f7fafc"; stroke: ${foundation-stroke} }
+  toolfoundation: "toolfoundation\nmodel • adapter • version" { shape: package; class: foundation-component }
 }
 
-# Layer 2: Discovery
 layer_discovery: "📇 Discovery Layer" {
   class: layer
-  style: {
-    fill: "#ebf8ff"
-    stroke: ${discovery-stroke}
-  }
-
-  toolindex: "toolindex\nRegistry + Search" {
-    shape: cylinder
-    class: discovery-component
-  }
-
-  tooldocs: "tooldocs\nDocumentation API" {
-    shape: document
-    class: discovery-component
-  }
-
-  toolsearch: "toolsearch\nBM25 Strategy" {
-    shape: diamond
-    class: discovery-component
-  }
-
-  toolsemantic: "toolsemantic\nVector Search" {
-    shape: diamond
-    class: discovery-component
-  }
+  style: { fill: "#ebf8ff"; stroke: ${discovery-stroke} }
+  tooldiscovery: "tooldiscovery\nindex • tooldoc • search • semantic" { shape: cylinder; class: discovery-component }
 }
 
-# Layer 3: Protocol
-layer_protocol: "🔌 Protocol Layer" {
-  class: layer
-  style: {
-    fill: "#fffff0"
-    stroke: ${protocol-stroke}
-  }
-
-  tooladapter: "tooladapter\nFormat Conversion" {
-    shape: package
-    class: protocol-component
-  }
-}
-
-# Layer 4: Composition
-layer_composition: "🎼 Composition Layer" {
-  class: layer
-  style: {
-    fill: "#faf5ff"
-    stroke: ${composition-stroke}
-  }
-
-  toolset: "toolset\nTool Collections" {
-    shape: cylinder
-    class: composition-component
-  }
-
-  toolskill: "toolskill\nReusable Workflows" {
-    shape: page
-    class: composition-component
-  }
-}
-
-# Layer 5: Execution
 layer_execution: "▶️ Execution Layer" {
   class: layer
-  style: {
-    fill: "#f0fff4"
-    stroke: ${execution-stroke}
-  }
-
-  toolrun: "toolrun\nExecution Engine" {
-    shape: step
-    class: execution-component
-  }
-
-  toolcode: "toolcode\nCode Orchestration" {
-    shape: page
-    class: execution-component
-  }
-
-  toolruntime: "toolruntime\nSandbox Isolation" {
-    shape: cloud
-    class: execution-component
-  }
+  style: { fill: "#f0fff4"; stroke: ${execution-stroke} }
+  toolexec: "toolexec\nrun • code • runtime • backend" { shape: step; class: execution-component }
 }
 
-# Layer 6: Cross-Cutting
-layer_crosscutting: "🔧 Cross-Cutting Concerns" {
+layer_composition: "🎼 Composition Layer" {
   class: layer
-  style: {
-    fill: "#fff5f5"
-    stroke: ${crosscut-stroke}
-  }
-
-  toolobserve: "toolobserve\nInstrumentation" {
-    shape: hexagon
-    class: crosscut-component
-  }
-
-  toolcache: "toolcache\nCaching Layer" {
-    shape: cylinder
-    class: crosscut-component
-  }
+  style: { fill: "#faf5ff"; stroke: ${composition-stroke} }
+  toolcompose: "toolcompose\nset • skill" { shape: cylinder; class: composition-component }
 }
 
-# Layer 7: Surface
+layer_operations: "🔧 Operations Layer" {
+  class: layer
+  style: { fill: "#fff5f5"; stroke: ${operations-stroke} }
+  toolops: "toolops\nobserve • cache • auth • resilience • health" { shape: hexagon; class: operations-component }
+}
+
+layer_protocol: "🔌 Protocol Layer" {
+  class: layer
+  style: { fill: "#fffff0"; stroke: ${protocol-stroke} }
+  toolprotocol: "toolprotocol\ntransport • wire • content • stream • task" { shape: package; class: protocol-component }
+}
+
 layer_surface: "🔷 MCP Surface" {
   class: layer
-  style: {
-    fill: "#ebf8ff"
-    stroke: ${surface-stroke}
-    stroke-width: 3
-  }
-
-  metatools: "metatools-mcp\nMCP Server" {
-    shape: hexagon
-    class: surface-component
-  }
+  style: { fill: "#ebf8ff"; stroke: ${surface-stroke}; stroke-width: 3 }
+  metatools: "metatools-mcp\nMCP Server" { shape: hexagon; class: surface-component }
 }
 
-# Foundation → Discovery dependencies
-layer_foundation.toolmodel -> layer_discovery.toolindex: "provides schema" {
-  class: data-flow
-  target-arrowhead.shape: arrow
-}
-layer_foundation.toolmodel -> layer_discovery.tooldocs: "defines types" {
-  class: data-flow
-  target-arrowhead.shape: arrow
-}
-layer_foundation.toolmodel -> layer_protocol.tooladapter: "type definitions" {
-  class: data-flow
-  target-arrowhead.shape: arrow
-}
+layer_foundation.toolfoundation -> layer_discovery.tooldiscovery: "schemas" { class: data-flow }
+layer_foundation.toolfoundation -> layer_execution.toolexec: "types" { class: data-flow }
+layer_foundation.toolfoundation -> layer_composition.toolcompose: "types" { class: data-flow }
+layer_foundation.toolfoundation -> layer_operations.toolops: "types" { class: data-flow }
+layer_foundation.toolfoundation -> layer_protocol.toolprotocol: "types" { class: data-flow }
 
-# Discovery internal
-layer_discovery.toolindex -> layer_discovery.tooldocs: "tool lookup" {
-  class: data-flow
-}
-layer_discovery.toolindex -> layer_discovery.toolsearch: "plugs in" {
-  class: api-flow
-}
-layer_discovery.toolindex -> layer_discovery.toolsemantic: "plugs in" {
-  class: api-flow
-}
+layer_discovery.tooldiscovery -> layer_composition.toolcompose: "toolset inputs" { class: data-flow }
+layer_execution.toolexec -> layer_composition.toolcompose: "execution" { class: data-flow }
 
-# Protocol → Composition
-layer_protocol.tooladapter -> layer_composition.toolset: "format tools" {
-  class: data-flow
-}
-
-# Composition internal
-layer_composition.toolset -> layer_composition.toolskill: "provides tools" {
-  class: data-flow
-}
-
-# Discovery/Composition → Execution
-layer_discovery.toolindex -> layer_execution.toolrun: "tool resolution" {
-  class: data-flow
-}
-layer_composition.toolset -> layer_execution.toolrun: "tool collections" {
-  class: data-flow
-}
-layer_execution.toolrun -> layer_composition.toolskill: "step execution" {
-  class: data-flow
-}
-
-# Execution internal
-layer_execution.toolrun -> layer_execution.toolcode: "powers" {
-  class: data-flow
-}
-layer_execution.toolcode -> layer_execution.toolruntime: "sandbox" {
-  class: data-flow
-}
-
-# Cross-cutting integration
-layer_crosscutting.toolobserve -> layer_execution.toolrun: "instruments" {
-  class: api-flow
-  target-arrowhead.shape: diamond
-}
-layer_crosscutting.toolcache -> layer_execution.toolrun: "caches" {
-  class: api-flow
-  target-arrowhead.shape: diamond
-}
-
-# Surface layer connections
-layer_discovery.toolindex -> layer_surface.metatools: "search_tools\nlist_namespaces" {
-  class: api-flow
-  style.stroke: ${surface-stroke}
-}
-layer_discovery.tooldocs -> layer_surface.metatools: "describe_tool\nlist_examples" {
-  class: api-flow
-  style.stroke: ${surface-stroke}
-}
-layer_execution.toolrun -> layer_surface.metatools: "run_tool\nrun_chain" {
-  class: api-flow
-  style.stroke: ${surface-stroke}
-}
-layer_execution.toolcode -> layer_surface.metatools: "execute_code" {
-  class: api-flow
-  style.stroke: ${surface-stroke}
-}
-layer_composition.toolset -> layer_surface.metatools: "toolset API" {
-  class: api-flow
-  style.stroke: ${surface-stroke}
-}
-layer_composition.toolskill -> layer_surface.metatools: "skill API" {
-  class: api-flow
-  style.stroke: ${surface-stroke}
-}
+layer_protocol.toolprotocol -> layer_surface.metatools: "transport/wire" { class: data-flow }
+layer_operations.toolops -> layer_surface.metatools: "observe/cache" { class: data-flow }
+layer_composition.toolcompose -> layer_surface.metatools: "toolsets/skills" { class: data-flow }
+layer_execution.toolexec -> layer_surface.metatools: "run/execute" { class: data-flow }
+layer_discovery.tooldiscovery -> layer_surface.metatools: "search/describe" { class: data-flow }
+layer_foundation.toolfoundation -> layer_surface.metatools: "schemas" { class: data-flow }

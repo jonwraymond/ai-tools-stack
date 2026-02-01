@@ -180,17 +180,17 @@ core: "📦 Core Libraries" {
     stroke: ${core-fill}
   }
 
-  toolindex: "toolindex\nRegistry" {
+  toolindex: "tooldiscovery/index\nRegistry" {
     shape: cylinder
     class: core-node
   }
 
-  tooldocs: "tooldocs\nDocs API" {
+  tooldocs: "tooldiscovery/tooldoc\nDocs API" {
     shape: document
     class: core-node
   }
 
-  toolrun: "toolrun\nExecution" {
+  toolrun: "toolexec/run\nExecution" {
     shape: step
     class: core-node
   }
@@ -205,17 +205,17 @@ optional: "🔌 Optional" {
     stroke-dash: 3
   }
 
-  toolcode: "toolcode\nOrchestration" {
+  toolcode: "toolexec/code\nOrchestration" {
     shape: page
     class: optional-node
   }
 
-  toolruntime: "toolruntime\nSandbox" {
+  toolruntime: "toolexec/runtime\nSandbox" {
     shape: cloud
     class: optional-node
   }
 
-  toolsearch: "toolsearch\nBM25" {
+  toolsearch: "tooldiscovery/search\nBM25" {
     shape: diamond
     class: optional-node
   }
@@ -256,13 +256,13 @@ optional.toolcode -> optional.toolruntime: "sandboxes" {
 api: |md
   ## MCP Tools
 
-  - search_tools → toolindex
-  - list_namespaces → toolindex
-  - describe_tool → tooldocs
-  - list_examples → tooldocs
-  - run_tool → toolrun
-  - run_chain → toolrun
-  - execute_code → toolcode
+  - search_tools → tooldiscovery/index
+  - list_namespaces → tooldiscovery/index
+  - describe_tool → tooldiscovery/tooldoc
+  - list_examples → tooldiscovery/tooldoc
+  - run_tool → toolexec/run
+  - run_chain → toolexec/run
+  - execute_code → toolexec/code
 | {
   near: bottom-right
   style: {

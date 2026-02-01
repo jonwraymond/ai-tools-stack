@@ -21,19 +21,6 @@ nav:
       - toolcompose: components/toolcompose.md
       - toolops: components/toolops.md
       - toolprotocol: components/toolprotocol.md
-      - toolmodel: components/toolmodel.md
-      - tooladapter: components/tooladapter.md
-      - toolset: components/toolset.md
-      - toolindex: components/toolindex.md
-      - tooldocs: components/tooldocs.md
-      - toolrun: components/toolrun.md
-      - toolcode: components/toolcode.md
-      - toolruntime: components/toolruntime.md
-      - toolsearch: components/toolsearch.md
-      - toolobserve: components/toolobserve.md
-      - toolcache: components/toolcache.md
-      - toolsemantic: components/toolsemantic.md
-      - toolskill: components/toolskill.md
       - metatools-mcp: components/metatools-mcp.md
   - Operations:
       - CI and Versioning: operations/ci-and-versioning.md
@@ -46,19 +33,6 @@ nav:
       - toolcompose: '!import https://github.com/jonwraymond/toolcompose?branch=main&docs_dir=docs/*'
       - toolops: '!import https://github.com/jonwraymond/toolops?branch=main&docs_dir=docs/*'
       - toolprotocol: '!import https://github.com/jonwraymond/toolprotocol?branch=main&docs_dir=docs/*'
-      - toolmodel: '!import https://github.com/jonwraymond/toolmodel?branch=main&docs_dir=docs/*'
-      - tooladapter: '!import https://github.com/jonwraymond/tooladapter?branch=main&docs_dir=docs/*'
-      - toolset: '!import https://github.com/jonwraymond/toolset?branch=main&docs_dir=docs/*'
-      - toolindex: '!import https://github.com/jonwraymond/toolindex?branch=main&docs_dir=docs/*'
-      - tooldocs: '!import https://github.com/jonwraymond/tooldocs?branch=main&docs_dir=docs/*'
-      - toolrun: '!import https://github.com/jonwraymond/toolrun?branch=main&docs_dir=docs/*'
-      - toolcode: '!import https://github.com/jonwraymond/toolcode?branch=main&docs_dir=docs/*'
-      - toolruntime: '!import https://github.com/jonwraymond/toolruntime?branch=main&docs_dir=docs/*'
-      - toolsearch: '!import https://github.com/jonwraymond/toolsearch?branch=main&docs_dir=docs/*'
-      - toolobserve: '!import https://github.com/jonwraymond/toolobserve?branch=main&docs_dir=docs/*'
-      - toolcache: '!import https://github.com/jonwraymond/toolcache?branch=main&docs_dir=docs/*'
-      - toolsemantic: '!import https://github.com/jonwraymond/toolsemantic?branch=main&docs_dir=docs/*'
-      - toolskill: '!import https://github.com/jonwraymond/toolskill?branch=main&docs_dir=docs/*'
       - metatools-mcp: '!import https://github.com/jonwraymond/metatools-mcp?branch=main&docs_dir=docs/*'
 
 theme:

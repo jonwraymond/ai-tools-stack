@@ -17,12 +17,12 @@ progressive-disclosure MCP surface.
 
 | Layer | Components | Purpose |
 |-------|------------|---------|
-| **Foundation** | toolmodel | Canonical MCP tool schema, validation |
-| **Discovery** | toolindex, tooldocs, toolsearch, toolsemantic | Registry, docs, search strategies |
-| **Protocol** | tooladapter | Format conversion (MCP ↔ OpenAI ↔ Anthropic) |
-| **Execution** | toolrun, toolcode, toolruntime | Execution, chaining, sandboxing |
-| **Composition** | toolset, toolskill | Filtered collections, skill workflows |
-| **Cross-Cutting** | toolobserve, toolcache | Observability, caching |
+| **Foundation** | toolfoundation (model, adapter, version) | Canonical schemas + protocol adapters |
+| **Discovery** | tooldiscovery (index, tooldoc, search, semantic) | Registry, docs, search strategies |
+| **Execution** | toolexec (run, code, runtime, backend) | Execution, chaining, sandboxing |
+| **Composition** | toolcompose (set, skill) | Filtered collections, skill workflows |
+| **Operations** | toolops (observe, cache, auth, resilience, health) | Observability + production controls |
+| **Protocol** | toolprotocol (transport, wire, content, stream, task, session, resource, prompt, elicit) | Protocol primitives |
 | **Surface** | metatools-mcp | MCP server wiring |
 
 ## High-level Flow
@@ -40,35 +40,42 @@ flowchart TB
         MCP["🔷 metatools-mcp<br/><small>JSON-RPC / SSE</small>"]
     end
 
-    subgraph crosscut["Cross-Cutting"]
-        Observe["👁️ toolobserve"]
-        Cache["💾 toolcache"]
+    subgraph operations["Operations"]
+        Observe["👁️ toolops/observe"]
+        Cache["💾 toolops/cache"]
+        Auth["🔐 toolops/auth"]
+        Resilience["🧯 toolops/resilience"]
+        Health["💚 toolops/health"]
     end
 
     subgraph composition["Composition"]
-        Toolset["📦 toolset"]
-        Skill["🎯 toolskill"]
+        Toolset["📦 toolcompose/set"]
+        Skill["🎯 toolcompose/skill"]
     end
 
     subgraph protocol["Protocol"]
-        Adapter["🔄 tooladapter"]
+        Wire["🔄 toolprotocol/wire"]
+        Transport["📡 toolprotocol/transport"]
+        Content["🧩 toolprotocol/content"]
     end
 
     subgraph execution["Execution"]
-        Run["▶️ toolrun"]
-        Code["💻 toolcode"]
-        Runtime["🏃 toolruntime"]
+        Run["▶️ toolexec/run"]
+        Code["💻 toolexec/code"]
+        Runtime["🏃 toolexec/runtime"]
     end
 
     subgraph discovery["Discovery"]
-        Index["📇 toolindex"]
-        Docs["📚 tooldocs"]
-        Search["🔍 toolsearch"]
-        Semantic["🧠 toolsemantic"]
+        Index["📇 tooldiscovery/index"]
+        Docs["📚 tooldiscovery/tooldoc"]
+        Search["🔍 tooldiscovery/search"]
+        Semantic["🧠 tooldiscovery/semantic"]
     end
 
     subgraph foundation["Foundation"]
-        Model["🧱 toolmodel"]
+        Model["🧱 toolfoundation/model"]
+        Adapter["🧩 toolfoundation/adapter"]
+        Version["🏷️ toolfoundation/version"]
     end
 
     subgraph backends["Backends"]
@@ -82,11 +89,16 @@ flowchart TB
 
     MCP --> Observe
     MCP --> Cache
+    MCP --> Auth
+    MCP --> Resilience
+    MCP --> Health
 
     MCP --> Toolset
     MCP --> Skill
 
-    Toolset --> Adapter
+    MCP --> Wire
+    MCP --> Transport
+    MCP --> Content
 
     MCP --> Index
     MCP --> Docs
@@ -97,10 +109,14 @@ flowchart TB
     Run --> Code
     Code --> Runtime
 
+    Toolset --> Index
+    Toolset --> Model
+    Skill --> Run
+
     Index --> Model
-    Adapter --> Model
     Docs --> Model
-    Run --> Model
+    Adapter --> Model
+    Version --> Model
 
     Run --> Local
     Run --> Provider
@@ -109,7 +125,7 @@ flowchart TB
 
     style client fill:#4a5568,stroke:#2d3748,stroke-width:2px
     style surface fill:#2b6cb0,stroke:#2c5282,stroke-width:3px
-    style crosscut fill:#e53e3e,stroke:#c53030
+    style operations fill:#e53e3e,stroke:#c53030
     style composition fill:#6b46c1,stroke:#553c9a
     style protocol fill:#d69e2e,stroke:#b7791f
     style execution fill:#38a169,stroke:#276749
@@ -150,10 +166,10 @@ sequenceDiagram
 
 ## Quickstart
 
-1. Start with `toolmodel` for your canonical schemas
-2. Register tools in `toolindex` for discovery
-3. Add docs/examples in `tooldocs`
-4. Execute tools via `toolrun`
+1. Start with `toolfoundation/model` for your canonical schemas
+2. Register tools in `tooldiscovery/index` for discovery
+3. Add docs/examples in `tooldiscovery/tooldoc`
+4. Execute tools via `toolexec/run`
 5. Expose the MCP surface using `metatools-mcp`
 
 See the **Components** section for per-library examples and diagrams.

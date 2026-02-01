@@ -1,140 +1,56 @@
 # toolprotocol
 
-Protocol layer providing MCP primitives, transport abstractions, and wire formats.
-This repository contains the low-level protocol handling for MCP communication.
+Protocol layer providing transport, wire format, and protocol primitives for MCP,
+A2A, and ACP integrations.
 
 ## Packages
 
 | Package | Purpose |
 |---------|---------|
-| `content` | Content type handling and serialization |
-| `discover` | Protocol-level discovery primitives |
-| `transport` | Transport abstractions (stdio, SSE, WebSocket) |
-| `wire` | Wire format encoding/decoding |
+| `content` | Unified content parts (text, image, audio, file, resource) |
+| `discover` | Service discovery + capability negotiation |
+| `transport` | Transport interfaces (stdio, SSE, streamable HTTP) |
+| `wire` | Protocol wire encoding (MCP, A2A, ACP) |
+| `stream` | Streaming events for progress/partial/complete |
+| `session` | Client session store + context helpers |
+| `task` | Long-running task lifecycle + subscriptions |
+| `resource` | MCP resources registry + subscriptions |
+| `prompt` | Prompt templates + registry |
+| `elicit` | User input elicitation (text/confirm/choice/form) |
 
-## Motivation
+## Contracts (Highlights)
 
-- Provide clean abstractions over MCP protocol details
-- Support multiple transport mechanisms
-- Handle content negotiation and serialization
-- Enable protocol extensions and customization
+- **Transport**: concurrent-safe; `Serve` honors context; `Close` is idempotent.
+- **Wire**: deterministic encode/decode; capabilities reflect real support.
+- **Content**: immutable content parts; MIME type always matches payload.
+- **Stream**: event order preserved; `Done` closes on `Close`.
 
-## content Package
-
-The `content` package handles content type serialization and negotiation.
-
-### Features
-
-- JSON and binary content support
-- Content type negotiation
-- Streaming content handling
-- Attachment support
-
-### Example
+## Example: Wire + Transport
 
 ```go
-import "github.com/jonwraymond/toolprotocol/content"
+import (
+  "context"
 
-// Create content handler
-handler := content.NewHandler(content.Config{
-  DefaultType: content.TypeJSON,
-  MaxSize:     10 * 1024 * 1024, // 10MB
+  "github.com/jonwraymond/toolprotocol/transport"
+  "github.com/jonwraymond/toolprotocol/wire"
+)
+
+type server struct{}
+
+func (s *server) ServeTransport(ctx context.Context, t transport.Transport) error {
+  return nil
+}
+
+ctx := context.Background()
+codec := wire.NewMCP()
+payload, _ := codec.EncodeRequest(ctx, &wire.Request{
+  ID:     "1",
+  Method: "tools/list",
 })
 
-// Serialize content
-data, contentType, err := handler.Serialize(result)
-
-// Deserialize content
-var result any
-err := handler.Deserialize(data, contentType, &result)
-```
-
-## discover Package
-
-The `discover` package provides protocol-level discovery primitives.
-
-### Features
-
-- Server capability negotiation
-- Tool listing protocol
-- Resource discovery
-- Prompt listing
-
-### Example
-
-```go
-import "github.com/jonwraymond/toolprotocol/discover"
-
-// Create discoverer
-disc := discover.New(transport)
-
-// Get server capabilities
-caps, err := disc.Initialize(ctx)
-
-// List available tools
-tools, cursor, err := disc.ListTools(ctx, nil)
-```
-
-## transport Package
-
-The `transport` package provides transport abstractions for MCP communication.
-
-### Supported Transports
-
-| Transport | Use Case |
-|-----------|----------|
-| `stdio` | CLI tools, subprocess communication |
-| `sse` | HTTP Server-Sent Events |
-| `websocket` | Bidirectional WebSocket |
-
-### Example
-
-```go
-import "github.com/jonwraymond/toolprotocol/transport"
-
-// Create stdio transport
-t := transport.NewStdio(os.Stdin, os.Stdout)
-
-// Create SSE transport
-t := transport.NewSSE(transport.SSEConfig{
-  Endpoint: "/events",
-})
-
-// Send message
-err := t.Send(ctx, message)
-
-// Receive message
-msg, err := t.Receive(ctx)
-```
-
-## wire Package
-
-The `wire` package handles wire format encoding and decoding.
-
-### Features
-
-- JSON-RPC 2.0 encoding
-- Message framing
-- Error code handling
-- Batch request support
-
-### Example
-
-```go
-import "github.com/jonwraymond/toolprotocol/wire"
-
-// Create encoder/decoder
-codec := wire.NewJSONRPCCodec()
-
-// Encode request
-data, err := codec.EncodeRequest(wire.Request{
-  Method: "tools/call",
-  Params: params,
-})
-
-// Decode response
-var resp wire.Response
-err := codec.DecodeResponse(data, &resp)
+tp, _ := transport.New("stdio", nil)
+_ = payload
+_ = tp.Serve(ctx, &server{})
 ```
 
 ## Diagram
@@ -151,25 +67,15 @@ sequenceDiagram
     participant Handler
 
     Client->>Transport: Connect
-    Transport->>Wire: Decode messages
+    Transport->>Wire: Decode request
     Wire->>Handler: Route to handler
 
     Handler-->>Wire: Response
-    Wire-->>Transport: Encode
+    Wire-->>Transport: Encode response
     Transport-->>Client: Send
 ```
-
-## Key Design Decisions
-
-1. **Transport agnostic**: Protocol logic is decoupled from transport
-2. **Streaming support**: Content can be streamed for large payloads
-3. **Standards compliance**: JSON-RPC 2.0, MCP spec 2025-11-25
-4. **Extensible**: Custom transports and content types supported
 
 ## Links
 
 - [Repository](https://github.com/jonwraymond/toolprotocol)
-- [content docs](../library-docs-from-repos/toolprotocol/content/index.md)
-- [discover docs](../library-docs-from-repos/toolprotocol/discover/index.md)
-- [transport docs](../library-docs-from-repos/toolprotocol/transport/index.md)
-- [wire docs](../library-docs-from-repos/toolprotocol/wire/index.md)
+- [toolprotocol docs](../library-docs-from-repos/toolprotocol/index.md)

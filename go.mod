@@ -2,20 +2,6 @@ module github.com/jonwraymond/ai-tools-stack
 
 go 1.24.4
 
-replace github.com/jonwraymond/toolfoundation => ../toolfoundation
-
-replace github.com/jonwraymond/tooldiscovery => ../tooldiscovery
-
-replace github.com/jonwraymond/toolexec => ../toolexec
-
-replace github.com/jonwraymond/toolcompose => ../toolcompose
-
-replace github.com/jonwraymond/toolops => ../toolops
-
-replace github.com/jonwraymond/toolprotocol => ../toolprotocol
-
-replace github.com/jonwraymond/metatools-mcp => ../metatools-mcp
-
 require (
 	github.com/jonwraymond/metatools-mcp v0.5.0
 	github.com/jonwraymond/tooldiscovery v0.1.0

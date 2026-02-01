@@ -42,8 +42,8 @@ github.com/blevesearch/zapx/v16 v16.2.8/go.mod h1:murSoCJPCk25MqURrcJaBQ1RekuqSC
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/golang-jwt/jwt/v5 v5.3.1 h1:kYf81DTWFe7t+1VvL7eS+jKFVWaUnK9cB1qbwn63YCY=
-github.com/golang-jwt/jwt/v5 v5.3.1/go.mod h1:fxCRLWMO43lRc8nhHWY6LGqRcf+1gQWArsqaEUEa5bE=
+github.com/golang-jwt/jwt/v5 v5.2.2 h1:Rl4B7itRWVtYIHFrSNd7vhTiz9UpLdi6gZhZ3wEeDy8=
+github.com/golang-jwt/jwt/v5 v5.2.2/go.mod h1:pqrtFR0X4osieyHYxtmOUWsAWrfe1Q5UVIyoH402zdk=
 github.com/golang/snappy v0.0.4 h1:yAGX7huGHXlcLOEtBnF4w7FQwA26wojNCwOYAEhLjQM=
 github.com/golang/snappy v0.0.4/go.mod h1:/XxbfmMg8lxefKM7IXC3fBNl/7bRcc72aCRzEWrmP2Q=
 github.com/google/go-cmp v0.7.0 h1:wk8382ETsv4JYUZwIsn6YpYiWiBsYLSJiTsyBybVuN8=
@@ -54,6 +54,14 @@ github.com/google/jsonschema-go v0.3.0 h1:6AH2TxVNtk3IlvkkhjrtbUc4S8AvO0Xii0DxIy
 github.com/google/jsonschema-go v0.3.0/go.mod h1:r5quNTdLOYEz95Ru18zA0ydNbBuYoo9tgaYcxEYhJVE=
 github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
+github.com/jonwraymond/metatools-mcp v0.5.0 h1:kvMZMK0PxlNMhzNyKQ3EKirIP9SohJTfhoq8cwg82oI=
+github.com/jonwraymond/metatools-mcp v0.5.0/go.mod h1:3qwpfafJoo8HdzlPjHTm6skompuaKyZypyVEbYXZFcc=
+github.com/jonwraymond/tooldiscovery v0.1.0 h1:M3exEtYeqQ3WXxFtLaZfU3BjtHobeewsF9hl77Xu2cs=
+github.com/jonwraymond/tooldiscovery v0.1.0/go.mod h1:1JZzya4mbCoF3N+XklY5y8itUWTc9N0d6ZC1FnKUIDM=
+github.com/jonwraymond/toolexec v0.1.0 h1:bVHOjybEWY4WiUCCgCzrKWdf8bw5WmkRlI9ufiKGlSA=
+github.com/jonwraymond/toolexec v0.1.0/go.mod h1:vwHmFj0CwcDEdGCd4+dGeKAhIxg9nVttqa70LqjLEw0=
+github.com/jonwraymond/toolfoundation v0.1.0 h1:PmVsdT9j6TP61TxI2D3Zf0MsFFQVAOqHcOrloTi1Cno=
+github.com/jonwraymond/toolfoundation v0.1.0/go.mod h1:naJm1NEZU8FbOw5rM8SJ3OhgHs0q8QHh8igrwP4wNfA=
 github.com/json-iterator/go v0.0.0-20171115153421-f7279a603ede h1:YrgBGwxMRK0Vq0WSCWFaZUnTsrA/PZE/xs1QZh+/edg=
 github.com/json-iterator/go v0.0.0-20171115153421-f7279a603ede/go.mod h1:+SdeFBvtyEkXs7REEP0seUULqWtbJapLOCVDaaPEHmU=
 github.com/modelcontextprotocol/go-sdk v1.2.0 h1:Y23co09300CEk8iZ/tMxIX1dVmKZkzoSBZOpJwUnc/s=

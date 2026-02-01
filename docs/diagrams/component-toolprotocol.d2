@@ -1,5 +1,5 @@
 # toolprotocol Component Diagram
-# Protocol layer: content, discover, transport, wire packages
+# Protocol layer: transport, wire, content, stream, session, task, resource, prompt, elicit.
 
 direction: down
 
@@ -48,102 +48,141 @@ toolprotocol: "📡 toolprotocol" {
     shadow: true
   }
 
-  content: "content" {
-    class: package
-
-    ContentHandler: "ContentHandler\n- defaultType ContentType\n- maxSize int64" {
-      shape: class
-      class: type
-    }
-
-    ContentType: "ContentType\n• JSON\n• Binary\n• Text" {
-      shape: class
-      class: type
-    }
-
-    Serializer: "«interface»\nSerializer\n+ Serialize(any) ([]byte, error)\n+ Deserialize([]byte, any) error" {
-      shape: class
-      class: interface
-    }
-
-    ContentHandler -> ContentType: "uses"
-    ContentHandler -> Serializer: "uses"
-  }
-
-  discover: "discover" {
-    class: package
-
-    Discoverer: "Discoverer\n- transport Transport\n- capabilities Capabilities" {
-      shape: class
-      class: type
-    }
-
-    Capabilities: "Capabilities\n- Tools bool\n- Resources bool\n- Prompts bool" {
-      shape: class
-      class: type
-    }
-
-    Discoverer -> Capabilities: "negotiates"
-  }
-
   transport: "transport" {
     class: package
 
-    Transport: "«interface»\nTransport\n+ Send(ctx, Message) error\n+ Receive(ctx) (Message, error)\n+ Close() error" {
+    Transport: "«interface»\nTransport\n+ Name()\n+ Info()\n+ Serve(ctx, server)\n+ Close()" {
       shape: class
       class: interface
     }
 
-    StdioTransport: "StdioTransport\nstdin/stdout" {
+    Server: "«interface»\nServer\n+ ServeTransport(ctx, transport)" {
       shape: class
-      class: type
+      class: interface
     }
-
-    SSETransport: "SSETransport\nServer-Sent Events" {
-      shape: class
-      class: type
-    }
-
-    WebSocketTransport: "WebSocketTransport\nBidirectional WS" {
-      shape: class
-      class: type
-    }
-
-    StdioTransport -> Transport: "implements"
-    SSETransport -> Transport: "implements"
-    WebSocketTransport -> Transport: "implements"
   }
 
   wire: "wire" {
     class: package
 
-    Codec: "«interface»\nCodec\n+ EncodeRequest(Request) []byte\n+ DecodeRequest([]byte) Request\n+ EncodeResponse(Response) []byte\n+ DecodeResponse([]byte) Response" {
+    Wire: "«interface»\nWire\n+ Encode/Decode\n+ Capabilities()" {
       shape: class
       class: interface
     }
 
-    JSONRPCCodec: "JSONRPCCodec\nJSON-RPC 2.0" {
+    Request: "Request\n- Method\n- ToolID\n- Arguments" {
       shape: class
       class: type
     }
 
-    Request: "Request\n- Method string\n- Params any\n- ID any" {
+    Response: "Response\n- Content\n- Error\n- Meta" {
       shape: class
       class: type
     }
 
-    Response: "Response\n- Result any\n- Error *Error\n- ID any" {
+    Wire -> Request: "encodes"
+    Wire -> Response: "encodes"
+  }
+
+  content: "content" {
+    class: package
+
+    Content: "«interface»\nContent\n+ Type()\n+ MIMEType()\n+ Bytes()" {
+      shape: class
+      class: interface
+    }
+
+    Builder: "Builder\n+ Text()\n+ Image()\n+ File()" {
+      shape: class
+      class: type
+    }
+  }
+
+  stream: "stream" {
+    class: package
+
+    Stream: "«interface»\nStream\n+ Send(ctx, event)\n+ Close()" {
+      shape: class
+      class: interface
+    }
+
+    Event: "Event\n- Type\n- Data\n- Meta" {
+      shape: class
+      class: type
+    }
+  }
+
+  task: "task" {
+    class: package
+
+    Manager: "«interface»\nManager\n+ Create/Get/List\n+ Update/Complete/Fail" {
+      shape: class
+      class: interface
+    }
+
+    Task: "Task\n- State\n- Progress\n- Result" {
+      shape: class
+      class: type
+    }
+  }
+
+  session: "session" {
+    class: package
+
+    Store: "«interface»\nStore\n+ Create/Get/Update/Delete" {
+      shape: class
+      class: interface
+    }
+
+    Session: "Session\n- ID\n- State\n- ExpiresAt" {
+      shape: class
+      class: type
+    }
+  }
+
+  resource: "resource" {
+    class: package
+
+    Registry: "Registry\n+ Register\n+ Read\n+ List" {
       shape: class
       class: type
     }
 
-    JSONRPCCodec -> Codec: "implements"
-    Codec -> Request: "encodes/decodes"
-    Codec -> Response: "encodes/decodes"
+    Provider: "«interface»\nProvider\n+ List()\n+ Read()\n+ Templates()" {
+      shape: class
+      class: interface
+    }
+  }
+
+  prompt: "prompt" {
+    class: package
+
+    Registry: "Registry\n+ Register\n+ Get" {
+      shape: class
+      class: type
+    }
+
+    Provider: "«interface»\nProvider\n+ List()\n+ Get()" {
+      shape: class
+      class: interface
+    }
+  }
+
+  elicit: "elicit" {
+    class: package
+
+    Elicitor: "«interface»\nElicitor\n+ Elicit(ctx, req)" {
+      shape: class
+      class: interface
+    }
+
+    Request: "Request\n- Type\n- Prompt\n- Schema" {
+      shape: class
+      class: type
+    }
   }
 }
 
-# Package flow
 flow: "Protocol Flow" {
   style: {
     fill: "#2d3748"
@@ -151,34 +190,21 @@ flow: "Protocol Flow" {
     border-radius: 8
   }
 
-  client: "Client" {
-    shape: person
-  }
-  transport_layer: "Transport\n(stdio/SSE/WS)" {
-    shape: parallelogram
-  }
-  wire_layer: "Wire\n(JSON-RPC)" {
-    shape: step
-  }
-  content_layer: "Content\n(Serialize)" {
-    shape: step
-  }
-  handler: "Handler" {
-    shape: hexagon
-  }
+  client: "Client" { shape: person }
+  transport_layer: "Transport\n(stdio/SSE/HTTP)" { shape: parallelogram }
+  wire_layer: "Wire\n(MCP/A2A/ACP)" { shape: step }
+  handler: "Handler" { shape: hexagon }
+  stream_layer: "Stream\n(progress/partial)" { shape: step }
 
   client -> transport_layer: "connect"
   transport_layer -> wire_layer: "decode"
-  wire_layer -> content_layer: "parse"
-  content_layer -> handler: "route"
-
-  handler -> content_layer: "result"
-  content_layer -> wire_layer: "encode"
+  wire_layer -> handler: "route"
+  handler -> stream_layer: "emit"
+  stream_layer -> wire_layer: "encode"
   wire_layer -> transport_layer: "frame"
   transport_layer -> client: "send"
 }
 
-# Connect packages to flow
 toolprotocol.transport.Transport -> flow.transport_layer
-toolprotocol.wire.Codec -> flow.wire_layer
-toolprotocol.content.ContentHandler -> flow.content_layer
+toolprotocol.wire.Wire -> flow.wire_layer
+toolprotocol.stream.Stream -> flow.stream_layer
