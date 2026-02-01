@@ -8,6 +8,7 @@ different backend types.
 
 | Package | Purpose |
 |---------|---------|
+| `exec` | Unified facade combining discovery + execution |
 | `run` | Core tool execution and chaining |
 | `code` | Code-based tool orchestration |
 | `runtime` | Sandbox and runtime isolation |
@@ -58,6 +59,27 @@ flowchart LR
     Execute --> Normalize["Normalize Result"]
     Normalize --> Validate2["Validate Output"]
     Validate2 --> Result["RunResult"]
+```
+
+## exec Package
+
+The `exec` facade composes discovery, documentation, and execution behind a
+single API for most callers.
+
+### Example
+
+```go
+import (
+  "github.com/jonwraymond/toolexec/exec"
+  "github.com/jonwraymond/tooldiscovery/index"
+  "github.com/jonwraymond/tooldiscovery/tooldoc"
+)
+
+idx := index.NewInMemoryIndex()
+docs := tooldoc.NewInMemoryStore(tooldoc.StoreOptions{Index: idx})
+
+executor, err := exec.New(exec.Options{Index: idx, Docs: docs})
+result, err := executor.RunTool(ctx, "math:add", map[string]any{"a": 5, "b": 3})
 ```
 
 ## code Package
@@ -154,6 +176,36 @@ registry.Register("calculator", backend.Local(func(ctx context.Context, args any
 b, err := registry.Resolve(tool.Backend)
 ```
 
+## Schemas and Contracts
+
+toolexec enforces the canonical tool schema from **toolfoundation**. It does
+not define new input/output schemas; instead it validates against each
+`model.Tool` schema at execution time.
+
+Key guarantees:
+
+- **InputSchema is required** for all tools.
+- **OutputSchema is optional**; output validation runs only when present.
+- Execution results are normalized into `run.RunResult` and `exec.Result`.
+- Streaming uses `run.StreamEvent` with `progress`, `chunk`, `done`, `error`.
+
+See the full schema and contract details in:
+- [toolexec schemas](../library-docs-from-repos/toolexec/schemas.md)
+- [toolfoundation schemas](../library-docs-from-repos/toolfoundation/schemas.md)
+
+## Examples
+
+Runnable examples cover execution, chaining, discovery, and runtimes:
+
+```bash
+go run ./examples/basic
+go run ./examples/chain
+go run ./examples/discovery
+go run ./examples/streaming
+go run ./examples/runtime
+go run ./examples/full
+```
+
 ## Diagram
 
 ![toolexec component diagram](../assets/diagrams/component-toolexec.svg)
@@ -162,8 +214,9 @@ b, err := registry.Resolve(tool.Backend)
 
 1. **Schema validation**: Both input and output are validated
 2. **Backend abstraction**: Execution is decoupled from backend type
-3. **Pluggable runtimes**: Security profiles are configurable
-4. **Chaining support**: Tools can call other tools
+3. **Unified facade**: Most callers use exec instead of wiring packages
+4. **Pluggable runtimes**: Security profiles are configurable
+5. **Chaining support**: Tools can call other tools
 
 ## Links
 
@@ -174,3 +227,4 @@ b, err := registry.Resolve(tool.Backend)
 - [Design notes](../library-docs-from-repos/toolexec/design-notes.md)
 - [User journey](../library-docs-from-repos/toolexec/user-journey.md)
 - [Examples](../library-docs-from-repos/toolexec/examples.md)
+- [Architecture plan](../library-docs-from-repos/toolexec/ARCHITECTURE_PLAN.md)
