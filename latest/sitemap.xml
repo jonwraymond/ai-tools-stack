@@ -186,7 +186,42 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/tooldiscovery/architecture/</loc>
+         <lastmod>2026-02-01</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/tooldiscovery/concurrency/</loc>
+         <lastmod>2026-02-01</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/tooldiscovery/design-notes/</loc>
+         <lastmod>2026-02-01</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/tooldiscovery/error-handling/</loc>
+         <lastmod>2026-02-01</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/tooldiscovery/examples/</loc>
+         <lastmod>2026-02-01</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/tooldiscovery/migration/</loc>
+         <lastmod>2026-02-01</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/tooldiscovery/performance/</loc>
+         <lastmod>2026-02-01</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/tooldiscovery/schemas/</loc>
          <lastmod>2026-02-01</lastmod>
          <changefreq>daily</changefreq>
     </url>
