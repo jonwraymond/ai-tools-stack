@@ -236,6 +236,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolexec/ARCHITECTURE_PLAN/</loc>
+         <lastmod>2026-02-01</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolexec/design-notes/</loc>
          <lastmod>2026-02-01</lastmod>
          <changefreq>daily</changefreq>
