@@ -1,5 +1,5 @@
 # toolprotocol Component Diagram
-# Protocol layer: transport, wire, content, stream, session, task, resource, prompt, elicit.
+# Protocol layer: transport, wire, content, stream, session, task, resource, prompt, elicit, discover.
 
 direction: down
 
@@ -126,6 +126,20 @@ toolprotocol: "📡 toolprotocol" {
     }
   }
 
+  discover: "discover" {
+    class: package
+
+    Request: "Request\n- Query\n- Filters\n- Limit" {
+      shape: class
+      class: type
+    }
+
+    Response: "Response\n- Tools\n- Meta" {
+      shape: class
+      class: type
+    }
+  }
+
   session: "session" {
     class: package
 
@@ -208,3 +222,13 @@ flow: "Protocol Flow" {
 toolprotocol.transport.Transport -> flow.transport_layer
 toolprotocol.wire.Wire -> flow.wire_layer
 toolprotocol.stream.Stream -> flow.stream_layer
+
+# Package relationships
+toolprotocol.content.Content -> toolprotocol.wire.Response: "payload"
+toolprotocol.prompt.Provider -> toolprotocol.content.Content: "renders"
+toolprotocol.resource.Provider -> toolprotocol.content.Content: "loads"
+toolprotocol.elicit.Elicitor -> toolprotocol.content.Content: "elicits"
+toolprotocol.discover.Request -> toolprotocol.wire.Request: "maps"
+toolprotocol.discover.Response -> toolprotocol.wire.Response: "maps"
+toolprotocol.task.Task -> toolprotocol.stream.Event: "emits"
+toolprotocol.session.Session -> toolprotocol.stream.Stream: "scopes"
