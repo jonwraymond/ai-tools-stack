@@ -66,6 +66,8 @@ github.com/jonwraymond/toolops v0.1.2 h1:F0kDj2AIBqWp9Nae0bmNKngpHtD/oNAhU0Xlrns
 github.com/jonwraymond/toolops v0.1.2/go.mod h1:319niHLiAjpmJccPzrOOCZ/+5gW1S+r8y5zXdTt9GsQ=
 github.com/jonwraymond/toolops v0.1.3 h1:XGVe8Ey0knWG0B6jrMhrDhOxH4/vdNfO2q+TYc6Lopw=
 github.com/jonwraymond/toolops v0.1.3/go.mod h1:319niHLiAjpmJccPzrOOCZ/+5gW1S+r8y5zXdTt9GsQ=
+github.com/jonwraymond/toolops v0.1.4 h1:g4+5eY/p+VOB0W/2CP0UkrhIavfdUcvMXyl7huj4kps=
+github.com/jonwraymond/toolops v0.1.4/go.mod h1:319niHLiAjpmJccPzrOOCZ/+5gW1S+r8y5zXdTt9GsQ=
 github.com/json-iterator/go v1.1.12 h1:PV8peI4a0ysnczrg+LtxykD8LfKY9ML6u2jnxaEnrnM=
 github.com/json-iterator/go v1.1.12/go.mod h1:e30LSqwooZae/UwlEbR2852Gd8hjQvJoHmT4TnhNGBo=
 github.com/modelcontextprotocol/go-sdk v1.2.0 h1:Y23co09300CEk8iZ/tMxIX1dVmKZkzoSBZOpJwUnc/s=
