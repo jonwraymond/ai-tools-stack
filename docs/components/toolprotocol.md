@@ -79,5 +79,8 @@ sequenceDiagram
 
 - [Repository](https://github.com/jonwraymond/toolprotocol)
 - [Docs index](../library-docs-from-repos/toolprotocol/index.md)
+- [Architecture](../library-docs-from-repos/toolprotocol/architecture.md)
+- [Schemas and contracts](../library-docs-from-repos/toolprotocol/schemas.md)
+- [Examples](../library-docs-from-repos/toolprotocol/examples.md)
 - [Design notes](../library-docs-from-repos/toolprotocol/design-notes.md)
 - [User journey](../library-docs-from-repos/toolprotocol/user-journey.md)
