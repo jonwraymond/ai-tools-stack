@@ -251,7 +251,22 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolprotocol/architecture/</loc>
+         <lastmod>2026-02-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolprotocol/design-notes/</loc>
+         <lastmod>2026-02-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolprotocol/examples/</loc>
+         <lastmod>2026-02-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolprotocol/schemas/</loc>
          <lastmod>2026-02-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
