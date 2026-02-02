@@ -41,32 +41,12 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/tooladapter/</loc>
-         <lastmod>2026-02-02</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolcache/</loc>
-         <lastmod>2026-02-02</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolcode/</loc>
-         <lastmod>2026-02-02</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolcompose/</loc>
          <lastmod>2026-02-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/tooldiscovery/</loc>
-         <lastmod>2026-02-02</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/tooldocs/</loc>
          <lastmod>2026-02-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -81,57 +61,12 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolindex/</loc>
-         <lastmod>2026-02-02</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolmodel/</loc>
-         <lastmod>2026-02-02</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolobserve/</loc>
-         <lastmod>2026-02-02</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolops/</loc>
          <lastmod>2026-02-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolprotocol/</loc>
-         <lastmod>2026-02-02</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolrun/</loc>
-         <lastmod>2026-02-02</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolruntime/</loc>
-         <lastmod>2026-02-02</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolsearch/</loc>
-         <lastmod>2026-02-02</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolsemantic/</loc>
-         <lastmod>2026-02-02</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolset/</loc>
-         <lastmod>2026-02-02</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolskill/</loc>
          <lastmod>2026-02-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
