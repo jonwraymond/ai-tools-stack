@@ -135,6 +135,25 @@ tooldiscovery: "📇 tooldiscovery" {
     DocStore -> ToolDoc: "returns"
     DocStore -> DetailLevel: "filters by"
   }
+
+  registry: "registry" {
+    class: package
+
+    Registry: "Registry\n- index\n- searcher\n- handlers\n- backends" {
+      shape: class
+      class: type
+    }
+
+    Config: "Config\n- SearchConfig\n- ServerInfo\n- BackendSelector" {
+      shape: class
+      class: type
+    }
+
+    ToolHandler: "«type»\nToolHandler" {
+      shape: class
+      class: interface
+    }
+  }
 }
 
 # Package dependencies
@@ -151,6 +170,17 @@ tooldiscovery.semantic.SemanticSearcher -> tooldiscovery.index.SearchStrategy: "
 tooldiscovery.index.Index -> tooldiscovery.tooldoc.DocStore: "integrates" {
   style: {
     stroke: "#4a5568"
+  }
+}
+
+tooldiscovery.registry.Registry -> tooldiscovery.index.Index: "uses" {
+  style: {
+    stroke-dash: 3
+  }
+}
+tooldiscovery.registry.Registry -> tooldiscovery.search.BM25Searcher: "configures" {
+  style: {
+    stroke-dash: 3
   }
 }
 

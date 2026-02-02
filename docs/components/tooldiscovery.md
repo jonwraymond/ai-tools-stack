@@ -13,6 +13,7 @@ search approaches.
 | `semantic` | Embedding-based semantic search (optional) |
 | `tooldoc` | Progressive documentation with detail levels |
 | `discovery` | Unified facade combining index + search + semantic + tooldoc |
+| `registry` | MCP server helper with local + backend execution |
 
 ## Motivation
 
@@ -39,6 +40,31 @@ results, _ := disc.Search(context.Background(), "create issue", 5)
 for _, r := range results {
   fmt.Println(r.ScoreType, r.Summary.ID)
 }
+```
+
+## registry Package
+
+The `registry` package is a high-level helper for building MCP servers that
+combines index, search, local handlers, and MCP backend aggregation.
+
+### Example
+
+```go
+import "github.com/jonwraymond/tooldiscovery/registry"
+
+reg := registry.New(registry.Config{
+  ServerInfo: registry.ServerInfo{Name: "my-mcp", Version: "1.0.0"},
+})
+
+_ = reg.RegisterLocalFunc(
+  "echo",
+  "Echo input",
+  map[string]any{"type": "object"},
+  func(ctx context.Context, args map[string]any) (any, error) { return args, nil },
+)
+
+_ = reg.Start(context.Background())
+defer reg.Stop()
 ```
 
 ## index Package
@@ -172,3 +198,4 @@ flowchart TB
 - [Schemas and contracts](../library-docs-from-repos/tooldiscovery/schemas.md)
 - [Architecture](../library-docs-from-repos/tooldiscovery/architecture.md)
 - [Concurrency](../library-docs-from-repos/tooldiscovery/concurrency.md)
+- [Registry](../library-docs-from-repos/tooldiscovery/registry.md)
