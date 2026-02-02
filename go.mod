@@ -5,7 +5,7 @@ go 1.25.6
 require (
 	github.com/jonwraymond/metatools-mcp v0.5.2
 	github.com/jonwraymond/tooldiscovery v0.2.1
-	github.com/jonwraymond/toolexec v0.1.3
+	github.com/jonwraymond/toolexec v0.1.4
 	github.com/jonwraymond/toolfoundation v0.2.0
 	github.com/modelcontextprotocol/go-sdk v1.2.0
 )
