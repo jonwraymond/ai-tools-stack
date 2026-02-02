@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.3.0](https://github.com/jonwraymond/ai-tools-stack/compare/ai-tools-stack-v0.2.0...ai-tools-stack-v0.3.0) (2026-02-02)
+
+
+### Features
+
+* update ai-tools-stack for consolidated repos (PRD-181) ([a6706b4](https://github.com/jonwraymond/ai-tools-stack/commit/a6706b4fa3b97cbaaaddb571c51ebff8361cd8b8))
+
+
+### Bug Fixes
+
+* **docs:** add nav to multirepo stub mkdocs ([025caa6](https://github.com/jonwraymond/ai-tools-stack/commit/025caa65b5b6155301655369fa8e6fd77aac402b))
+* **docs:** stub mkdocs config for multirepo clones ([116e9de](https://github.com/jonwraymond/ai-tools-stack/commit/116e9de14a51d6bec4b82eb923bede14866c3ac0))
+
 ## [0.2.0](https://github.com/jonwraymond/ai-tools-stack/compare/ai-tools-stack-v0.1.9...ai-tools-stack-v0.2.0) (2026-01-28)
 
 
