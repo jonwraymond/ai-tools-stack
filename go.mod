@@ -16,10 +16,6 @@ require (
 
 replace github.com/jonwraymond/metatools-a2a => ../metatools-a2a
 
-replace github.com/jonwraymond/toolexec => ../toolexec
-
-replace github.com/jonwraymond/toolexec-integrations => ../toolexec-integrations
-
 require (
 	github.com/RoaringBitmap/roaring/v2 v2.14.4 // indirect
 	github.com/bits-and-blooms/bitset v1.24.4 // indirect
