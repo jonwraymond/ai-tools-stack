@@ -1,5 +1,5 @@
 site_name: AI Tools Stack
-site_description: Unified documentation for toolfoundation, tooldiscovery, toolexec, toolcompose, toolops, toolprotocol, and metatools-mcp.
+site_description: Unified documentation for toolfoundation, tooldiscovery, toolexec, toolexec-integrations, toolcompose, toolops, toolprotocol, metatools-mcp, and metatools-a2a.
 site_url: https://jonwraymond.github.io/ai-tools-stack/
 repo_name: jonwraymond/ai-tools-stack
 repo_url: https://github.com/jonwraymond/ai-tools-stack
@@ -7,8 +7,13 @@ edit_uri: edit/main/docs/
 
 nav:
   - Home: index.md
+  - Roadmap: roadmap.md
   - Architecture:
       - Stack Overview: architecture/overview.md
+      - Stack Map: architecture/stack-map.md
+      - Protocol Crosswalk: architecture/protocol-crosswalk.md
+      - Entrypoints: architecture/entrypoints.md
+      - End-to-End Example: architecture/end-to-end-example.md
       - Progressive Disclosure: architecture/progressive-disclosure.md
       - Pluggable Architecture: architecture/pluggable-architecture.md
       - Why Go: architecture/why-go.md
@@ -18,10 +23,12 @@ nav:
       - toolfoundation: components/toolfoundation.md
       - tooldiscovery: components/tooldiscovery.md
       - toolexec: components/toolexec.md
+      - toolexec-integrations: components/toolexec-integrations.md
       - toolcompose: components/toolcompose.md
       - toolops: components/toolops.md
       - toolprotocol: components/toolprotocol.md
       - metatools-mcp: components/metatools-mcp.md
+      - metatools-a2a: components/metatools-a2a.md
   - Operations:
       - CI and Versioning: operations/ci-and-versioning.md
       - Migration Guide: operations/migration-guide.md
@@ -31,10 +38,12 @@ nav:
       - toolfoundation: '!import https://github.com/jonwraymond/toolfoundation?branch=main&docs_dir=docs/*'
       - tooldiscovery: '!import https://github.com/jonwraymond/tooldiscovery?branch=main&docs_dir=docs/*'
       - toolexec: '!import https://github.com/jonwraymond/toolexec?branch=main&docs_dir=docs/*'
+      - toolexec-integrations: '!import https://github.com/jonwraymond/toolexec-integrations?branch=main&docs_dir=docs/*'
       - toolcompose: '!import https://github.com/jonwraymond/toolcompose?branch=main&docs_dir=docs/*'
       - toolops: '!import https://github.com/jonwraymond/toolops?branch=main&docs_dir=docs/*'
       - toolprotocol: '!import https://github.com/jonwraymond/toolprotocol?branch=main&docs_dir=docs/*'
       - metatools-mcp: '!import https://github.com/jonwraymond/metatools-mcp?branch=main&docs_dir=docs/*'
+      - metatools-a2a: '!import https://github.com/jonwraymond/metatools-a2a?branch=main&docs_dir=docs/*'
 
 theme:
   name: material

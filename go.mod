@@ -3,10 +3,14 @@ module github.com/jonwraymond/ai-tools-stack
 go 1.25.6
 
 require (
-	github.com/jonwraymond/metatools-mcp v0.5.2
-	github.com/jonwraymond/tooldiscovery v0.2.2
-	github.com/jonwraymond/toolexec v0.1.4
-	github.com/jonwraymond/toolfoundation v0.2.0
+	github.com/jonwraymond/metatools-a2a v0.1.1
+	github.com/jonwraymond/metatools-mcp v0.5.3
+	github.com/jonwraymond/toolcompose v0.1.3
+	github.com/jonwraymond/tooldiscovery v0.3.0
+	github.com/jonwraymond/toolexec v0.2.1
+	github.com/jonwraymond/toolfoundation v0.3.0
+	github.com/jonwraymond/toolops v0.1.5
+	github.com/jonwraymond/toolprotocol v0.1.7
 	github.com/modelcontextprotocol/go-sdk v1.2.0
 )
 
@@ -31,17 +35,17 @@ require (
 	github.com/blevesearch/zapx/v14 v14.4.2 // indirect
 	github.com/blevesearch/zapx/v15 v15.4.2 // indirect
 	github.com/blevesearch/zapx/v16 v16.3.0 // indirect
+	github.com/golang-jwt/jwt/v5 v5.3.1 // indirect
 	github.com/golang/snappy v1.0.0 // indirect
 	github.com/google/jsonschema-go v0.4.2 // indirect
-	github.com/jonwraymond/toolops v0.1.4 // indirect
-	github.com/jonwraymond/toolprotocol v0.1.5 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
-	github.com/modern-go/reflect2 v1.0.2 // indirect
+	github.com/modern-go/reflect2 v1.0.3-0.20250322232337-35a7c28c31ee // indirect
 	github.com/mschoch/smat v0.2.0 // indirect
 	github.com/yosida95/uritemplate/v3 v3.0.2 // indirect
 	go.etcd.io/bbolt v1.4.3 // indirect
 	golang.org/x/oauth2 v0.34.0 // indirect
+	golang.org/x/sync v0.19.0 // indirect
 	golang.org/x/sys v0.40.0 // indirect
 	google.golang.org/protobuf v1.36.11 // indirect
 )

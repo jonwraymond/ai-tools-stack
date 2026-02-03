@@ -13,7 +13,6 @@ why a design decision was made or how to handle specific failure modes.
 - toolops — [design-notes](../library-docs-from-repos/toolops/design-notes.md)
 - toolprotocol — [design-notes](../library-docs-from-repos/toolprotocol/design-notes.md)
 - metatools-mcp — [design-notes](../library-docs-from-repos/metatools-mcp/design-notes.md)
-- metatools‑mcp — [design-notes](../library-docs-from-repos/metatools-mcp/design-notes.md)
 
 ## When to read these
 

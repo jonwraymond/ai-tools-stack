@@ -7,7 +7,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/jonwraymond/metatools-a2a/pkg/a2a"
 	"github.com/jonwraymond/metatools-mcp/pkg/metatools"
+	"github.com/jonwraymond/toolcompose/set"
 	"github.com/jonwraymond/tooldiscovery/index"
 	"github.com/jonwraymond/tooldiscovery/search"
 	"github.com/jonwraymond/tooldiscovery/tooldoc"
@@ -15,7 +17,10 @@ import (
 	"github.com/jonwraymond/toolexec/run"
 	"github.com/jonwraymond/toolexec/runtime"
 	"github.com/jonwraymond/toolexec/runtime/toolcodeengine"
+	"github.com/jonwraymond/toolfoundation/adapter"
 	"github.com/jonwraymond/toolfoundation/model"
+	"github.com/jonwraymond/toolops/auth"
+	"github.com/jonwraymond/toolprotocol/wire"
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
 
@@ -74,7 +79,35 @@ func TestReleaseTrainSmoke(t *testing.T) {
 
 	ctx := context.Background()
 
-	// 1) Index with BM25 searcher injected.
+	// 0) metatools-a2a surface is available.
+	if a2a.Protocol != "a2a" {
+		t.Fatalf("metatools-a2a protocol = %q, want a2a", a2a.Protocol)
+	}
+
+	// 1) Toolset composition and adapters are available.
+	canonical := &adapter.CanonicalTool{
+		Namespace:   "math",
+		Name:        "add",
+		InputSchema: &adapter.JSONSchema{Type: "object"},
+	}
+	toolset := set.New("smoke")
+	toolset.Add(canonical)
+	if toolset.Count() != 1 {
+		t.Fatalf("toolset.Count() = %d, want 1", toolset.Count())
+	}
+
+	// 2) Auth primitives are available.
+	authn := auth.NewCompositeAuthenticator()
+	if authn == nil {
+		t.Fatal("auth.NewCompositeAuthenticator() returned nil")
+	}
+
+	// 3) Wire formats are available (A2A + MCP).
+	if wire.NewA2A() == nil || wire.NewMCP() == nil {
+		t.Fatal("wire.NewA2A() or wire.NewMCP() returned nil")
+	}
+
+	// 4) Index with BM25 searcher injected.
 	idx := index.NewInMemoryIndex(index.IndexOptions{
 		Searcher: search.NewBM25Searcher(search.BM25Config{}),
 	})
@@ -116,7 +149,7 @@ func TestReleaseTrainSmoke(t *testing.T) {
 		t.Fatalf("RegisterTools() error = %v", err)
 	}
 
-	// 2) Docs store layered on the index.
+	// 5) Docs store layered on the index.
 	docs := tooldoc.NewInMemoryStore(tooldoc.StoreOptions{Index: idx})
 	if err := docs.RegisterExamples(addTool.ToolID(), []tooldoc.ToolExample{
 		{
@@ -132,7 +165,7 @@ func TestReleaseTrainSmoke(t *testing.T) {
 		t.Fatalf("RegisterExamples() error = %v", err)
 	}
 
-	// 3) Local runner wired to the same index.
+	// 6) Local runner wired to the same index.
 	reg := localRegistry{
 		"math-add": func(_ context.Context, args map[string]any) (any, error) {
 			a, ok := toFloat(args["a"])
@@ -152,7 +185,7 @@ func TestReleaseTrainSmoke(t *testing.T) {
 		run.WithLocalRegistry(reg),
 	)
 
-	// 4) Progressive discovery still works.
+	// 7) Progressive discovery still works.
 	results, err := idx.Search("add numbers", 5)
 	if err != nil {
 		t.Fatalf("Search() error = %v", err)
@@ -174,7 +207,7 @@ func TestReleaseTrainSmoke(t *testing.T) {
 		t.Fatalf("unexpected doc: %+v", doc)
 	}
 
-	// 5) Execution via run is aligned.
+	// 8) Execution via run is aligned.
 	runRes, err := runner.Run(ctx, addTool.ToolID(), map[string]any{"a": 1.0, "b": 2.0})
 	if err != nil {
 		t.Fatalf("Run() error = %v", err)
@@ -188,7 +221,7 @@ func TestReleaseTrainSmoke(t *testing.T) {
 		t.Fatalf("Run() sum = %v, want 3", runMap["sum"])
 	}
 
-	// 6) code + runtime adapter still composes.
+	// 9) code + runtime adapter still composes.
 	rt := runtime.NewDefaultRuntime(runtime.RuntimeConfig{
 		Backends: map[runtime.SecurityProfile]runtime.Backend{
 			runtime.ProfileStandard: gatewayBackend{toolID: addTool.ToolID()},

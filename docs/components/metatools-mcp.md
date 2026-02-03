@@ -3,6 +3,8 @@
 MCP server that exposes the tool stack via standardized MCP tools with a
 progressive-disclosure flow.
 
+Companion A2A surface: see `metatools-a2a`.
+
 ## Motivation
 
 - Provide a minimal, consistent MCP surface
@@ -20,7 +22,7 @@ progressive-disclosure flow.
 ## Transport surface
 
 - `stdio` (default): local clients/Claude Desktop.
-- `streamable` (recommended HTTP): MCP spec 2025-03-26 with session management.
+- `streamable` (recommended HTTP): MCP spec 2025-11-25 with session management.
 - `sse` (deprecated): legacy web clients.
 
 See `metatools-mcp/docs/usage.md` for the full config/env matrix.

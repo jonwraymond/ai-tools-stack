@@ -111,13 +111,42 @@ result, err := executor.Execute(ctx, `
 
 The `runtime` package provides sandbox and runtime isolation for tool execution.
 
+![Runtime Backend Matrix](../assets/diagrams/runtime-backend-matrix.svg)
+
 ### Supported Runtimes
 
 | Runtime | Isolation | Use Case |
 |---------|-----------|----------|
-| `local` | Process | Trusted tools |
-| `docker` | Container | Untrusted code |
-| `wasm` | Sandbox | Browser/edge |
+| `unsafe_host` | Process | Trusted tools (dev only) |
+| `docker` | Container | Standard isolation |
+| `containerd` | Container | Infra-native runtime |
+| `kubernetes` | Pod/Job | Cluster scheduling + quotas |
+| `gvisor` | Container sandbox | Hardened isolation |
+| `kata` | MicroVM | VM-level isolation |
+| `firecracker` | MicroVM | Strongest isolation |
+| `wasm` | In-process sandbox | Constrained SDK surface |
+| `remote` | Remote service | Dedicated runtime fleet |
+| `proxmox_lxc` | LXC container | Proxmox-backed runtime |
+| `temporal` | Orchestrator | Long-running workflows |
+
+### Runtime Backends (Readiness)
+
+| Backend | Readiness | Notes |
+|---------|-----------|-------|
+| `unsafe_host` | prod | Development only; no isolation |
+| `docker` | prod | Default container isolation |
+| `containerd` | beta | Direct CRI runtime |
+| `kubernetes` | beta | Jobs/pods + runtimeClass |
+| `gvisor` | beta | runsc sandbox |
+| `kata` | beta | VM-level isolation |
+| `firecracker` | beta | MicroVM runtime |
+| `wasm` | beta | Wazero execution |
+| `remote` | beta | Signed HTTP runtime |
+| `proxmox_lxc` | beta | Proxmox API + runtime service |
+| `temporal` | stub | Orchestration only; compose with sandbox |
+
+Concrete runtime clients (Kubernetes, Proxmox, remote HTTP) live in
+`toolexec-integrations` and are injected into these backends via interfaces.
 
 ### Example
 

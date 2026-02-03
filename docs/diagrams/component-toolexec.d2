@@ -202,6 +202,21 @@ tooldiscovery: "tooldiscovery" {
   }
 }
 
+# Integration clients (separate repo)
+toolexec_integrations: "toolexec-integrations\nkubernetes • proxmox • remotehttp" {
+  style: {
+    fill: "#c6f6d5"
+    stroke: ${execution-stroke}
+    stroke-width: 2
+    stroke-dash: 4
+  }
+  shape: package
+}
+
+toolexec_integrations -> toolexec.runtime: "implements backend clients" {
+  style: { stroke-dash: 4; stroke: ${execution-stroke} }
+}
+
 toolfoundation: "toolfoundation" {
   style: {
     fill: "#718096"

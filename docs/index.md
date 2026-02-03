@@ -20,10 +20,11 @@ progressive-disclosure MCP surface.
 | **Foundation** | toolfoundation (model, adapter, version) | Canonical schemas + protocol adapters |
 | **Discovery** | tooldiscovery (index, tooldoc, search, semantic) | Registry, docs, search strategies |
 | **Execution** | toolexec (run, code, runtime, backend) | Execution, chaining, sandboxing |
+| **Execution (Integrations)** | toolexec-integrations (kubernetes, proxmox, remotehttp) | Concrete runtime clients |
 | **Composition** | toolcompose (set, skill) | Filtered collections, skill workflows |
 | **Operations** | toolops (observe, cache, auth, resilience, health) | Observability + production controls |
 | **Protocol** | toolprotocol (transport, wire, content, stream, task, session, resource, prompt, elicit) | Protocol primitives |
-| **Surface** | metatools-mcp | MCP server wiring |
+| **Surface** | metatools-mcp, metatools-a2a | MCP + A2A servers wiring |
 
 ## High-level Flow
 
@@ -39,8 +40,9 @@ flowchart TB
         Agent["🤖 AI Agent"]
     end
 
-    subgraph surface["MCP Surface"]
+    subgraph surface["Protocol Surfaces"]
         MCP["🔷 metatools-mcp<br/><small>JSON-RPC / SSE</small>"]
+        A2A["🔷 metatools-a2a<br/><small>A2A JSON-RPC / REST / SSE</small>"]
     end
 
     subgraph operations["Operations"]
@@ -89,6 +91,7 @@ flowchart TB
     end
 
     Agent <-->|"MCP Protocol"| MCP
+    Agent <-->|"A2A Protocol"| A2A
 
     MCP --> Observe
     MCP --> Cache
@@ -174,6 +177,7 @@ sequenceDiagram
 3. Add docs/examples in `tooldiscovery/tooldoc`
 4. Execute tools via `toolexec/run`
 5. Expose the MCP surface using `metatools-mcp`
+6. Expose the A2A surface using `metatools-a2a` (optional)
 
 See the **Components** section for per-library examples and diagrams.
 

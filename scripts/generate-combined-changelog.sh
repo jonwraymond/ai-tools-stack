@@ -14,10 +14,12 @@ REPOS=(
   toolfoundation
   tooldiscovery
   toolexec
+  toolexec-integrations
   toolcompose
   toolops
   toolprotocol
   metatools-mcp
+  metatools-a2a
 )
 
 usage() {
