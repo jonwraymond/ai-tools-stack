@@ -58,6 +58,8 @@ github.com/jonwraymond/toolcompose v0.1.2 h1:AiTovGLvtl41SNeCCs/7o/XiF3FV6ov4pIO
 github.com/jonwraymond/toolcompose v0.1.2/go.mod h1:Uc6Rj5ClCOKSkGLhZa9xjZYrHCkKvQyuI1DVvMyBmv8=
 github.com/jonwraymond/tooldiscovery v0.2.2 h1:w6mIhNyxGSSKFi/9iQfFiT6ZgKNxxs4IO8C2j8UAe8U=
 github.com/jonwraymond/tooldiscovery v0.2.2/go.mod h1:2LxR6cm4RUPu+o88QstDdfLVAABmYan2TWE6eg1xtcU=
+github.com/jonwraymond/toolexec v0.2.0 h1:lVGTbcaCnmhuFLEiyO1UqDZc9QNyC2fBOJvpXn4CgzY=
+github.com/jonwraymond/toolexec v0.2.0/go.mod h1:i6Nz9Iq7SSicjItZzBfuvv2o96yzy6JCa0ddOsJN4l8=
 github.com/jonwraymond/toolfoundation v0.2.0 h1:Uqk0XPVCPFi4vtOn8R9Y/965KhxU3ptaZSCaN5N3qXg=
 github.com/jonwraymond/toolfoundation v0.2.0/go.mod h1:sUvAa1lxc/l57jdC+hAQVWKky3wpobDB2sNo40lQSCY=
 github.com/jonwraymond/toolops v0.1.4 h1:g4+5eY/p+VOB0W/2CP0UkrhIavfdUcvMXyl7huj4kps=
