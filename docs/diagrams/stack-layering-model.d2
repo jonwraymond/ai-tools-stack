@@ -1,5 +1,5 @@
 # ApertureStack Layering Model (Consolidated)
-# 6 library repos + surface
+# 6 library repos + protocol surfaces
 
 direction: down
 
@@ -79,10 +79,11 @@ layer_protocol: "🔌 Protocol Layer" {
   toolprotocol: "toolprotocol\ntransport • wire • content • stream • task" { shape: package; class: protocol-component }
 }
 
-layer_surface: "🔷 MCP Surface" {
+layer_surface: "🔷 Protocol Surfaces" {
   class: layer
   style: { fill: "#ebf8ff"; stroke: ${surface-stroke}; stroke-width: 3 }
   metatools: "metatools-mcp\nMCP Server" { shape: hexagon; class: surface-component }
+  metatools_a2a: "metatools-a2a\nA2A Server" { shape: hexagon; class: surface-component }
 }
 
 layer_foundation.toolfoundation -> layer_discovery.tooldiscovery: "schemas" { class: data-flow }
@@ -100,3 +101,10 @@ layer_composition.toolcompose -> layer_surface.metatools: "toolsets/skills" { cl
 layer_execution.toolexec -> layer_surface.metatools: "run/execute" { class: data-flow }
 layer_discovery.tooldiscovery -> layer_surface.metatools: "search/describe" { class: data-flow }
 layer_foundation.toolfoundation -> layer_surface.metatools: "schemas" { class: data-flow }
+
+layer_protocol.toolprotocol -> layer_surface.metatools_a2a: "transport/wire" { class: data-flow }
+layer_operations.toolops -> layer_surface.metatools_a2a: "observe/cache" { class: data-flow }
+layer_composition.toolcompose -> layer_surface.metatools_a2a: "toolsets/skills" { class: data-flow }
+layer_execution.toolexec -> layer_surface.metatools_a2a: "run/execute" { class: data-flow }
+layer_discovery.tooldiscovery -> layer_surface.metatools_a2a: "search/describe" { class: data-flow }
+layer_foundation.toolfoundation -> layer_surface.metatools_a2a: "schemas" { class: data-flow }

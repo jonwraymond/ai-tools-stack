@@ -3,6 +3,8 @@
 This stack is built around progressive disclosure and a clean separation of
 schema, discovery, docs, execution, and transport.
 
+See also: `architecture/stack-map.md` and `architecture/protocol-crosswalk.md`.
+
 ---
 
 ## System Context (C4 Level 1)
@@ -21,6 +23,7 @@ flowchart TB
     subgraph aperture["ApertureStack"]
         direction TB
         MCP["🔷 metatools-mcp<br/><small>MCP Server Surface</small>"]
+        A2A["🧩 metatools-a2a<br/><small>A2A Server Surface</small>"]
     end
 
     subgraph observability["Observability"]
@@ -30,10 +33,15 @@ flowchart TB
     end
 
     Agent -->|"MCP Protocol<br/>JSON-RPC"| MCP
+    Agent -->|"A2A Protocol<br/>JSON-RPC/REST"| A2A
     MCP -->|"Tool Calls"| ExtMCP
     MCP -->|"Code Execution"| Backends
+    A2A -->|"Tool Calls"| ExtMCP
+    A2A -->|"Code Execution"| Backends
     MCP -.->|"Traces"| OTLP
     MCP -.->|"Metrics"| Prometheus
+    A2A -.->|"Traces"| OTLP
+    A2A -.->|"Metrics"| Prometheus
     OTLP --> Jaeger
 
     style aperture fill:#1a365d,stroke:#2c5282,stroke-width:3px
@@ -52,39 +60,40 @@ Complete view of the consolidated repositories organized by layer.
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2b6cb0', 'primaryTextColor': '#fff', 'lineColor': '#4a5568'}}}%%
 flowchart TB
-    subgraph surface["MCP Surface Layer"]
+    subgraph surface["Protocol Surface Layer"]
         direction LR
-        metatools["🔷 metatools-mcp<br/><small>v0.5.0 • MCP Server</small>"]
+        metatools["🔷 metatools-mcp<br/><small>v0.5.2 • MCP Server</small>"]
+        metatoolsA2A["🧩 metatools-a2a<br/><small>v0.1.0 • A2A Server</small>"]
     end
 
     subgraph protocol["Protocol Layer"]
         direction LR
-        toolprotocol["📡 toolprotocol<br/><small>v0.1.0 • Transports + Wire</small>"]
+        toolprotocol["📡 toolprotocol<br/><small>v0.1.5 • Transports + Wire</small>"]
     end
 
     subgraph operations["Operations Layer"]
         direction LR
-        toolops["👁️ toolops<br/><small>v0.1.0 • Observe/Cache/Auth</small>"]
+        toolops["👁️ toolops<br/><small>v0.1.4 • Observe/Cache/Auth</small>"]
     end
 
     subgraph composition["Composition Layer"]
         direction LR
-        toolcompose["📦 toolcompose<br/><small>v0.1.0 • Set + Skill</small>"]
+        toolcompose["📦 toolcompose<br/><small>v0.1.2 • Set + Skill</small>"]
     end
 
     subgraph execution["Execution Layer"]
         direction LR
-        toolexec["▶️ toolexec<br/><small>v0.1.0 • Run/Code/Runtime</small>"]
+        toolexec["▶️ toolexec<br/><small>v0.1.4 • Run/Code/Runtime</small>"]
     end
 
     subgraph discovery["Discovery Layer"]
         direction LR
-        tooldiscovery["📇 tooldiscovery<br/><small>v0.1.0 • Index/Search/Docs</small>"]
+        tooldiscovery["📇 tooldiscovery<br/><small>v0.2.2 • Index/Search/Docs</small>"]
     end
 
     subgraph foundation["Foundation Layer"]
         direction LR
-        toolfoundation["🧱 toolfoundation<br/><small>v0.1.0 • Model/Adapter/Version</small>"]
+        toolfoundation["🧱 toolfoundation<br/><small>v0.2.0 • Model/Adapter/Version</small>"]
     end
 
     toolfoundation --> tooldiscovery
@@ -102,6 +111,13 @@ flowchart TB
     toolexec --> metatools
     tooldiscovery --> metatools
     toolfoundation --> metatools
+
+    toolprotocol --> metatoolsA2A
+    toolops --> metatoolsA2A
+    toolcompose --> metatoolsA2A
+    toolexec --> metatoolsA2A
+    tooldiscovery --> metatoolsA2A
+    toolfoundation --> metatoolsA2A
 
     style surface fill:#2b6cb0,stroke:#2c5282,stroke-width:2px
     style protocol fill:#d69e2e,stroke:#b7791f,stroke-width:2px
@@ -222,6 +238,12 @@ flowchart LR
     style validation2 fill:#38a169,stroke:#276749
     style output fill:#3182ce,stroke:#2c5282
 ```
+
+---
+
+## End-to-End Example
+
+See the short, runnable walkthrough: [End-to-End Example](end-to-end-example.md).
 
 ---
 

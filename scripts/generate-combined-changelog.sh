@@ -18,6 +18,7 @@ REPOS=(
   toolops
   toolprotocol
   metatools-mcp
+  metatools-a2a
 )
 
 usage() {
