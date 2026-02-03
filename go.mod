@@ -4,7 +4,7 @@ go 1.25.6
 
 require (
 	github.com/jonwraymond/metatools-a2a v0.1.1
-	github.com/jonwraymond/metatools-mcp v0.5.2
+	github.com/jonwraymond/metatools-mcp v0.5.3
 	github.com/jonwraymond/toolcompose v0.1.3
 	github.com/jonwraymond/tooldiscovery v0.3.0
 	github.com/jonwraymond/toolexec v0.2.1
