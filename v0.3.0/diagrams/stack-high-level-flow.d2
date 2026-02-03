@@ -1,0 +1,97 @@
+# ApertureStack High-Level Data Flow (Consolidated)
+
+direction: right
+
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+  agent-fill: "#4a5568"
+  surface-fill: "#2b6cb0"
+  foundation-fill: "#718096"
+  discovery-fill: "#3182ce"
+  execution-fill: "#38a169"
+  composition-fill: "#805ad5"
+  operations-fill: "#e53e3e"
+  protocol-fill: "#d69e2e"
+}
+
+classes: {
+  container: { style: { border-radius: 12; shadow: true; font-size: 14; bold: true } }
+  agent-style: { style: { fill: ${agent-fill}; stroke: "#2d3748"; stroke-width: 2; font-color: "#fff" } }
+  surface-style: { style: { fill: ${surface-fill}; stroke: "#1a365d"; stroke-width: 3; font-color: "#fff" } }
+  foundation-style: { style: { fill: ${foundation-fill}; stroke: "#4a5568"; stroke-width: 2; font-color: "#fff" } }
+  discovery-style: { style: { fill: ${discovery-fill}; stroke: "#2c5282"; stroke-width: 2; font-color: "#fff" } }
+  execution-style: { style: { fill: ${execution-fill}; stroke: "#276749"; stroke-width: 2; font-color: "#fff" } }
+  composition-style: { style: { fill: ${composition-fill}; stroke: "#6b46c1"; stroke-width: 2; font-color: "#fff" } }
+  operations-style: { style: { fill: ${operations-fill}; stroke: "#c53030"; stroke-width: 2; font-color: "#fff" } }
+  protocol-style: { style: { fill: ${protocol-fill}; stroke: "#b7791f"; stroke-width: 2; font-color: "#fff" } }
+  request-flow: { style: { stroke: "#2b6cb0"; stroke-width: 2; animated: true } }
+  data-flow: { style: { stroke: "#4a5568"; stroke-width: 2 } }
+}
+
+agent: "🤖 AI Agent" {
+  shape: person
+  class: agent-style
+  width: 100
+}
+
+surface: "🔷 metatools-mcp" {
+  class: container
+  style: { fill: "#ebf8ff"; stroke: ${surface-fill}; stroke-width: 3 }
+  metatools: "MCP Server\n7 Tools Exposed" { shape: hexagon; class: surface-style }
+}
+
+foundation: "🧱 Foundation" {
+  class: container
+  style: { fill: "#f7fafc"; stroke: ${foundation-fill} }
+  toolfoundation: "toolfoundation\nmodel/adapter/version" { shape: package; class: foundation-style }
+}
+
+discovery: "📇 Discovery" {
+  class: container
+  style: { fill: "#ebf8ff"; stroke: ${discovery-fill} }
+  tooldiscovery: "tooldiscovery\nindex/search/tooldoc/semantic" { shape: cylinder; class: discovery-style }
+}
+
+execution: "▶️ Execution" {
+  class: container
+  style: { fill: "#f0fff4"; stroke: ${execution-fill} }
+  toolexec: "toolexec\nrun/code/runtime/backend" { shape: step; class: execution-style }
+}
+
+composition: "🎼 Composition" {
+  class: container
+  style: { fill: "#faf5ff"; stroke: ${composition-fill} }
+  toolcompose: "toolcompose\nset/skill" { shape: cylinder; class: composition-style }
+}
+
+operations: "🔧 Operations" {
+  class: container
+  style: { fill: "#fff5f5"; stroke: ${operations-fill} }
+  toolops: "toolops\nobserve/cache/auth/resilience/health" { shape: hexagon; class: operations-style }
+}
+
+protocol: "🔌 Protocol" {
+  class: container
+  style: { fill: "#fffff0"; stroke: ${protocol-fill} }
+  toolprotocol: "toolprotocol\ntransport/wire/content/stream" { shape: package; class: protocol-style }
+}
+
+agent -> surface.metatools: "MCP Request\n(JSON-RPC)" { class: request-flow; target-arrowhead.shape: arrow }
+
+surface.metatools -> discovery.tooldiscovery: "search/describe" { class: data-flow }
+surface.metatools -> execution.toolexec: "run/execute" { class: data-flow }
+surface.metatools -> composition.toolcompose: "toolsets/skills" { class: data-flow }
+surface.metatools -> operations.toolops: "observe/cache" { class: data-flow }
+surface.metatools -> protocol.toolprotocol: "transport/wire" { class: data-flow }
+
+foundation.toolfoundation -> discovery.tooldiscovery: "schemas" { class: data-flow }
+foundation.toolfoundation -> execution.toolexec: "schemas" { class: data-flow }
+foundation.toolfoundation -> composition.toolcompose: "schemas" { class: data-flow }
+foundation.toolfoundation -> operations.toolops: "types" { class: data-flow }
+foundation.toolfoundation -> protocol.toolprotocol: "types" { class: data-flow }
+
+discovery.tooldiscovery -> composition.toolcompose: "inputs" { class: data-flow }
+execution.toolexec -> composition.toolcompose: "execution" { class: data-flow }

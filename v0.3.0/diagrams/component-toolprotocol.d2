@@ -1,0 +1,210 @@
+# toolprotocol Component Diagram
+# Protocol layer: transport, wire, content, stream, session, task, resource, prompt, elicit.
+
+direction: down
+
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+  protocol-fill: "#d69e2e"
+  protocol-stroke: "#b7791f"
+}
+
+classes: {
+  package: {
+    style: {
+      fill: ${protocol-fill}
+      stroke: ${protocol-stroke}
+      stroke-width: 2
+      font-color: "#fff"
+      border-radius: 8
+    }
+  }
+  type: {
+    style: {
+      fill: "#fffff0"
+      stroke: ${protocol-stroke}
+      stroke-width: 1
+    }
+  }
+  interface: {
+    style: {
+      fill: "#fefcbf"
+      stroke: ${protocol-stroke}
+      stroke-width: 1
+      stroke-dash: 3
+    }
+  }
+}
+
+toolprotocol: "📡 toolprotocol" {
+  style: {
+    fill: "#fffff0"
+    stroke: ${protocol-stroke}
+    stroke-width: 2
+    border-radius: 12
+    shadow: true
+  }
+
+  transport: "transport" {
+    class: package
+
+    Transport: "«interface»\nTransport\n+ Name()\n+ Info()\n+ Serve(ctx, server)\n+ Close()" {
+      shape: class
+      class: interface
+    }
+
+    Server: "«interface»\nServer\n+ ServeTransport(ctx, transport)" {
+      shape: class
+      class: interface
+    }
+  }
+
+  wire: "wire" {
+    class: package
+
+    Wire: "«interface»\nWire\n+ Encode/Decode\n+ Capabilities()" {
+      shape: class
+      class: interface
+    }
+
+    Request: "Request\n- Method\n- ToolID\n- Arguments" {
+      shape: class
+      class: type
+    }
+
+    Response: "Response\n- Content\n- Error\n- Meta" {
+      shape: class
+      class: type
+    }
+
+    Wire -> Request: "encodes"
+    Wire -> Response: "encodes"
+  }
+
+  content: "content" {
+    class: package
+
+    Content: "«interface»\nContent\n+ Type()\n+ MIMEType()\n+ Bytes()" {
+      shape: class
+      class: interface
+    }
+
+    Builder: "Builder\n+ Text()\n+ Image()\n+ File()" {
+      shape: class
+      class: type
+    }
+  }
+
+  stream: "stream" {
+    class: package
+
+    Stream: "«interface»\nStream\n+ Send(ctx, event)\n+ Close()" {
+      shape: class
+      class: interface
+    }
+
+    Event: "Event\n- Type\n- Data\n- Meta" {
+      shape: class
+      class: type
+    }
+  }
+
+  task: "task" {
+    class: package
+
+    Manager: "«interface»\nManager\n+ Create/Get/List\n+ Update/Complete/Fail" {
+      shape: class
+      class: interface
+    }
+
+    Task: "Task\n- State\n- Progress\n- Result" {
+      shape: class
+      class: type
+    }
+  }
+
+  session: "session" {
+    class: package
+
+    Store: "«interface»\nStore\n+ Create/Get/Update/Delete" {
+      shape: class
+      class: interface
+    }
+
+    Session: "Session\n- ID\n- State\n- ExpiresAt" {
+      shape: class
+      class: type
+    }
+  }
+
+  resource: "resource" {
+    class: package
+
+    Registry: "Registry\n+ Register\n+ Read\n+ List" {
+      shape: class
+      class: type
+    }
+
+    Provider: "«interface»\nProvider\n+ List()\n+ Read()\n+ Templates()" {
+      shape: class
+      class: interface
+    }
+  }
+
+  prompt: "prompt" {
+    class: package
+
+    Registry: "Registry\n+ Register\n+ Get" {
+      shape: class
+      class: type
+    }
+
+    Provider: "«interface»\nProvider\n+ List()\n+ Get()" {
+      shape: class
+      class: interface
+    }
+  }
+
+  elicit: "elicit" {
+    class: package
+
+    Elicitor: "«interface»\nElicitor\n+ Elicit(ctx, req)" {
+      shape: class
+      class: interface
+    }
+
+    Request: "Request\n- Type\n- Prompt\n- Schema" {
+      shape: class
+      class: type
+    }
+  }
+}
+
+flow: "Protocol Flow" {
+  style: {
+    fill: "#2d3748"
+    font-color: "#fff"
+    border-radius: 8
+  }
+
+  client: "Client" { shape: person }
+  transport_layer: "Transport\n(stdio/SSE/HTTP)" { shape: parallelogram }
+  wire_layer: "Wire\n(MCP/A2A/ACP)" { shape: step }
+  handler: "Handler" { shape: hexagon }
+  stream_layer: "Stream\n(progress/partial)" { shape: step }
+
+  client -> transport_layer: "connect"
+  transport_layer -> wire_layer: "decode"
+  wire_layer -> handler: "route"
+  handler -> stream_layer: "emit"
+  stream_layer -> wire_layer: "encode"
+  wire_layer -> transport_layer: "frame"
+  transport_layer -> client: "send"
+}
+
+toolprotocol.transport.Transport -> flow.transport_layer
+toolprotocol.wire.Wire -> flow.wire_layer
+toolprotocol.stream.Stream -> flow.stream_layer

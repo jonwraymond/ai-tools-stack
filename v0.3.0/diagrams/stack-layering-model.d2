@@ -1,0 +1,102 @@
+# ApertureStack Layering Model (Consolidated)
+# 6 library repos + surface
+
+direction: down
+
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+  foundation-fill: "#718096"
+  foundation-stroke: "#4a5568"
+  discovery-fill: "#3182ce"
+  discovery-stroke: "#2c5282"
+  execution-fill: "#38a169"
+  execution-stroke: "#276749"
+  composition-fill: "#805ad5"
+  composition-stroke: "#6b46c1"
+  operations-fill: "#e53e3e"
+  operations-stroke: "#c53030"
+  protocol-fill: "#d69e2e"
+  protocol-stroke: "#b7791f"
+  surface-fill: "#2b6cb0"
+  surface-stroke: "#1a365d"
+}
+
+classes: {
+  layer: {
+    style: {
+      border-radius: 12
+      shadow: true
+      font-size: 16
+      bold: true
+    }
+  }
+  foundation-component: { style: { fill: ${foundation-fill}; stroke: ${foundation-stroke}; stroke-width: 2; font-color: "#fff" } }
+  discovery-component: { style: { fill: ${discovery-fill}; stroke: ${discovery-stroke}; stroke-width: 2; font-color: "#fff" } }
+  execution-component: { style: { fill: ${execution-fill}; stroke: ${execution-stroke}; stroke-width: 2; font-color: "#fff" } }
+  composition-component: { style: { fill: ${composition-fill}; stroke: ${composition-stroke}; stroke-width: 2; font-color: "#fff" } }
+  operations-component: { style: { fill: ${operations-fill}; stroke: ${operations-stroke}; stroke-width: 2; font-color: "#fff" } }
+  protocol-component: { style: { fill: ${protocol-fill}; stroke: ${protocol-stroke}; stroke-width: 2; font-color: "#fff" } }
+  surface-component: { style: { fill: ${surface-fill}; stroke: ${surface-stroke}; stroke-width: 3; font-color: "#fff" } }
+  data-flow: { style: { stroke: "#4a5568"; stroke-width: 2 } }
+}
+
+layer_foundation: "🧱 Foundation Layer" {
+  class: layer
+  style: { fill: "#f7fafc"; stroke: ${foundation-stroke} }
+  toolfoundation: "toolfoundation\nmodel • adapter • version" { shape: package; class: foundation-component }
+}
+
+layer_discovery: "📇 Discovery Layer" {
+  class: layer
+  style: { fill: "#ebf8ff"; stroke: ${discovery-stroke} }
+  tooldiscovery: "tooldiscovery\nindex • tooldoc • search • semantic" { shape: cylinder; class: discovery-component }
+}
+
+layer_execution: "▶️ Execution Layer" {
+  class: layer
+  style: { fill: "#f0fff4"; stroke: ${execution-stroke} }
+  toolexec: "toolexec\nrun • code • runtime • backend" { shape: step; class: execution-component }
+}
+
+layer_composition: "🎼 Composition Layer" {
+  class: layer
+  style: { fill: "#faf5ff"; stroke: ${composition-stroke} }
+  toolcompose: "toolcompose\nset • skill" { shape: cylinder; class: composition-component }
+}
+
+layer_operations: "🔧 Operations Layer" {
+  class: layer
+  style: { fill: "#fff5f5"; stroke: ${operations-stroke} }
+  toolops: "toolops\nobserve • cache • auth • resilience • health" { shape: hexagon; class: operations-component }
+}
+
+layer_protocol: "🔌 Protocol Layer" {
+  class: layer
+  style: { fill: "#fffff0"; stroke: ${protocol-stroke} }
+  toolprotocol: "toolprotocol\ntransport • wire • content • stream • task" { shape: package; class: protocol-component }
+}
+
+layer_surface: "🔷 MCP Surface" {
+  class: layer
+  style: { fill: "#ebf8ff"; stroke: ${surface-stroke}; stroke-width: 3 }
+  metatools: "metatools-mcp\nMCP Server" { shape: hexagon; class: surface-component }
+}
+
+layer_foundation.toolfoundation -> layer_discovery.tooldiscovery: "schemas" { class: data-flow }
+layer_foundation.toolfoundation -> layer_execution.toolexec: "types" { class: data-flow }
+layer_foundation.toolfoundation -> layer_composition.toolcompose: "types" { class: data-flow }
+layer_foundation.toolfoundation -> layer_operations.toolops: "types" { class: data-flow }
+layer_foundation.toolfoundation -> layer_protocol.toolprotocol: "types" { class: data-flow }
+
+layer_discovery.tooldiscovery -> layer_composition.toolcompose: "toolset inputs" { class: data-flow }
+layer_execution.toolexec -> layer_composition.toolcompose: "execution" { class: data-flow }
+
+layer_protocol.toolprotocol -> layer_surface.metatools: "transport/wire" { class: data-flow }
+layer_operations.toolops -> layer_surface.metatools: "observe/cache" { class: data-flow }
+layer_composition.toolcompose -> layer_surface.metatools: "toolsets/skills" { class: data-flow }
+layer_execution.toolexec -> layer_surface.metatools: "run/execute" { class: data-flow }
+layer_discovery.tooldiscovery -> layer_surface.metatools: "search/describe" { class: data-flow }
+layer_foundation.toolfoundation -> layer_surface.metatools: "schemas" { class: data-flow }

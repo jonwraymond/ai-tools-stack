@@ -1,0 +1,225 @@
+# Component: toolsemantic
+# Semantic search extending BM25 with vector embeddings
+
+direction: right
+
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+  semantic-fill: "#805ad5"
+  source-fill: "#3182ce"
+  strategy-fill: "#38a169"
+  provider-fill: "#d69e2e"
+}
+
+classes: {
+  container: {
+    style: {
+      border-radius: 12
+      shadow: true
+      font-size: 14
+      bold: true
+    }
+  }
+  semantic-node: {
+    style: {
+      fill: ${semantic-fill}
+      stroke: "#6b46c1"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  source-node: {
+    style: {
+      fill: ${source-fill}
+      stroke: "#2c5282"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  strategy-node: {
+    style: {
+      fill: ${strategy-fill}
+      stroke: "#276749"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  provider-node: {
+    style: {
+      fill: ${provider-fill}
+      stroke: "#b7791f"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  data-flow: {
+    style: {
+      stroke: "#4a5568"
+      stroke-width: 2
+    }
+  }
+  semantic-flow: {
+    style: {
+      stroke: ${semantic-fill}
+      stroke-width: 2
+      stroke-dash: 3
+    }
+  }
+}
+
+# Title
+title: "toolsemantic - Semantic Search" {
+  shape: text
+  near: top-center
+  style: {
+    font-size: 28
+    bold: true
+    font-color: "#1a365d"
+  }
+}
+
+# Source Libraries
+sources: "📥 Sources" {
+  class: container
+  style: {
+    fill: "#ebf8ff"
+    stroke: ${source-fill}
+  }
+
+  toolindex: "toolindex\nDocuments" {
+    shape: cylinder
+    class: source-node
+  }
+
+  toolsearch: "toolsearch\nBM25 Baseline" {
+    shape: hexagon
+    class: source-node
+  }
+}
+
+# Core Component
+core: "🔮 toolsemantic" {
+  class: container
+  style: {
+    fill: "#faf5ff"
+    stroke: ${semantic-fill}
+    stroke-width: 3
+  }
+
+  embedder: "Embedder\nVector Generation" {
+    shape: hexagon
+    class: semantic-node
+  }
+
+  index: "Vector Index\nSimilarity Store" {
+    shape: cylinder
+    class: semantic-node
+  }
+
+  scorer: "Scorer\nRank Fusion" {
+    shape: diamond
+    class: semantic-node
+  }
+
+  embedder -> index: "stores"
+  index -> scorer: "retrieves"
+}
+
+# Strategies
+strategies: "📊 Strategies" {
+  class: container
+  style: {
+    fill: "#f0fff4"
+    stroke: ${strategy-fill}
+  }
+
+  bm25: "BM25\nLexical Ranking" {
+    shape: hexagon
+    class: strategy-node
+  }
+
+  vector: "Vector\nSemantic Similarity" {
+    shape: hexagon
+    class: strategy-node
+  }
+
+  hybrid: "Hybrid\nFusion Scoring" {
+    shape: hexagon
+    class: strategy-node
+  }
+}
+
+# Embedding Providers
+providers: "🔌 Providers" {
+  class: container
+  style: {
+    fill: "#fffff0"
+    stroke: ${provider-fill}
+    stroke-dash: 3
+  }
+
+  openai: "OpenAI\ntext-embedding-3" {
+    shape: hexagon
+    class: provider-node
+  }
+
+  local: "Local\nOllama/HF" {
+    shape: hexagon
+    class: provider-node
+  }
+
+  custom: "Custom\nYour Provider" {
+    shape: hexagon
+    class: provider-node
+    style.stroke-dash: 3
+  }
+}
+
+# Connections
+sources.toolindex -> core.embedder: "SearchDocs" {
+  class: data-flow
+}
+sources.toolsearch -> core.scorer: "BM25 scores" {
+  class: data-flow
+}
+
+core.scorer -> strategies.bm25: "lexical" {
+  class: semantic-flow
+}
+core.scorer -> strategies.vector: "semantic" {
+  class: semantic-flow
+}
+core.scorer -> strategies.hybrid: "combined" {
+  class: semantic-flow
+}
+
+core.embedder -> providers.openai: "embed" {
+  class: semantic-flow
+}
+core.embedder -> providers.local: "embed" {
+  class: semantic-flow
+}
+core.embedder -> providers.custom: "embed" {
+  class: semantic-flow
+}
+
+# Note
+note: |md
+  ## Search Strategies
+
+  - **BM25**: Term frequency ranking
+  - **Vector**: Embedding similarity
+  - **Hybrid**: Reciprocal rank fusion
+  - **Pluggable**: Custom providers
+| {
+  near: bottom-right
+  style: {
+    fill: "#f7fafc"
+    stroke: "#e2e8f0"
+    font-size: 10
+    border-radius: 8
+  }
+}
