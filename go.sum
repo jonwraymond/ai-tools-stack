@@ -58,8 +58,6 @@ github.com/jonwraymond/toolcompose v0.1.2 h1:AiTovGLvtl41SNeCCs/7o/XiF3FV6ov4pIO
 github.com/jonwraymond/toolcompose v0.1.2/go.mod h1:Uc6Rj5ClCOKSkGLhZa9xjZYrHCkKvQyuI1DVvMyBmv8=
 github.com/jonwraymond/tooldiscovery v0.2.2 h1:w6mIhNyxGSSKFi/9iQfFiT6ZgKNxxs4IO8C2j8UAe8U=
 github.com/jonwraymond/tooldiscovery v0.2.2/go.mod h1:2LxR6cm4RUPu+o88QstDdfLVAABmYan2TWE6eg1xtcU=
-github.com/jonwraymond/toolexec v0.1.4 h1:GJcfUaG+dMzOYIvA7r06FVaVqLHSVjm5UTgtLsxu6c8=
-github.com/jonwraymond/toolexec v0.1.4/go.mod h1:4So5zZuLZobwKop98wu1CqotKQvXZGqPuVLEkc44FfQ=
 github.com/jonwraymond/toolfoundation v0.2.0 h1:Uqk0XPVCPFi4vtOn8R9Y/965KhxU3ptaZSCaN5N3qXg=
 github.com/jonwraymond/toolfoundation v0.2.0/go.mod h1:sUvAa1lxc/l57jdC+hAQVWKky3wpobDB2sNo40lQSCY=
 github.com/jonwraymond/toolops v0.1.4 h1:g4+5eY/p+VOB0W/2CP0UkrhIavfdUcvMXyl7huj4kps=
@@ -73,8 +71,9 @@ github.com/modelcontextprotocol/go-sdk v1.2.0/go.mod h1:6fM3LCm3yV7pAs8isnKLn07o
 github.com/modern-go/concurrent v0.0.0-20180228061459-e0a39a4cb421/go.mod h1:6dJC0mAP4ikYIbvyc7fijjWJddQyLn8Ig3JB5CqoB9Q=
 github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd h1:TRLaZ9cD/w8PVh93nsPXa1VrQ6jlwL5oN8l14QlcNfg=
 github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd/go.mod h1:6dJC0mAP4ikYIbvyc7fijjWJddQyLn8Ig3JB5CqoB9Q=
-github.com/modern-go/reflect2 v1.0.2 h1:xBagoLtFs94CBntxluKeaWgTMpvLxC4ur3nMaC9Gz0M=
 github.com/modern-go/reflect2 v1.0.2/go.mod h1:yWuevngMOJpCy52FWWMvUC8ws7m/LJsjYzDa0/r8luk=
+github.com/modern-go/reflect2 v1.0.3-0.20250322232337-35a7c28c31ee h1:W5t00kpgFdJifH4BDsTlE89Zl93FEloxaWZfGcifgq8=
+github.com/modern-go/reflect2 v1.0.3-0.20250322232337-35a7c28c31ee/go.mod h1:yWuevngMOJpCy52FWWMvUC8ws7m/LJsjYzDa0/r8luk=
 github.com/mschoch/smat v0.2.0 h1:8imxQsjDm8yFEAVBe7azKmKSgzSkZXDuKkSq9374khM=
 github.com/mschoch/smat v0.2.0/go.mod h1:kc9mz7DoBKqDyiRL7VZN8KvXQMWeTaVnttLRXOlotKw=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=

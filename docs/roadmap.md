@@ -1,12 +1,12 @@
 # ApertureStack Roadmap
 
 **Date:** 2026-02-02
-**Scope:** Consolidated multi-repo stack (toolfoundation, tooldiscovery, toolexec, toolcompose, toolops, toolprotocol, metatools-mcp, metatools-a2a)
+**Scope:** Consolidated multi-repo stack (toolfoundation, tooldiscovery, toolexec, toolexec-integrations, toolcompose, toolops, toolprotocol, metatools-mcp, metatools-a2a)
 
 This is the **single source of truth** roadmap for the stack. `metatools-mcp` is a reference MCP server built from the components below.
 
 ## Current State
-- Consolidation complete: the original tool* repos have been merged into the 7 core repos.
+- Consolidation complete: the original tool* repos have been merged into the 8 core repos.
 - MCP alignment: toolfoundation embeds the official MCP Go SDK and targets MCP **2025-11-25**.
 - Progressive discovery: tooldiscovery provides search + progressive tool docs.
 - Execution + sandboxing: toolexec provides run, code execution, and runtime backends (some backends are stubbed).

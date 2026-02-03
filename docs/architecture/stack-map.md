@@ -44,6 +44,19 @@ Key interfaces:
 - `Executor`, `Engine`, `Tools` (code)
 - `Runtime`, `Backend`, `ToolGateway` (runtime)
 
+## toolexec-integrations (Runtime Clients)
+Purpose: concrete runtime client implementations (Kubernetes, Proxmox, remote HTTP).
+
+Key packages:
+- `kubernetes` (client-go PodRunner/HealthChecker)
+- `proxmox` (HTTP API client for LXC)
+- `remotehttp` (HTTP/SSE client for remote runtime service)
+
+Key interfaces implemented:
+- `kubernetes.PodRunner`, `kubernetes.HealthChecker`
+- `proxmox.APIClient`
+- `remote.RemoteClient`
+
 ## toolcompose (Toolsets + Skills)
 Purpose: composition of tools into sets/skills with policy and guardrails.
 
@@ -118,6 +131,7 @@ Key interfaces:
 - `toolfoundation` defines canonical data and adapters.
 - `tooldiscovery` finds tools and serves progressive docs.
 - `toolexec` validates and runs tools across backends and runtimes.
+- `toolexec-integrations` supplies opt-in runtime SDK clients.
 - `toolcompose` builds toolsets/skills and applies policies.
 - `toolops` adds security, caching, and observability.
 - `toolprotocol` standardizes transports and protocol primitives.

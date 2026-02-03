@@ -83,7 +83,7 @@ flowchart TB
 
     subgraph execution["Execution Layer"]
         direction LR
-        toolexec["▶️ toolexec<br/><small>v0.1.4 • Run/Code/Runtime</small>"]
+        toolexec["▶️ toolexec<br/><small>v0.2.0 • Run/Code/Runtime</small>"]
     end
 
     subgraph discovery["Discovery Layer"]
@@ -182,6 +182,9 @@ sequenceDiagram
 ---
 
 ## Tool Execution and Runtime Isolation
+
+Concrete runtime clients (Kubernetes, Proxmox, remote HTTP) live in `toolexec-integrations`.
+`toolexec` core stays interface-only for runtime backends and consumes these integrations via injection.
 
 ![Tool Execution and Runtime Isolation](../assets/diagrams/tool-exec-runtime-isolation.svg)
 

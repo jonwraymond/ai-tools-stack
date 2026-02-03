@@ -24,6 +24,7 @@ REPOS=(
   toolfoundation
   tooldiscovery
   toolexec
+  toolexec-integrations
   toolcompose
   toolops
   toolprotocol
@@ -36,6 +37,7 @@ ORDERED_LABELS=(
   toolfoundation
   tooldiscovery
   toolexec
+  toolexec-integrations
   toolcompose
   toolops
   toolprotocol

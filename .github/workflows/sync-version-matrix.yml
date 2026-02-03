@@ -55,7 +55,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p repos
-          for repo in toolfoundation tooldiscovery toolexec toolcompose toolops toolprotocol metatools-mcp metatools-a2a ai-tools-stack; do
+          for repo in toolfoundation tooldiscovery toolexec toolexec-integrations toolcompose toolops toolprotocol metatools-mcp metatools-a2a ai-tools-stack; do
             if [ ! -d "repos/$repo/.git" ]; then
               git clone "https://github.com/jonwraymond/$repo.git" "repos/$repo"
             fi

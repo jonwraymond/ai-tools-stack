@@ -7,7 +7,7 @@ require (
 	github.com/jonwraymond/metatools-mcp v0.5.2
 	github.com/jonwraymond/toolcompose v0.1.2
 	github.com/jonwraymond/tooldiscovery v0.2.2
-	github.com/jonwraymond/toolexec v0.1.4
+	github.com/jonwraymond/toolexec v0.2.0
 	github.com/jonwraymond/toolfoundation v0.2.0
 	github.com/jonwraymond/toolops v0.1.4
 	github.com/jonwraymond/toolprotocol v0.1.5
@@ -15,6 +15,10 @@ require (
 )
 
 replace github.com/jonwraymond/metatools-a2a => ../metatools-a2a
+
+replace github.com/jonwraymond/toolexec => ../toolexec
+
+replace github.com/jonwraymond/toolexec-integrations => ../toolexec-integrations
 
 require (
 	github.com/RoaringBitmap/roaring/v2 v2.14.4 // indirect
@@ -42,7 +46,7 @@ require (
 	github.com/google/jsonschema-go v0.4.2 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
-	github.com/modern-go/reflect2 v1.0.2 // indirect
+	github.com/modern-go/reflect2 v1.0.3-0.20250322232337-35a7c28c31ee // indirect
 	github.com/mschoch/smat v0.2.0 // indirect
 	github.com/yosida95/uritemplate/v3 v3.0.2 // indirect
 	go.etcd.io/bbolt v1.4.3 // indirect

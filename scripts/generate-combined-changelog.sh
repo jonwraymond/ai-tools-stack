@@ -14,6 +14,7 @@ REPOS=(
   toolfoundation
   tooldiscovery
   toolexec
+  toolexec-integrations
   toolcompose
   toolops
   toolprotocol

@@ -13,13 +13,14 @@ It does three things:
 
 ## Repository Structure
 
-ApertureStack consists of 9 repositories:
+ApertureStack consists of 10 repositories:
 
 | Repository | Description | Packages |
 |------------|-------------|----------|
 | [toolfoundation](https://github.com/jonwraymond/toolfoundation) | Core schemas, adapters, versioning | model, adapter, version |
 | [tooldiscovery](https://github.com/jonwraymond/tooldiscovery) | Registry, search, semantic, docs | index, search, semantic, tooldoc |
 | [toolexec](https://github.com/jonwraymond/toolexec) | Execution, runtime, orchestration | run, runtime, code, backend |
+| [toolexec-integrations](https://github.com/jonwraymond/toolexec-integrations) | Runtime client integrations | kubernetes, proxmox, remotehttp |
 | [toolcompose](https://github.com/jonwraymond/toolcompose) | Toolsets, skills | set, skill |
 | [toolops](https://github.com/jonwraymond/toolops) | Observability, caching, auth | observe, cache, auth, resilience, health |
 | [toolprotocol](https://github.com/jonwraymond/toolprotocol) | MCP protocol support | transport, wire, discover, content, task, stream, session, elicit, resource, prompt |
@@ -73,11 +74,12 @@ Always bump in this order unless you deliberately want to pay the blast radius:
 1) `toolfoundation` (foundation layer)
 2) `tooldiscovery` (discovery layer)
 3) `toolexec` (execution layer)
-4) `toolcompose` (composition layer)
-5) `toolops` (operations layer)
-6) `toolprotocol` (protocol layer)
-7) `metatools-mcp` (application layer)
-8) `metatools-a2a` (application layer)
+4) `toolexec-integrations` (execution integrations)
+5) `toolcompose` (composition layer)
+6) `toolops` (operations layer)
+7) `toolprotocol` (protocol layer)
+8) `metatools-mcp` (application layer)
+9) `metatools-a2a` (application layer)
 
 ## Release workflow (the point of this repo)
 

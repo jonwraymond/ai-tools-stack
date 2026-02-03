@@ -20,6 +20,7 @@ progressive-disclosure MCP surface.
 | **Foundation** | toolfoundation (model, adapter, version) | Canonical schemas + protocol adapters |
 | **Discovery** | tooldiscovery (index, tooldoc, search, semantic) | Registry, docs, search strategies |
 | **Execution** | toolexec (run, code, runtime, backend) | Execution, chaining, sandboxing |
+| **Execution (Integrations)** | toolexec-integrations (kubernetes, proxmox, remotehttp) | Concrete runtime clients |
 | **Composition** | toolcompose (set, skill) | Filtered collections, skill workflows |
 | **Operations** | toolops (observe, cache, auth, resilience, health) | Observability + production controls |
 | **Protocol** | toolprotocol (transport, wire, content, stream, task, session, resource, prompt, elicit) | Protocol primitives |

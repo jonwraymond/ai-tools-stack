@@ -145,6 +145,9 @@ The `runtime` package provides sandbox and runtime isolation for tool execution.
 | `proxmox_lxc` | beta | Proxmox API + runtime service |
 | `temporal` | stub | Orchestration only; compose with sandbox |
 
+Concrete runtime clients (Kubernetes, Proxmox, remote HTTP) live in
+`toolexec-integrations` and are injected into these backends via interfaces.
+
 ### Example
 
 ```go

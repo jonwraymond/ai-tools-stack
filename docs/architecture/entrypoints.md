@@ -16,6 +16,7 @@ Use the facade packages unless you need lower-level control.
 | Unified exec + discovery | `toolexec/exec` | Single facade for index/docs/run | Compose `index` + `tooldoc` + `run` yourself |
 | Code orchestration | `toolexec/code` | Execute code with tool access | Custom `code.Engine` |
 | Runtime isolation | `toolexec/runtime` | Security profiles + sandbox backends | Backend-specific packages |
+| Runtime integrations | `toolexec-integrations/*` | Concrete runtime clients | Provide your own SDK client |
 | Compose toolsets | `toolcompose/set` | Filtered collections + exposure | Custom `set.Policy` |
 | Skills/workflows | `toolcompose/skill` | Declarative multi-step skills | Custom `skill.Guard` or `skill.Runner` |
 | Observability | `toolops/observe` | Tracing/metrics/logging | Custom exporters/logger |
