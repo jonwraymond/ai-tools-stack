@@ -8,6 +8,23 @@ Each repo runs CI for:
 - go test
 - lint + security (golangci-lint + gosec)
 
+## Release-please guard (metadata-only changes)
+
+Release-please workflows include a pre-check that skips runs when the commit
+touches only metadata or docs. This prevents release PR churn from matrix syncs
+and documentation-only updates.
+
+Skipped paths:
+
+- `VERSIONS.md`
+- `README.md`
+- `docs/`
+- `.github/`
+
+If a change set is only those paths, the workflow exits before running the
+release-please action. Any substantive code change will still trigger a release
+candidate PR as normal.
+
 ## Go module privacy (fast tag uptake)
 
 CI sets:
