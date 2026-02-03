@@ -37,10 +37,11 @@ agent: "🤖 AI Agent" {
   width: 100
 }
 
-surface: "🔷 metatools-mcp" {
+surface: "🔷 Protocol Surfaces" {
   class: container
   style: { fill: "#ebf8ff"; stroke: ${surface-fill}; stroke-width: 3 }
-  metatools: "MCP Server\n7 Tools Exposed" { shape: hexagon; class: surface-style }
+  metatools: "metatools-mcp\nMCP Server" { shape: hexagon; class: surface-style }
+  metatools_a2a: "metatools-a2a\nA2A Server" { shape: hexagon; class: surface-style }
 }
 
 foundation: "🧱 Foundation" {
@@ -80,12 +81,19 @@ protocol: "🔌 Protocol" {
 }
 
 agent -> surface.metatools: "MCP Request\n(JSON-RPC)" { class: request-flow; target-arrowhead.shape: arrow }
+agent -> surface.metatools_a2a: "A2A Request\n(JSON-RPC/REST)" { class: request-flow; target-arrowhead.shape: arrow }
 
 surface.metatools -> discovery.tooldiscovery: "search/describe" { class: data-flow }
 surface.metatools -> execution.toolexec: "run/execute" { class: data-flow }
 surface.metatools -> composition.toolcompose: "toolsets/skills" { class: data-flow }
 surface.metatools -> operations.toolops: "observe/cache" { class: data-flow }
 surface.metatools -> protocol.toolprotocol: "transport/wire" { class: data-flow }
+
+surface.metatools_a2a -> discovery.tooldiscovery: "search/describe" { class: data-flow }
+surface.metatools_a2a -> execution.toolexec: "run/execute" { class: data-flow }
+surface.metatools_a2a -> composition.toolcompose: "toolsets/skills" { class: data-flow }
+surface.metatools_a2a -> operations.toolops: "observe/cache" { class: data-flow }
+surface.metatools_a2a -> protocol.toolprotocol: "transport/wire" { class: data-flow }
 
 foundation.toolfoundation -> discovery.tooldiscovery: "schemas" { class: data-flow }
 foundation.toolfoundation -> execution.toolexec: "schemas" { class: data-flow }

@@ -1,0 +1,51 @@
+# Runtime Backend Matrix (Readiness + Isolation)
+
+direction: right
+
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+}
+
+classes: {
+  tier: { style: { border-radius: 12; shadow: true; font-size: 14; bold: true } }
+  prod: { style: { fill: "#e6fffa"; stroke: "#2c7a7b"; stroke-width: 2 } }
+  beta: { style: { fill: "#fefcbf"; stroke: "#b7791f"; stroke-width: 2 } }
+  stub: { style: { fill: "#fed7d7"; stroke: "#c53030"; stroke-width: 2 } }
+  backend: { style: { fill: "#edf2f7"; stroke: "#a0aec0"; stroke-width: 1 } }
+  integration: { style: { fill: "#e2e8f0"; stroke: "#4a5568"; stroke-width: 2; font-size: 12; bold: true } }
+  flow: { style: { stroke: "#2b6cb0"; stroke-width: 2 } }
+  dashed: { style: { stroke: "#4a5568"; stroke-dash: 5; stroke-width: 2 } }
+}
+
+runtime: "runtime.Runtime\nSecurity profiles route to backends" { shape: hexagon; style: { fill: "#2b6cb0"; stroke: "#1a365d"; stroke-width: 3; font-color: "#fff" } }
+
+prod: "Prod" { class: tier; style: { fill: "#e6fffa"; stroke: "#2c7a7b"; stroke-width: 2 } }
+beta: "Beta" { class: tier; style: { fill: "#fefcbf"; stroke: "#b7791f"; stroke-width: 2 } }
+stub: "Stub" { class: tier; style: { fill: "#fed7d7"; stroke: "#c53030"; stroke-width: 2 } }
+
+prod.unsafe: "unsafe_host\n(dev only)" { class: backend }
+prod.docker: "docker\ncontainer isolation" { class: backend }
+
+beta.wasm: "wasm\nin-process sandbox" { class: backend }
+beta.containerd: "containerd\nCRI runtime" { class: backend }
+beta.kubernetes: "kubernetes\npods/jobs" { class: backend }
+beta.gvisor: "gvisor\nrunsc" { class: backend }
+beta.kata: "kata\nmicro-VM" { class: backend }
+beta.firecracker: "firecracker\nmicro-VM" { class: backend }
+beta.remote: "remote\nHTTP runtime" { class: backend }
+beta.proxmox: "proxmox_lxc\nLXC runtime" { class: backend }
+
+stub.temporal: "temporal\norchestration" { class: backend }
+
+runtime -> prod { class: flow }
+runtime -> beta { class: flow }
+runtime -> stub { class: flow }
+
+integrations: "toolexec-integrations\nSDK clients" { class: integration; shape: rectangle }
+
+integrations -> beta.kubernetes: "PodRunner" { class: dashed }
+integrations -> beta.proxmox: "APIClient" { class: dashed }
+integrations -> beta.remote: "RemoteClient" { class: dashed }
