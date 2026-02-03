@@ -3,18 +3,16 @@ module github.com/jonwraymond/ai-tools-stack
 go 1.25.6
 
 require (
-	github.com/jonwraymond/metatools-a2a v0.1.0
+	github.com/jonwraymond/metatools-a2a v0.1.1
 	github.com/jonwraymond/metatools-mcp v0.5.2
-	github.com/jonwraymond/toolcompose v0.1.2
-	github.com/jonwraymond/tooldiscovery v0.2.2
-	github.com/jonwraymond/toolexec v0.2.0
-	github.com/jonwraymond/toolfoundation v0.2.0
-	github.com/jonwraymond/toolops v0.1.4
-	github.com/jonwraymond/toolprotocol v0.1.5
+	github.com/jonwraymond/toolcompose v0.1.3
+	github.com/jonwraymond/tooldiscovery v0.3.0
+	github.com/jonwraymond/toolexec v0.2.1
+	github.com/jonwraymond/toolfoundation v0.3.0
+	github.com/jonwraymond/toolops v0.1.5
+	github.com/jonwraymond/toolprotocol v0.1.7
 	github.com/modelcontextprotocol/go-sdk v1.2.0
 )
-
-replace github.com/jonwraymond/metatools-a2a => ../metatools-a2a
 
 require (
 	github.com/RoaringBitmap/roaring/v2 v2.14.4 // indirect

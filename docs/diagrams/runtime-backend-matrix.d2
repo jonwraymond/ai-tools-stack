@@ -15,7 +15,9 @@ classes: {
   beta: { style: { fill: "#fefcbf"; stroke: "#b7791f"; stroke-width: 2 } }
   stub: { style: { fill: "#fed7d7"; stroke: "#c53030"; stroke-width: 2 } }
   backend: { style: { fill: "#edf2f7"; stroke: "#a0aec0"; stroke-width: 1 } }
+  integration: { style: { fill: "#e2e8f0"; stroke: "#4a5568"; stroke-width: 2; font-size: 12; bold: true } }
   flow: { style: { stroke: "#2b6cb0"; stroke-width: 2 } }
+  dashed: { style: { stroke: "#4a5568"; stroke-dash: 5; stroke-width: 2 } }
 }
 
 runtime: "runtime.Runtime\nSecurity profiles route to backends" { shape: hexagon; style: { fill: "#2b6cb0"; stroke: "#1a365d"; stroke-width: 3; font-color: "#fff" } }
@@ -41,3 +43,9 @@ stub.temporal: "temporal\norchestration" { class: backend }
 runtime -> prod { class: flow }
 runtime -> beta { class: flow }
 runtime -> stub { class: flow }
+
+integrations: "toolexec-integrations\nSDK clients" { class: integration; shape: rectangle }
+
+integrations -> beta.kubernetes: "PodRunner" { class: dashed }
+integrations -> beta.proxmox: "APIClient" { class: dashed }
+integrations -> beta.remote: "RemoteClient" { class: dashed }
