@@ -4,7 +4,11 @@
     ".": {
       "release-type": "go",
       "package-name": "ai-tools-stack",
-      "changelog-path": "CHANGELOG.md"
+      "changelog-path": "CHANGELOG.md",
+      "exclude-paths": [
+        "VERSIONS.md",
+        "README.md"
+      ]
     }
   }
 }
