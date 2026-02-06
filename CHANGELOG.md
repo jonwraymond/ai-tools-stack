@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/jonwraymond/ai-tools-stack/compare/ai-tools-stack-v0.3.0...ai-tools-stack-v0.3.1) (2026-02-06)
+
+
+### Bug Fixes
+
+* **ci:** align go.sum with GOPRIVATE ([4c55fbc](https://github.com/jonwraymond/ai-tools-stack/commit/4c55fbc90fd63792cce10fd1628a088af4543d57))
+
 ## [0.3.0](https://github.com/jonwraymond/ai-tools-stack/compare/ai-tools-stack-v0.2.2...ai-tools-stack-v0.3.0) (2026-02-03)
 
 
