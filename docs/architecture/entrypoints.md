@@ -21,6 +21,7 @@ Use the facade packages unless you need lower-level control.
 | Skills/workflows | `toolcompose/skill` | Declarative multi-step skills | Custom `skill.Guard` or `skill.Runner` |
 | Observability | `toolops/observe` | Tracing/metrics/logging | Custom exporters/logger |
 | AuthN/AuthZ | `toolops/auth` | Authenticator + authorizer primitives | Custom `auth.Authenticator` |
+| Secret resolution | `toolops/secret` | Strict env + `secretref:` resolution | Custom `secret.Provider` (or `toolops-integrations/secret/*`) |
 | Caching | `toolops/cache` | Deterministic cache keys + cache API | Custom `cache.Cache` |
 | Protocol + transport | `toolprotocol` | Wire/transport/session/resources | Implement `transport.Transport` |
 | MCP server | `metatools-mcp` | Opinionated MCP surface | Build your own server with toolprotocol |

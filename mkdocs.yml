@@ -1,5 +1,5 @@
 site_name: AI Tools Stack
-site_description: Unified documentation for toolfoundation, tooldiscovery, toolexec, toolexec-integrations, toolcompose, toolops, toolprotocol, metatools-mcp, and metatools-a2a.
+site_description: Unified documentation for toolfoundation, tooldiscovery, toolexec, toolexec-integrations, toolcompose, toolops, toolops-integrations, toolprotocol, metatools-mcp, and metatools-a2a.
 site_url: https://jonwraymond.github.io/ai-tools-stack/
 repo_name: jonwraymond/ai-tools-stack
 repo_url: https://github.com/jonwraymond/ai-tools-stack
@@ -26,6 +26,7 @@ nav:
       - toolexec-integrations: components/toolexec-integrations.md
       - toolcompose: components/toolcompose.md
       - toolops: components/toolops.md
+      - toolops-integrations: components/toolops-integrations.md
       - toolprotocol: components/toolprotocol.md
       - metatools-mcp: components/metatools-mcp.md
       - metatools-a2a: components/metatools-a2a.md
@@ -41,6 +42,7 @@ nav:
       - toolexec-integrations: '!import https://github.com/jonwraymond/toolexec-integrations?branch=main&docs_dir=docs/*'
       - toolcompose: '!import https://github.com/jonwraymond/toolcompose?branch=main&docs_dir=docs/*'
       - toolops: '!import https://github.com/jonwraymond/toolops?branch=main&docs_dir=docs/*'
+      - toolops-integrations: '!import https://github.com/jonwraymond/toolops-integrations?branch=main&docs_dir=docs/*'
       - toolprotocol: '!import https://github.com/jonwraymond/toolprotocol?branch=main&docs_dir=docs/*'
       - metatools-mcp: '!import https://github.com/jonwraymond/metatools-mcp?branch=main&docs_dir=docs/*'
       - metatools-a2a: '!import https://github.com/jonwraymond/metatools-a2a?branch=main&docs_dir=docs/*'

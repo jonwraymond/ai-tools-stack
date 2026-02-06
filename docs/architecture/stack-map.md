@@ -84,6 +84,15 @@ Key interfaces:
 - `Observer`, `Tracer`, `Metrics`, `Logger` (observe)
 - `Checker`, `PingChecker`, `InfoChecker` (health)
 
+## toolops-integrations (Operational Integrations)
+Purpose: concrete, opt-in integrations for `toolops` (secret managers and vendor SDK adapters).
+
+Key packages:
+- `secret/bws` (Bitwarden Secrets Manager provider)
+
+Key interfaces implemented:
+- `secret.Provider`
+
 ## toolprotocol (Protocol Primitives)
 Purpose: protocol-agnostic primitives for transport/wire/content/task/streaming.
 
@@ -134,6 +143,7 @@ Key interfaces:
 - `toolexec-integrations` supplies opt-in runtime SDK clients.
 - `toolcompose` builds toolsets/skills and applies policies.
 - `toolops` adds security, caching, and observability.
+- `toolops-integrations` supplies opt-in operational integrations (for example secret providers).
 - `toolprotocol` standardizes transports and protocol primitives.
 - `metatools-mcp` exposes everything via MCP as a reference server.
 - `metatools-a2a` exposes everything via A2A as a reference server.

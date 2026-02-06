@@ -62,38 +62,38 @@ Complete view of the consolidated repositories organized by layer.
 flowchart TB
     subgraph surface["Protocol Surface Layer"]
         direction LR
-        metatools["🔷 metatools-mcp<br/><small>v0.5.2 • MCP Server</small>"]
-        metatoolsA2A["🧩 metatools-a2a<br/><small>v0.1.0 • A2A Server</small>"]
+        metatools["🔷 metatools-mcp<br/><small>MCP Server</small>"]
+        metatoolsA2A["🧩 metatools-a2a<br/><small>A2A Server</small>"]
     end
 
     subgraph protocol["Protocol Layer"]
         direction LR
-        toolprotocol["📡 toolprotocol<br/><small>v0.1.5 • Transports + Wire</small>"]
+        toolprotocol["📡 toolprotocol<br/><small>Transports + Wire</small>"]
     end
 
     subgraph operations["Operations Layer"]
         direction LR
-        toolops["👁️ toolops<br/><small>v0.1.4 • Observe/Cache/Auth</small>"]
+        toolops["👁️ toolops<br/><small>Observe/Cache/Auth/Secret</small>"]
     end
 
     subgraph composition["Composition Layer"]
         direction LR
-        toolcompose["📦 toolcompose<br/><small>v0.1.2 • Set + Skill</small>"]
+        toolcompose["📦 toolcompose<br/><small>Set + Skill</small>"]
     end
 
     subgraph execution["Execution Layer"]
         direction LR
-        toolexec["▶️ toolexec<br/><small>v0.2.0 • Run/Code/Runtime</small>"]
+        toolexec["▶️ toolexec<br/><small>Run/Code/Runtime</small>"]
     end
 
     subgraph discovery["Discovery Layer"]
         direction LR
-        tooldiscovery["📇 tooldiscovery<br/><small>v0.2.2 • Index/Search/Docs</small>"]
+        tooldiscovery["📇 tooldiscovery<br/><small>Index/Search/Docs</small>"]
     end
 
     subgraph foundation["Foundation Layer"]
         direction LR
-        toolfoundation["🧱 toolfoundation<br/><small>v0.2.0 • Model/Adapter/Version</small>"]
+        toolfoundation["🧱 toolfoundation<br/><small>Model/Adapter/Version</small>"]
     end
 
     toolfoundation --> tooldiscovery

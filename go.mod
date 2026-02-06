@@ -4,13 +4,13 @@ go 1.25.7
 
 require (
 	github.com/jonwraymond/metatools-a2a v0.1.1
-	github.com/jonwraymond/metatools-mcp v0.6.0
-	github.com/jonwraymond/toolcompose v0.1.4
-	github.com/jonwraymond/tooldiscovery v0.3.1
-	github.com/jonwraymond/toolexec v0.2.2
-	github.com/jonwraymond/toolfoundation v0.3.1
-	github.com/jonwraymond/toolops v0.1.6
-	github.com/jonwraymond/toolprotocol v0.1.8
+	github.com/jonwraymond/metatools-mcp v0.7.0
+	github.com/jonwraymond/toolcompose v0.1.5
+	github.com/jonwraymond/tooldiscovery v0.3.2
+	github.com/jonwraymond/toolexec v0.2.3
+	github.com/jonwraymond/toolfoundation v0.3.2
+	github.com/jonwraymond/toolops v0.1.7
+	github.com/jonwraymond/toolprotocol v0.1.9
 	github.com/modelcontextprotocol/go-sdk v1.2.0
 )
 

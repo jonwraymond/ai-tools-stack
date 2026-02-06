@@ -17,6 +17,7 @@ REPOS=(
   toolexec-integrations
   toolcompose
   toolops
+  toolops-integrations
   toolprotocol
   metatools-mcp
   metatools-a2a
