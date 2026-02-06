@@ -96,6 +96,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolops-integrations/</loc>
+         <lastmod>2026-02-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/components/toolops/</loc>
          <lastmod>2026-02-06</lastmod>
          <changefreq>daily</changefreq>
@@ -297,6 +302,21 @@
     </url>
     <url>
          <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolops/user-journey/</loc>
+         <lastmod>2026-02-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolops-integrations/</loc>
+         <lastmod>2026-02-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolops-integrations/architecture/</loc>
+         <lastmod>2026-02-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonwraymond.github.io/ai-tools-stack/latest/library-docs-from-repos/toolops-integrations/design-notes/</loc>
          <lastmod>2026-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
