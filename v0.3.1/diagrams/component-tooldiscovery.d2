@@ -1,0 +1,206 @@
+# tooldiscovery Component Diagram
+# Discovery layer: index, search, semantic, tooldoc packages
+
+direction: down
+
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+  discovery-fill: "#3182ce"
+  discovery-stroke: "#2c5282"
+}
+
+classes: {
+  package: {
+    style: {
+      fill: ${discovery-fill}
+      stroke: ${discovery-stroke}
+      stroke-width: 2
+      font-color: "#fff"
+      border-radius: 8
+    }
+  }
+  type: {
+    style: {
+      fill: "#ebf8ff"
+      stroke: ${discovery-stroke}
+      stroke-width: 1
+    }
+  }
+  interface: {
+    style: {
+      fill: "#bee3f8"
+      stroke: ${discovery-stroke}
+      stroke-width: 1
+      stroke-dash: 3
+    }
+  }
+}
+
+tooldiscovery: "📇 tooldiscovery" {
+  style: {
+    fill: "#ebf8ff"
+    stroke: ${discovery-stroke}
+    stroke-width: 2
+    border-radius: 12
+    shadow: true
+  }
+
+  index: "index" {
+    class: package
+
+    Index: "«interface»\nIndex\n+ RegisterTool(Tool, Backend) error\n+ Search(query, limit) []Summary\n+ GetTool(id) (Tool, error)\n+ ListNamespaces() []string" {
+      shape: class
+      class: interface
+    }
+
+    InMemoryIndex: "InMemoryIndex\nDefault implementation" {
+      shape: class
+      class: type
+    }
+
+    Summary: "Summary\n- ID string\n- Name string\n- Namespace string\n- ShortDescription string" {
+      shape: class
+      class: type
+    }
+
+    SearchStrategy: "«interface»\nSearchStrategy\n+ Search(docs, query, limit) []Result" {
+      shape: class
+      class: interface
+    }
+
+    InMemoryIndex -> Index: "implements"
+    Index -> Summary: "returns"
+    Index -> SearchStrategy: "uses"
+  }
+
+  search: "search" {
+    class: package
+
+    BM25Searcher: "BM25Searcher\n- bleveIndex\n- fieldBoosts map" {
+      shape: class
+      class: type
+    }
+
+    Config: "Config\n- NameBoost: 4.0\n- NamespaceBoost: 2.0\n- TagBoost: 1.0" {
+      shape: class
+      class: type
+    }
+
+    BM25Searcher -> Config: "configured by"
+  }
+
+  semantic: "semantic" {
+    class: package
+
+    SemanticSearcher: "SemanticSearcher\n- embedder Embedder\n- vectorStore VectorStore" {
+      shape: class
+      class: type
+    }
+
+    Embedder: "«interface»\nEmbedder\n+ Embed(text) []float32" {
+      shape: class
+      class: interface
+    }
+
+    VectorStore: "«interface»\nVectorStore\n+ Store(id, vector)\n+ Search(vector, k) []Result" {
+      shape: class
+      class: interface
+    }
+
+    SemanticSearcher -> Embedder: "uses"
+    SemanticSearcher -> VectorStore: "uses"
+  }
+
+  tooldoc: "tooldoc" {
+    class: package
+
+    DocStore: "«interface»\nDocStore\n+ GetDoc(id, detail) ToolDoc\n+ SetDoc(id, ToolDoc)" {
+      shape: class
+      class: interface
+    }
+
+    ToolDoc: "ToolDoc\n- Summary\n- Description\n- Examples\n- InputSchema\n- OutputSchema" {
+      shape: class
+      class: type
+    }
+
+    DetailLevel: "DetailLevel\n• Summary\n• Description\n• Schema\n• Full" {
+      shape: class
+      class: type
+    }
+
+    DocStore -> ToolDoc: "returns"
+    DocStore -> DetailLevel: "filters by"
+  }
+
+  registry: "registry" {
+    class: package
+
+    Registry: "Registry\n- index\n- searcher\n- handlers\n- backends" {
+      shape: class
+      class: type
+    }
+
+    Config: "Config\n- SearchConfig\n- ServerInfo\n- BackendSelector" {
+      shape: class
+      class: type
+    }
+
+    ToolHandler: "«type»\nToolHandler" {
+      shape: class
+      class: interface
+    }
+  }
+}
+
+# Package dependencies
+tooldiscovery.search.BM25Searcher -> tooldiscovery.index.SearchStrategy: "implements" {
+  style: {
+    stroke-dash: 3
+  }
+}
+tooldiscovery.semantic.SemanticSearcher -> tooldiscovery.index.SearchStrategy: "implements" {
+  style: {
+    stroke-dash: 3
+  }
+}
+tooldiscovery.index.Index -> tooldiscovery.tooldoc.DocStore: "integrates" {
+  style: {
+    stroke: "#4a5568"
+  }
+}
+
+tooldiscovery.registry.Registry -> tooldiscovery.index.Index: "uses" {
+  style: {
+    stroke-dash: 3
+  }
+}
+tooldiscovery.registry.Registry -> tooldiscovery.search.BM25Searcher: "configures" {
+  style: {
+    stroke-dash: 3
+  }
+}
+
+# External dependency
+toolfoundation: "toolfoundation" {
+  style: {
+    fill: "#718096"
+    font-color: "#fff"
+  }
+  model: "model.Tool" {
+    style: {
+      fill: "#718096"
+      font-color: "#fff"
+    }
+  }
+}
+
+toolfoundation.model -> tooldiscovery.index.Index: "registers" {
+  style: {
+    stroke: "#718096"
+    stroke-width: 2
+  }
+}

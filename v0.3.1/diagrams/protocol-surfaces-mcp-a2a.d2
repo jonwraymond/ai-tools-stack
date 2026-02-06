@@ -1,0 +1,34 @@
+# MCP vs A2A Protocol Surfaces
+
+direction: right
+
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+}
+
+classes: {
+  surface: { style: { fill: "#ebf8ff"; stroke: "#2b6cb0"; stroke-width: 2; border-radius: 12 } }
+  core: { style: { fill: "#f7fafc"; stroke: "#4a5568"; stroke-width: 2; border-radius: 12 } }
+  node: { style: { fill: "#fff"; stroke: "#a0aec0"; stroke-width: 1 } }
+  flow: { style: { stroke: "#2b6cb0"; stroke-width: 2 } }
+}
+
+agent: "AI Agent" { shape: person; style: { fill: "#4a5568"; stroke: "#2d3748"; stroke-width: 2; font-color: "#fff" } }
+
+mcp: "MCP Surface" { class: surface }
+mcp.calls: "search_tools\ndescribe_tool\nrun_tool\nrun_chain\nexecute_code" { shape: rectangle; class: node }
+
+a2a: "A2A Surface" { class: surface }
+a2a.calls: "agent-card\nskills\ntasks\nstatus\nevents (SSE)" { shape: rectangle; class: node }
+
+core: "Core Libraries" { class: core }
+core.libs: "toolfoundation\ntooldiscovery\ntoolexec\ntoolops\ntoolprotocol" { shape: rectangle; class: node }
+
+agent -> mcp: "JSON-RPC" { class: flow }
+agent -> a2a: "JSON-RPC / REST" { class: flow }
+
+mcp -> core: "shared pipeline" { class: flow }
+a2a -> core: "shared pipeline" { class: flow }

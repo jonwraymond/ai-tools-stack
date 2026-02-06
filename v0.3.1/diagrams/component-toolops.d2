@@ -1,0 +1,203 @@
+# toolops Component Diagram
+# Operations layer: observe, cache, auth, health, resilience packages
+
+direction: down
+
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+  ops-fill: "#e53e3e"
+  ops-stroke: "#c53030"
+}
+
+classes: {
+  package: {
+    style: {
+      fill: ${ops-fill}
+      stroke: ${ops-stroke}
+      stroke-width: 2
+      font-color: "#fff"
+      border-radius: 8
+    }
+  }
+  type: {
+    style: {
+      fill: "#fff5f5"
+      stroke: ${ops-stroke}
+      stroke-width: 1
+    }
+  }
+  interface: {
+    style: {
+      fill: "#fed7d7"
+      stroke: ${ops-stroke}
+      stroke-width: 1
+      stroke-dash: 3
+    }
+  }
+}
+
+toolops: "🔧 toolops" {
+  style: {
+    fill: "#fff5f5"
+    stroke: ${ops-stroke}
+    stroke-width: 2
+    border-radius: 12
+    shadow: true
+  }
+
+  observe: "observe" {
+    class: package
+
+    Middleware: "Middleware\n- tracer Tracer\n- meter Meter\n- logger Logger" {
+      shape: class
+      class: type
+    }
+
+    TracingConfig: "TracingConfig\n- Enabled bool\n- ServiceName string\n- Exporter string" {
+      shape: class
+      class: type
+    }
+
+    MetricsConfig: "MetricsConfig\n- Enabled bool\n- Histograms []string" {
+      shape: class
+      class: type
+    }
+
+    Middleware -> TracingConfig: "configured by"
+    Middleware -> MetricsConfig: "configured by"
+  }
+
+  cache: "cache" {
+    class: package
+
+    Cache: "Cache\n- backend CacheBackend\n- ttl time.Duration\n- maxSize int" {
+      shape: class
+      class: type
+    }
+
+    CacheBackend: "«interface»\nCacheBackend\n+ Get(key) (any, bool)\n+ Set(key, value, ttl)\n+ Delete(key)" {
+      shape: class
+      class: interface
+    }
+
+    MemoryBackend: "MemoryBackend" {
+      class: type
+    }
+    RedisBackend: "RedisBackend" {
+      class: type
+    }
+    FileBackend: "FileBackend" {
+      class: type
+    }
+
+    Cache -> CacheBackend: "uses"
+    MemoryBackend -> CacheBackend: "implements"
+    RedisBackend -> CacheBackend: "implements"
+    FileBackend -> CacheBackend: "implements"
+  }
+
+  auth: "auth" {
+    class: package
+
+    AuthMiddleware: "AuthMiddleware\n- provider AuthProvider\n- rules []Rule" {
+      shape: class
+      class: type
+    }
+
+    AuthProvider: "«interface»\nAuthProvider\n+ Authenticate(req) Identity\n+ Authorize(Identity, Resource) bool" {
+      shape: class
+      class: interface
+    }
+
+    JWTProvider: "JWTProvider" {
+      class: type
+    }
+    APIKeyProvider: "APIKeyProvider" {
+      class: type
+    }
+
+    AuthMiddleware -> AuthProvider: "uses"
+    JWTProvider -> AuthProvider: "implements"
+    APIKeyProvider -> AuthProvider: "implements"
+  }
+
+  health: "health" {
+    class: package
+
+    HealthChecker: "HealthChecker\n- checks []Check\n- timeout time.Duration" {
+      shape: class
+      class: type
+    }
+
+    Check: "«interface»\nCheck\n+ Name() string\n+ Check(ctx) error" {
+      shape: class
+      class: interface
+    }
+
+    HealthChecker -> Check: "runs"
+  }
+
+  resilience: "resilience" {
+    class: package
+
+    CircuitBreaker: "CircuitBreaker\n- threshold int\n- timeout time.Duration\n- state State" {
+      shape: class
+      class: type
+    }
+
+    RetryPolicy: "RetryPolicy\n- maxAttempts int\n- backoff Backoff" {
+      shape: class
+      class: type
+    }
+
+    RateLimiter: "RateLimiter\n- rate int\n- burst int" {
+      shape: class
+      class: type
+    }
+  }
+}
+
+# Middleware chain
+chain: "Middleware Chain" {
+  style: {
+    fill: "#2d3748"
+    font-color: "#fff"
+    border-radius: 8
+  }
+
+  request: "Request" {
+    shape: parallelogram
+  }
+  auth_step: "auth" {
+    shape: step
+  }
+  ratelimit: "resilience" {
+    shape: step
+  }
+  cache_step: "cache" {
+    shape: step
+  }
+  observe_step: "observe" {
+    shape: step
+  }
+  runner: "toolexec/run" {
+    shape: hexagon
+    style: {
+      fill: "#38a169"
+    }
+  }
+  response: "Response" {
+    shape: parallelogram
+  }
+
+  request -> auth_step -> ratelimit -> cache_step -> observe_step -> runner -> response
+}
+
+# Connect packages to chain
+toolops.auth.AuthMiddleware -> chain.auth_step
+toolops.resilience.RateLimiter -> chain.ratelimit
+toolops.cache.Cache -> chain.cache_step
+toolops.observe.Middleware -> chain.observe_step

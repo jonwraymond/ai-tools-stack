@@ -1,0 +1,259 @@
+# toolexec Component Diagram
+# Execution layer: run, code, runtime, backend packages
+
+direction: down
+
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+  execution-fill: "#38a169"
+  execution-stroke: "#276749"
+}
+
+classes: {
+  package: {
+    style: {
+      fill: ${execution-fill}
+      stroke: ${execution-stroke}
+      stroke-width: 2
+      font-color: "#fff"
+      border-radius: 8
+    }
+  }
+  type: {
+    style: {
+      fill: "#f0fff4"
+      stroke: ${execution-stroke}
+      stroke-width: 1
+    }
+  }
+  interface: {
+    style: {
+      fill: "#c6f6d5"
+      stroke: ${execution-stroke}
+      stroke-width: 1
+      stroke-dash: 3
+    }
+  }
+}
+
+toolexec: "▶️ toolexec" {
+  style: {
+    fill: "#f0fff4"
+    stroke: ${execution-stroke}
+    stroke-width: 2
+    border-radius: 12
+    shadow: true
+  }
+
+  exec: "exec" {
+    class: package
+
+    Exec: "Exec\n- index Index\n- docs Store\n- runner Runner\n- opts Options" {
+      shape: class
+      class: type
+    }
+
+    Options: "Options\n+ Index (required)\n+ Docs (required)\n+ LocalHandlers\n+ MCPExecutor\n+ ProviderExecutor\n+ ValidateInput/Output" {
+      shape: class
+      class: type
+    }
+
+    Result: "Result\n- Value any\n- ToolID string\n- Duration time.Duration\n- Error error" {
+      shape: class
+      class: type
+    }
+
+    Exec -> Result: "returns"
+  }
+
+  run: "run" {
+    class: package
+
+    Runner: "«interface»\nRunner\n+ Run\n+ RunStream\n+ RunChain" {
+      shape: class
+      class: interface
+    }
+
+    DefaultRunner: "DefaultRunner\n- cfg Config" {
+      shape: class
+      class: type
+    }
+
+    RunResult: "RunResult\n- Tool model.Tool\n- Backend model.ToolBackend\n- Structured any\n- MCPResult *mcp.CallToolResult" {
+      shape: class
+      class: type
+    }
+
+    Pipeline: "Pipeline\n1. Validate Input\n2. Resolve Backend\n3. Execute\n4. Normalize\n5. Validate Output" {
+      shape: step
+      class: type
+    }
+
+    DefaultRunner -> Runner: "implements"
+    DefaultRunner -> RunResult: "returns"
+    DefaultRunner -> Pipeline: "executes"
+  }
+
+  code: "code" {
+    class: package
+
+    Executor: "Executor\n- runner Runner\n- parser Parser\n- sandbox Sandbox" {
+      shape: class
+      class: type
+    }
+
+    CodeResult: "CodeResult\n- Output any\n- Logs []string\n- ToolCalls []ToolCall" {
+      shape: class
+      class: type
+    }
+
+    Executor -> CodeResult: "returns"
+  }
+
+  runtime: "runtime" {
+    class: package
+
+    Runtime: "«interface»\nRuntime\n+ Execute(ctx, tool, args) Result\n+ Cleanup() error" {
+      shape: class
+      class: interface
+    }
+
+    LocalRuntime: "LocalRuntime\nIn-process execution" {
+      shape: class
+      class: type
+    }
+
+    DockerRuntime: "DockerRuntime\nContainer isolation" {
+      shape: class
+      class: type
+    }
+
+    WASMRuntime: "WASMRuntime\nSandbox via wazero" {
+      shape: class
+      class: type
+    }
+
+    LocalRuntime -> Runtime: "implements"
+    DockerRuntime -> Runtime: "implements"
+    WASMRuntime -> Runtime: "implements"
+  }
+
+  backend: "backend" {
+    class: package
+
+    BackendRegistry: "BackendRegistry\n+ Register(name, Backend)\n+ Resolve(ToolBackend) Backend" {
+      shape: class
+      class: type
+    }
+
+    Backend: "«interface»\nBackend\n+ Execute(ctx, tool, args) (any, error)" {
+      shape: class
+      class: interface
+    }
+
+    LocalBackend: "LocalBackend\nIn-process handler" {
+      shape: class
+      class: type
+    }
+
+    ProviderBackend: "ProviderBackend\nExternal provider" {
+      shape: class
+      class: type
+    }
+
+    MCPBackend: "MCPBackend\nRemote MCP server" {
+      shape: class
+      class: type
+    }
+
+    BackendRegistry -> Backend: "manages"
+    LocalBackend -> Backend: "implements"
+    ProviderBackend -> Backend: "implements"
+    MCPBackend -> Backend: "implements"
+  }
+}
+
+# Package dependencies
+toolexec.exec.Exec -> toolexec.run.Runner: "uses"
+toolexec.run.DefaultRunner -> toolexec.backend.BackendRegistry: "uses"
+toolexec.run.DefaultRunner -> toolexec.code.Executor: "powers"
+toolexec.code.Executor -> toolexec.runtime.Runtime: "isolates via"
+
+# External dependencies
+tooldiscovery: "tooldiscovery" {
+  style: {
+    fill: "#3182ce"
+    font-color: "#fff"
+  }
+  index: "index.Index" {
+    style: {
+      fill: "#3182ce"
+      font-color: "#fff"
+    }
+  }
+  tooldoc: "tooldoc.Store" {
+    style: {
+      fill: "#3182ce"
+      font-color: "#fff"
+    }
+  }
+}
+
+# Integration clients (separate repo)
+toolexec_integrations: "toolexec-integrations\nkubernetes • proxmox • remotehttp" {
+  style: {
+    fill: "#c6f6d5"
+    stroke: ${execution-stroke}
+    stroke-width: 2
+    stroke-dash: 4
+  }
+  shape: package
+}
+
+toolexec_integrations -> toolexec.runtime: "implements backend clients" {
+  style: { stroke-dash: 4; stroke: ${execution-stroke} }
+}
+
+toolfoundation: "toolfoundation" {
+  style: {
+    fill: "#718096"
+    font-color: "#fff"
+  }
+  model: "model.Tool" {
+    style: {
+      fill: "#718096"
+      font-color: "#fff"
+    }
+  }
+}
+
+tooldiscovery.index -> toolexec.exec.Exec: "search tools" {
+  style: {
+    stroke: "#3182ce"
+    stroke-width: 2
+  }
+}
+
+tooldiscovery.index -> toolexec.run.DefaultRunner: "tool resolution" {
+  style: {
+    stroke: "#3182ce"
+    stroke-width: 2
+  }
+}
+
+tooldiscovery.tooldoc -> toolexec.exec.Exec: "tool docs" {
+  style: {
+    stroke: "#3182ce"
+    stroke-width: 2
+  }
+}
+
+toolfoundation.model -> toolexec.run.DefaultRunner: "schema validation" {
+  style: {
+    stroke: "#718096"
+    stroke-width: 2
+  }
+}

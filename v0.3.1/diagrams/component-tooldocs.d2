@@ -1,0 +1,217 @@
+# Component: tooldocs
+# Documentation and progressive disclosure layer
+
+direction: right
+
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+  docs-fill: "#d69e2e"
+  input-fill: "#718096"
+  tier-fill: "#38a169"
+  consumer-fill: "#3182ce"
+}
+
+classes: {
+  container: {
+    style: {
+      border-radius: 12
+      shadow: true
+      font-size: 14
+      bold: true
+    }
+  }
+  docs-node: {
+    style: {
+      fill: ${docs-fill}
+      stroke: "#b7791f"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  input-node: {
+    style: {
+      fill: ${input-fill}
+      stroke: "#4a5568"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  tier-node: {
+    style: {
+      fill: ${tier-fill}
+      stroke: "#276749"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  consumer-node: {
+    style: {
+      fill: ${consumer-fill}
+      stroke: "#2c5282"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  data-flow: {
+    style: {
+      stroke: "#4a5568"
+      stroke-width: 2
+    }
+  }
+}
+
+# Title
+title: "tooldocs - Documentation Layer" {
+  shape: text
+  near: top-center
+  style: {
+    font-size: 28
+    bold: true
+    font-color: "#1a365d"
+  }
+}
+
+# Inputs
+inputs: "📥 Inputs" {
+  class: container
+  style: {
+    fill: "#f7fafc"
+    stroke: ${input-fill}
+  }
+
+  toolmodel: "toolmodel\nSchema Types" {
+    shape: package
+    class: input-node
+  }
+
+  toolindex: "toolindex\nTool Lookup" {
+    shape: cylinder
+    class: input-node
+  }
+
+  stores: "Doc Stores\nExamples/Guides" {
+    shape: document
+    class: input-node
+  }
+}
+
+# Core Component
+core: "📚 tooldocs" {
+  class: container
+  style: {
+    fill: "#fffff0"
+    stroke: ${docs-fill}
+    stroke-width: 3
+  }
+
+  describe: "DescribeTool()\nGet Documentation" {
+    shape: document
+    class: docs-node
+  }
+
+  examples: "ListExamples()\nUsage Examples" {
+    shape: document
+    class: docs-node
+  }
+
+  describe -> examples: "enriches"
+}
+
+# Detail Tiers
+tiers: "📊 Detail Levels" {
+  class: container
+  style: {
+    fill: "#f0fff4"
+    stroke: ${tier-fill}
+  }
+
+  summary: "Summary\n~50 tokens\nID, Name, Tags" {
+    shape: step
+    class: tier-node
+  }
+
+  schema: "Schema\n~200 tokens\n+ InputSchema" {
+    shape: step
+    class: tier-node
+  }
+
+  full: "Full\n~500 tokens\n+ Description + Examples" {
+    shape: step
+    class: tier-node
+  }
+
+  summary -> schema: "more detail"
+  schema -> full: "more detail"
+}
+
+# Consumers
+consumers: "📤 Consumers" {
+  class: container
+  style: {
+    fill: "#ebf8ff"
+    stroke: ${consumer-fill}
+  }
+
+  toolcode: "toolcode\nOrchestration" {
+    shape: page
+    class: consumer-node
+  }
+
+  metatools: "metatools-mcp\nMCP Server" {
+    shape: hexagon
+    style: {
+      fill: "#2b6cb0"
+      stroke: "#1a365d"
+      font-color: "#fff"
+    }
+  }
+}
+
+# Connections
+inputs.toolmodel -> core.describe: "types" {
+  class: data-flow
+}
+inputs.toolindex -> core.describe: "lookup" {
+  class: data-flow
+}
+inputs.stores -> core.examples: "content" {
+  class: data-flow
+}
+
+core.describe -> tiers.summary: "returns" {
+  class: data-flow
+  style.stroke: ${tier-fill}
+}
+
+core.describe -> consumers.toolcode: "docs" {
+  class: data-flow
+}
+core.describe -> consumers.metatools: "describe_tool" {
+  class: data-flow
+}
+core.examples -> consumers.metatools: "list_examples" {
+  class: data-flow
+}
+
+# Token savings note
+note: |md
+  ## Progressive Disclosure
+
+  Token-efficient documentation:
+  - **Summary**: Minimal for discovery
+  - **Schema**: On-demand for execution
+  - **Full**: Complete when needed
+
+  **Result**: 90%+ token savings
+| {
+  near: bottom-right
+  style: {
+    fill: "#f7fafc"
+    stroke: "#e2e8f0"
+    font-size: 10
+    border-radius: 8
+  }
+}

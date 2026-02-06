@@ -1,0 +1,187 @@
+# toolcompose Component Diagram
+# Composition layer: set, skill packages
+
+direction: down
+
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+  composition-fill: "#805ad5"
+  composition-stroke: "#6b46c1"
+}
+
+classes: {
+  package: {
+    style: {
+      fill: ${composition-fill}
+      stroke: ${composition-stroke}
+      stroke-width: 2
+      font-color: "#fff"
+      border-radius: 8
+    }
+  }
+  type: {
+    style: {
+      fill: "#faf5ff"
+      stroke: ${composition-stroke}
+      stroke-width: 1
+    }
+  }
+  interface: {
+    style: {
+      fill: "#e9d8fd"
+      stroke: ${composition-stroke}
+      stroke-width: 1
+      stroke-dash: 3
+    }
+  }
+}
+
+toolcompose: "🎼 toolcompose" {
+  style: {
+    fill: "#faf5ff"
+    stroke: ${composition-stroke}
+    stroke-width: 2
+    border-radius: 12
+    shadow: true
+  }
+
+  set: "set" {
+    class: package
+
+    Toolset: "Toolset\n- source Index\n- predicates []Predicate" {
+      shape: class
+      class: type
+    }
+
+    Predicate: "«interface»\nPredicate\n+ Match(Tool) bool" {
+      shape: class
+      class: interface
+    }
+
+    predicates: "Built-in Predicates" {
+      style: {
+        fill: "#e9d8fd"
+        border-radius: 8
+      }
+
+      namespace: "Namespace(ns)" {
+        class: type
+      }
+      hasTag: "HasTag(tag)" {
+        class: type
+      }
+      nameContains: "NameContains(s)" {
+        class: type
+      }
+      and: "And(p1, p2)" {
+        class: type
+      }
+      or: "Or(p1, p2)" {
+        class: type
+      }
+      not: "Not(p)" {
+        class: type
+      }
+    }
+
+    Toolset -> Predicate: "filters with"
+    predicates.namespace -> Predicate: "implements"
+    predicates.hasTag -> Predicate: "implements"
+    predicates.nameContains -> Predicate: "implements"
+  }
+
+  skill: "skill" {
+    class: package
+
+    Skill: "Skill\n- name string\n- inputs []Input\n- steps []Step" {
+      shape: class
+      class: type
+    }
+
+    Step: "Step\n- Tool string\n- Args map[string]any\n- If string (condition)" {
+      shape: class
+      class: type
+    }
+
+    Input: "Input\n- Name string\n- Type string\n- Required bool\n- Default any" {
+      shape: class
+      class: type
+    }
+
+    SkillResult: "SkillResult\n- Output any\n- StepResults []StepResult" {
+      shape: class
+      class: type
+    }
+
+    Skill -> Step: "contains"
+    Skill -> Input: "declares"
+    Skill -> SkillResult: "produces"
+  }
+}
+
+# Package dependencies
+toolcompose.set.Toolset -> toolcompose.skill.Skill: "provides tools to"
+
+# External dependencies
+tooldiscovery: "tooldiscovery" {
+  style: {
+    fill: "#3182ce"
+    font-color: "#fff"
+  }
+  index: "index.Index" {
+    style: {
+      fill: "#3182ce"
+      font-color: "#fff"
+    }
+  }
+}
+
+toolexec: "toolexec" {
+  style: {
+    fill: "#38a169"
+    font-color: "#fff"
+  }
+  run: "run.Runner" {
+    style: {
+      fill: "#38a169"
+      font-color: "#fff"
+    }
+  }
+}
+
+toolfoundation: "toolfoundation" {
+  style: {
+    fill: "#718096"
+    font-color: "#fff"
+  }
+  adapter: "adapter.Registry" {
+    style: {
+      fill: "#718096"
+      font-color: "#fff"
+    }
+  }
+}
+
+tooldiscovery.index -> toolcompose.set.Toolset: "source" {
+  style: {
+    stroke: "#3182ce"
+    stroke-width: 2
+  }
+}
+
+toolexec.run -> toolcompose.skill.Skill: "executes steps" {
+  style: {
+    stroke: "#38a169"
+    stroke-width: 2
+  }
+}
+
+toolfoundation.adapter -> toolcompose.set.Toolset: "format export" {
+  style: {
+    stroke: "#718096"
+    stroke-width: 2
+  }
+}

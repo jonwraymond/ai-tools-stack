@@ -1,0 +1,30 @@
+# Adapter Hub-and-Spoke (Canonical Model)
+
+direction: right
+
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+}
+
+classes: {
+  hub: { style: { fill: "#4a5568"; stroke: "#2d3748"; stroke-width: 3; font-color: "#fff"; bold: true } }
+  spoke: { style: { fill: "#edf2f7"; stroke: "#a0aec0"; stroke-width: 2; font-color: "#1a202c" } }
+  edge: { style: { stroke: "#2b6cb0"; stroke-width: 2 } }
+}
+
+canonical: "Canonical Model\nCanonicalTool + CanonicalProvider" { shape: hexagon; class: hub }
+
+mcp: "MCP 2025-11-25\nTool/Prompt/Resource" { shape: rectangle; class: spoke }
+a2a: "A2A\nAgentCard + Skills" { shape: rectangle; class: spoke }
+openai: "OpenAI Agents\nFunction tools" { shape: rectangle; class: spoke }
+anthropic: "Anthropic\nTool use" { shape: rectangle; class: spoke }
+gemini: "Gemini\nFunction declarations" { shape: rectangle; class: spoke }
+
+canonical <-> mcp: "adapter/mcp" { class: edge }
+canonical <-> a2a: "adapter/a2a" { class: edge }
+canonical <-> openai: "adapter/openai" { class: edge }
+canonical <-> anthropic: "adapter/anthropic" { class: edge }
+canonical <-> gemini: "adapter/gemini" { class: edge }

@@ -1,0 +1,223 @@
+# Component: toolcode
+# Code-based orchestration layer
+
+direction: right
+
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+  }
+  orchestration-fill: "#6b46c1"
+  input-fill: "#718096"
+  metatool-fill: "#38a169"
+  consumer-fill: "#2b6cb0"
+}
+
+classes: {
+  container: {
+    style: {
+      border-radius: 12
+      shadow: true
+      font-size: 14
+      bold: true
+    }
+  }
+  orchestration-node: {
+    style: {
+      fill: ${orchestration-fill}
+      stroke: "#553c9a"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  input-node: {
+    style: {
+      fill: ${input-fill}
+      stroke: "#4a5568"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  metatool-node: {
+    style: {
+      fill: ${metatool-fill}
+      stroke: "#276749"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  consumer-node: {
+    style: {
+      fill: ${consumer-fill}
+      stroke: "#1a365d"
+      stroke-width: 2
+      font-color: "#fff"
+    }
+  }
+  data-flow: {
+    style: {
+      stroke: "#4a5568"
+      stroke-width: 2
+    }
+  }
+}
+
+# Title
+title: "toolcode - Orchestration Layer" {
+  shape: text
+  near: top-center
+  style: {
+    font-size: 28
+    bold: true
+    font-color: "#1a365d"
+  }
+}
+
+# Inputs
+inputs: "📥 Dependencies" {
+  class: container
+  style: {
+    fill: "#f7fafc"
+    stroke: ${input-fill}
+  }
+
+  toolindex: "toolindex\nDiscovery" {
+    shape: cylinder
+    class: input-node
+  }
+
+  tooldocs: "tooldocs\nDocumentation" {
+    shape: document
+    class: input-node
+  }
+
+  toolrun: "toolrun\nExecution" {
+    shape: step
+    class: input-node
+  }
+
+  toolruntime: "toolruntime\nSandbox" {
+    shape: cloud
+    class: input-node
+  }
+}
+
+# Core Component
+core: "💻 toolcode" {
+  class: container
+  style: {
+    fill: "#faf5ff"
+    stroke: ${orchestration-fill}
+    stroke-width: 3
+  }
+
+  executor: "Executor\nCode Runner" {
+    shape: page
+    class: orchestration-node
+  }
+
+  limits: "Limits\nTimeout, MaxCalls" {
+    shape: hexagon
+    class: orchestration-node
+  }
+
+  engine: "Engine\nScript Execution" {
+    shape: step
+    class: orchestration-node
+  }
+
+  executor -> limits: "enforces"
+  limits -> engine: "runs"
+}
+
+# Metatool Surface
+metatools: "🔨 Metatool Environment" {
+  class: container
+  style: {
+    fill: "#f0fff4"
+    stroke: ${metatool-fill}
+  }
+
+  search: "SearchTools()" {
+    shape: step
+    class: metatool-node
+  }
+
+  describe: "DescribeTool()" {
+    shape: step
+    class: metatool-node
+  }
+
+  run: "RunTool()" {
+    shape: step
+    class: metatool-node
+  }
+
+  chain: "RunChain()" {
+    shape: step
+    class: metatool-node
+  }
+
+  println: "Println()" {
+    shape: step
+    class: metatool-node
+  }
+}
+
+# Consumers
+consumers: "📤 Surface" {
+  class: container
+  style: {
+    fill: "#ebf8ff"
+    stroke: ${consumer-fill}
+  }
+
+  metatools_mcp: "metatools-mcp\nMCP Server" {
+    shape: hexagon
+    class: consumer-node
+  }
+}
+
+# Connections
+inputs.toolindex -> core.executor: "discovery" {
+  class: data-flow
+}
+inputs.tooldocs -> core.executor: "docs" {
+  class: data-flow
+}
+inputs.toolrun -> core.executor: "execution" {
+  class: data-flow
+}
+inputs.toolruntime -> core.engine: "sandbox" {
+  class: data-flow
+  style.stroke-dash: 3
+}
+
+core.engine -> metatools: "exposes" {
+  class: data-flow
+  style.stroke: ${metatool-fill}
+}
+
+core.executor -> consumers.metatools_mcp: "execute_code" {
+  class: data-flow
+}
+
+# Result note
+result: |md
+  ## ExecuteResult
+
+  - `Value` - Final `__out` value
+  - `Stdout` - Captured output
+  - `ToolCalls[]` - Audit trail
+    - ToolID, Args, Result
+    - Backend, Duration
+| {
+  near: bottom-right
+  style: {
+    fill: "#f7fafc"
+    stroke: "#e2e8f0"
+    font-size: 10
+    border-radius: 8
+  }
+}
