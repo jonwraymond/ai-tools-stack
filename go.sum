@@ -54,8 +54,6 @@ github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/jonwraymond/metatools-a2a v0.1.1 h1:A485+1rLG24tbJ/1R3KEwwpLu+MPbDHiP4v737L1yhQ=
 github.com/jonwraymond/metatools-a2a v0.1.1/go.mod h1:okMLkKT9teqQKBfj3lWqgUXDt1l1S4eHVmP9ILCFUb8=
-github.com/jonwraymond/metatools-mcp v0.7.0 h1:Aefk6Cm8Q8S/voCUVOFCddgwoQ2T+H7X4OzyZpFoUOU=
-github.com/jonwraymond/metatools-mcp v0.7.0/go.mod h1:00d0c0oFZWVCY9EzCPtiHeO+D4ObwokwjLF1DGxAllM=
 github.com/jonwraymond/metatools-mcp v0.7.1 h1:u1S5g6vHtvfitS5RONyQxSCXwswub9PIoQS46w2dW5s=
 github.com/jonwraymond/metatools-mcp v0.7.1/go.mod h1:00d0c0oFZWVCY9EzCPtiHeO+D4ObwokwjLF1DGxAllM=
 github.com/jonwraymond/toolcompose v0.1.5 h1:Z5FvpB3EiAIG3nSbDf7nih4Vopq+hgeCxWha9+OslaY=
@@ -66,7 +64,7 @@ github.com/jonwraymond/toolexec v0.2.3 h1:WZDcTMOPYiLKDYSZuTxvHo3d/cBlFmdSoAa2Zr
 github.com/jonwraymond/toolexec v0.2.3/go.mod h1:7c5GW9fzqwRj0u5+GVp77LkoOXDrhkdb7UboLdBsrFs=
 github.com/jonwraymond/toolfoundation v0.3.2 h1:m+oj1DRgiLVqguEi6sDOKOvBIRR8ZzkJ6XrwOxbSbnw=
 github.com/jonwraymond/toolfoundation v0.3.2/go.mod h1:NWVXU4fRdHR9dsNXLm204zfhOVoxs/Be60L6bAceYXo=
-github.com/jonwraymond/toolops v0.1.7 h1:Cr4GLqKcl2RnQ61iFdf4Sy+h4jyUHIDlbw7Fr1CYAzo=
+github.com/jonwraymond/toolops v0.1.7 h1:07c2CNl6scpeXp2pMzShnTpPAnLX+TjfF+aPe7vSCBA=
 github.com/jonwraymond/toolops v0.1.7/go.mod h1:krZ16EBgmsaPczrtBBGZIXWuwuCzN1AwmT9JJJ3ZpJ8=
 github.com/jonwraymond/toolprotocol v0.1.9 h1:bpKAJ+KBx4GOQ3Jea/c9+Djqi5ZpXot2a1z0GQLGuNI=
 github.com/jonwraymond/toolprotocol v0.1.9/go.mod h1:2bu8COWU9azIixIDgmAfhAbnay6Rg8NDSmDNVepaux8=
