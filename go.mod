@@ -1,6 +1,6 @@
 module github.com/jonwraymond/ai-tools-stack
 
-go 1.25.6
+go 1.25.7
 
 require (
 	github.com/jonwraymond/metatools-a2a v0.1.1
