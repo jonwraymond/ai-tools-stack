@@ -11,7 +11,7 @@ require (
 	github.com/jonwraymond/toolfoundation v0.3.2
 	github.com/jonwraymond/toolops v0.1.7
 	github.com/jonwraymond/toolprotocol v0.1.9
-	github.com/modelcontextprotocol/go-sdk v1.2.0
+	github.com/modelcontextprotocol/go-sdk v1.3.0
 )
 
 require (
